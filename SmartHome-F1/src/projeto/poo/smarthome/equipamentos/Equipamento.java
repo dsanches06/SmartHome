@@ -5,10 +5,31 @@
  */
 package projeto.poo.smarthome.equipamentos;
 
+import projeto.poo.smarthome.cliente.*;
+
 /**
  *
- * @author 
+ * @author
  */
-public class Equipamento {
-    
+public abstract class Equipamento {
+
+    // tipo de equipamento
+    private TipoEquipamento tipo;
+    //divisão onde se encontra o equipamento
+    protected Divisao divisao;
+
+    //Constructor
+    public Equipamento(TipoEquipamento tipo) {
+        this.tipo = tipo;
+        this.divisao = null;
+    }
+
+    public abstract int getId();
+
+    public TipoEquipamento getTipo() {
+        return tipo;
+    }
+
+    public abstract void setDivisao(Divisao divisao);
+
 }

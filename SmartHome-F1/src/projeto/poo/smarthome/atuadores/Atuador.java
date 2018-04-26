@@ -5,10 +5,28 @@
  */
 package projeto.poo.smarthome.atuadores;
 
+import projeto.poo.smarthome.cliente.Divisao;
+import projeto.poo.smarthome.equipamentos.*;
+import projeto.poo.smarthome.equipamentos.*;
+
 /**
  *
- * @author 
+ * @author
  */
-public class Atuador {
-    
+public abstract class Atuador extends Equipamento {
+
+    //Constructor
+    public Atuador(TipoEquipamento tipo) {
+        super(tipo);
+    }
+
+    @Override
+    public TipoEquipamento getTipo() {
+        return super.getTipo();
+    }
+
+    public abstract void ligar();
+
+    public abstract void desligar();
+
 }

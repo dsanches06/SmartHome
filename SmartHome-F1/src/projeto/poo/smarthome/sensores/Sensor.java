@@ -5,10 +5,28 @@
  */
 package projeto.poo.smarthome.sensores;
 
+import projeto.poo.smarthome.cliente.Divisao;
+import projeto.poo.smarthome.equipamentos.Equipamento;
+import projeto.poo.smarthome.equipamentos.TipoEquipamento;
+
 /**
  *
- * @author 
+ * @author
  */
-public class Sensor {
-    
+public abstract class Sensor extends Equipamento {
+
+    //Constructor
+    public Sensor(TipoEquipamento tipo) {
+        super(tipo);
+    }
+
+    @Override
+    public TipoEquipamento getTipo() {
+        return super.getTipo();
+    }
+
+    public abstract void ligar();
+
+    public abstract void desligar();
+
 }

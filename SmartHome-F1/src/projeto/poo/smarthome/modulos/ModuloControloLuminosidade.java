@@ -13,16 +13,16 @@ import projeto.poo.smarthome.equipamentos.Equipamento;
  *
  * @author
  */
-public class ModuloControloTemperatura extends Modulo {
+public class ModuloControloLuminosidade extends Modulo {
 
     @Override
     public void adicionarDivisao(Divisao divisao) {
-       super.adicionarDivisao(divisao);
+        super.adicionarDivisao(divisao);
     }
 
     @Override
     public void adicionarEquipamentoNaDivisao(int divisaoId, Equipamento equipamento) {
-     super.adicionarEquipamentoNaDivisao(divisaoId, equipamento);
+        super.adicionarEquipamentoNaDivisao(divisaoId, equipamento);
     }
 
     @Override
@@ -37,7 +37,9 @@ public class ModuloControloTemperatura extends Modulo {
 
     @Override
     public void associarEquipamento() {
-    
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
+
+

@@ -7,8 +7,25 @@ package projeto.poo.smarthome.cliente;
 
 /**
  *
- * @author 
+ * @author
  */
 public class Cliente {
-    
+
+    //nome
+    private String nomeCliente;
+    //morada
+    private String morada;
+    //numero e cliente atribuido na consola central
+    private int numeroCliente;
+    //Habitaçao
+    private Habitacao habitacao;
+
+    //Constructor
+    public Cliente(String nomeCliente, String morada, int numeroCliente) {
+        this.nomeCliente = nomeCliente;
+        this.morada = morada;
+        this.numeroCliente = numeroCliente;
+        this.habitacao = new Habitacao();
+    }
+
 }

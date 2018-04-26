@@ -5,10 +5,20 @@
  */
 package projeto.poo.smarthome.cliente;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
- * @author 
+ * @author
  */
 public class Habitacao {
-    
+
+    //uma lista de divisoes
+    private List<Divisao> divisoes;
+
+    //Constructor
+    public Habitacao() {
+        this.divisoes = new ArrayList<>();
+    }
 }
