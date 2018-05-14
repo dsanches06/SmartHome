@@ -5,8 +5,11 @@
  */
 package projeto.poo.smarthome.atuadores;
 
+import projeto.poo.smarthome.ErroException;
 import projeto.poo.smarthome.cliente.Divisao;
 import projeto.poo.smarthome.equipamentos.TipoEquipamento;
+import projeto.poo.smarthome.modulos.Accao;
+import projeto.poo.smarthome.modulos.Modo;
 
 /**
  *
@@ -30,9 +33,9 @@ public class Sirene extends Atuador {
     private int id;
 
     //Constructor
-    public Sirene(TipoEquipamento tipo, int volume) {
-        super(tipo);
-        this.id = gerarID();
+    public Sirene(int volume) {
+        super();
+        this.id = ++Sirene.numEquipamento;
         this.nome = "Sirene" + this.id;
         if (isVolumeValido(volume)) {
             this.volume = volume;
@@ -41,8 +44,7 @@ public class Sirene extends Atuador {
         }
     }
 
-    @Override
-    public void ligar() {
+    public void ligar(Modo modo) {
         //se estiver desligado
         if (!ligado) {
             //liga a sirene
@@ -50,8 +52,7 @@ public class Sirene extends Atuador {
         }
     }
 
-    @Override
-    public void desligar() {
+    public void desligar(Modo modo) {
         //se estiver ligado
         if (ligado) {
             //desliga a sirene
@@ -59,13 +60,12 @@ public class Sirene extends Atuador {
         }
     }
 
-    private boolean isVolumeValido(int valor) {
-        return (valor >= Sirene.VOLUME_MIN) && (valor <= Sirene.VOLUME_MAX);
+    public void regularEquipamento(Modo modo, int valor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void setDivisao(Divisao divisao) {
-        this.divisao = divisao;
+    private boolean isVolumeValido(int valor) {
+        return (valor >= Sirene.VOLUME_MIN) && (valor <= Sirene.VOLUME_MAX);
     }
 
     public int getVolume() {
@@ -84,13 +84,30 @@ public class Sirene extends Atuador {
         this.ligado = ligado;
     }
 
-    private int gerarID() {
-        return ++Sirene.numEquipamento;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     @Override
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Divisao getDivisao() {
+        return divisao;
+    }
+
+    @Override
+    public void setDivisao(Divisao divisao) {
+        this.divisao = divisao;
     }
 
     @Override
@@ -103,4 +120,5 @@ public class Sirene extends Atuador {
         str += "Volume: " + this.volume + "\n";
         return str;
     }
+
 }

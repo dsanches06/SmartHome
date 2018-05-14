@@ -5,9 +5,12 @@
  */
 package projeto.poo.smarthome.atuadores;
 
+import projeto.poo.smarthome.ErroException;
 import projeto.poo.smarthome.cliente.Divisao;
 import projeto.poo.smarthome.equipamentos.*;
 import projeto.poo.smarthome.equipamentos.*;
+import projeto.poo.smarthome.modulos.Accao;
+import projeto.poo.smarthome.modulos.Modo;
 
 /**
  *
@@ -15,9 +18,12 @@ import projeto.poo.smarthome.equipamentos.*;
  */
 public abstract class Atuador extends Equipamento {
 
+    private boolean modoAutomatico;
+
     //Constructor
-    public Atuador(TipoEquipamento tipo) {
-        super(tipo);
+    public Atuador() {
+        super(TipoEquipamento.ATUADOR);
+        this.modoAutomatico = false;
     }
 
     @Override
@@ -25,8 +31,15 @@ public abstract class Atuador extends Equipamento {
         return super.getTipo();
     }
 
-    public abstract void ligar();
+    public boolean isModoAutomatico() {
+        return modoAutomatico;
+    }
 
-    public abstract void desligar();
+    public void setModoAutomatico(boolean modoAutomatico) {
+        this.modoAutomatico = modoAutomatico;
+    }
+
+    @Override
+    public abstract int getId();
 
 }

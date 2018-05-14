@@ -5,9 +5,8 @@
  */
 package projeto.poo.smarthome.modulos;
 
-import java.util.*;
-import projeto.poo.smarthome.cliente.*;
-import projeto.poo.smarthome.equipamentos.*;
+import projeto.poo.smarthome.ErroException;
+import projeto.poo.smarthome.central.ConsolaCentral;
 
 /**
  *
@@ -15,42 +14,21 @@ import projeto.poo.smarthome.equipamentos.*;
  */
 public abstract class Modulo {
 
-    //divisoes
-    private List<Divisao> divisoes;
-    //diversos equipamentos
-    private List<Equipamento> equipamentos;
+    //nome
+    private String nome;
 
-    public Modulo() {
-        this.divisoes = new ArrayList<>();
-        this.equipamentos = new ArrayList<>();
+    public Modulo(String nome) {
+        this.nome = nome;
     }
 
-    public void adicionarDivisao(Divisao divisao) {
-        if (divisao != null) {
-            if (!divisoes.contains(divisao)) {
-                this.divisoes.add(divisao);
-            }
-        }
+    @Override
+    public String toString() {
+        String str = "";
+        str += nome + "\n";
+
+        return str;
     }
 
-    public void adicionarEquipamentoNaDivisao(int divisaoId, Equipamento equipamento) {
-        for (Divisao divisao : this.divisoes) {
-            if (divisaoId == divisao.getId()) {
-                if (!divisao.getEquipamentos().contains(equipamento)) {
-                    divisao.adicionarEquipamento(equipamento);
-                    this.equipamentos.add(equipamento);
-                }
-            }
-        }
-    }
+    public abstract ConsolaCentral getConsola();
 
-    public List<Divisao> getDivisoes() {
-        return divisoes;
-    }
-
-    public List<Equipamento> getEquipamentos() {
-        return equipamentos;
-    }
-
-    public abstract void associarEquipamento();
 }

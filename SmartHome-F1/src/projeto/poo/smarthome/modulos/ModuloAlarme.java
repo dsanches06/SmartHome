@@ -5,9 +5,8 @@
  */
 package projeto.poo.smarthome.modulos;
 
-import java.util.List;
-import projeto.poo.smarthome.cliente.Divisao;
-import projeto.poo.smarthome.equipamentos.Equipamento;
+import projeto.poo.smarthome.ErroException;
+import projeto.poo.smarthome.central.ConsolaCentral;
 
 /**
  *
@@ -15,29 +14,18 @@ import projeto.poo.smarthome.equipamentos.Equipamento;
  */
 public class ModuloAlarme extends Modulo {
 
-    @Override
-    public void adicionarDivisao(Divisao divisao) {
-        super.adicionarDivisao(divisao);
+    private ConsolaCentral consola;
+
+    public ModuloAlarme(ConsolaCentral consola) {
+        super("Modúlo Alarme");
+        this.consola = consola;
     }
 
     @Override
-    public void adicionarEquipamentoNaDivisao(int divisaoId, Equipamento equipamento) {
-        super.adicionarEquipamentoNaDivisao(divisaoId, equipamento);
+    public ConsolaCentral getConsola() {
+        return consola;
     }
 
-    @Override
-    public List<Divisao> getDivisoes() {
-        return super.getDivisoes();
-    }
-
-    @Override
-    public List<Equipamento> getEquipamentos() {
-        return super.getEquipamentos();
-    }
-
-    @Override
-    public void associarEquipamento() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
 }

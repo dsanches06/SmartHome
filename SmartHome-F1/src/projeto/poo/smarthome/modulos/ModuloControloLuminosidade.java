@@ -5,9 +5,10 @@
  */
 package projeto.poo.smarthome.modulos;
 
-import java.util.List;
+import projeto.poo.smarthome.ErroException;
+import projeto.poo.smarthome.central.ConsolaCentral;
+import projeto.poo.smarthome.cliente.Cliente;
 import projeto.poo.smarthome.cliente.Divisao;
-import projeto.poo.smarthome.equipamentos.Equipamento;
 
 /**
  *
@@ -15,31 +16,64 @@ import projeto.poo.smarthome.equipamentos.Equipamento;
  */
 public class ModuloControloLuminosidade extends Modulo {
 
-    @Override
-    public void adicionarDivisao(Divisao divisao) {
-        super.adicionarDivisao(divisao);
+    private ConsolaCentral consola;
+
+    public ModuloControloLuminosidade(ConsolaCentral consola) {
+        super("Modúlo Luminosidade");
+        this.consola = consola;
+    }
+
+    public void ligarEquipamento(int clienteId, int divisaoId, int equipamentoId) throws ErroException {
+        Cliente cliente = this.consola.getClientePorID(clienteId);
+        if (cliente != null) {
+            Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
+            if (divisao != null) {
+                divisao.ligarEquipamento(equipamentoId);
+            } else {
+                throw new ErroException("Não existe nenhuma divisão com este ID.");
+            }
+        } else {
+            throw new ErroException("Não existe nenhum cliente com este ID.");
+        }
+    }
+
+    public void desligarEquipamento(int clienteId, int divisaoId, int equipamentoId) throws ErroException {
+        Cliente cliente = this.consola.getClientePorID(clienteId);
+        if (cliente != null) {
+            Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
+            if (divisao != null) {
+                divisao.desligarEquipamento(equipamentoId);
+            } else {
+                throw new ErroException("Não existe nenhuma divisão com este ID.");
+            }
+        } else {
+            throw new ErroException("Não existe nenhum cliente com este ID.");
+        }
+    }
+    
+    
+    public void regularEquipamento(int clienteId, int divisaoId, int equipamentoId,int valor) throws ErroException {
+        Cliente cliente = this.consola.getClientePorID(clienteId);
+        if (cliente != null) {
+            Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
+            if (divisao != null) {
+                divisao.desligarEquipamento(equipamentoId);
+            } else {
+                throw new ErroException("Não existe nenhuma divisão com este ID.");
+            }
+        } else {
+            throw new ErroException("Não existe nenhum cliente com este ID.");
+        }
     }
 
     @Override
-    public void adicionarEquipamentoNaDivisao(int divisaoId, Equipamento equipamento) {
-        super.adicionarEquipamentoNaDivisao(divisaoId, equipamento);
+    public ConsolaCentral getConsola() {
+        return consola;
     }
 
     @Override
-    public List<Divisao> getDivisoes() {
-        return super.getDivisoes();
-    }
-
-    @Override
-    public List<Equipamento> getEquipamentos() {
-        return super.getEquipamentos();
-    }
-
-    @Override
-    public void associarEquipamento() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String toString() {
+        return super.toString();
     }
 
 }
-
-

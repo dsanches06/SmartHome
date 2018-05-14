@@ -5,37 +5,22 @@
  */
 package projeto.poo.smarthome.atuadores;
 
+import projeto.poo.smarthome.ErroException;
 import projeto.poo.smarthome.cliente.Divisao;
 import projeto.poo.smarthome.equipamentos.TipoEquipamento;
+import projeto.poo.smarthome.modulos.Modo;
 
 /**
  *
  * @author
  */
-public class Tomada extends Atuador {
+public class Tomada  {
 
-    public Tomada(TipoEquipamento tipo) {
-        super(tipo);
+    public Tomada() {
+        super();
     }
 
-    @Override
-    public void ligar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void desligar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setDivisao(Divisao divisao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
+    
 
 }

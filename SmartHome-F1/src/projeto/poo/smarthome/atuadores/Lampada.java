@@ -5,8 +5,13 @@
  */
 package projeto.poo.smarthome.atuadores;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import projeto.poo.smarthome.ErroException;
 import projeto.poo.smarthome.cliente.*;
 import projeto.poo.smarthome.equipamentos.*;
+import projeto.poo.smarthome.modulos.Accao;
+import projeto.poo.smarthome.modulos.Modo;
 
 /**
  *
@@ -29,38 +34,53 @@ public class Lampada extends Atuador {
     private int id;
 
     //Constructor
-    public Lampada(TipoEquipamento tipo, int intensidade) {
-        super(tipo);
-        this.id = gerarID();
+    public Lampada() {
+        super();
+        this.id = ++Lampada.numEquipamento;
         this.nome = "Lampada" + this.id;
-        if (isIntensidadeValido(intensidade)) {
-            this.intensidade = intensidade;
-        } else {
-            this.intensidade = Lampada.INTENSIDADE_MIN;
-        }
+        this.intensidade = Lampada.INTENSIDADE_MIN;
         this.ligado = false;
     }
 
     @Override
-    public void ligar() {
-        //se estiver desligado
-        if (!ligado) {
-            //liga a lampada
-            this.ligado = true;
-        }
+    public String toString() {
+        String str = "";
+        str += "Equipamento: " + nome + "\n";
+        str += "Tipo: " + this.getTipo() + "\n";
+        str += "Estado: ";
+        str += (this.ligado) ? "Ligado\n" : "Desligado\n";
+        str += "Modo: ";
+        str += (this.isModoAutomatico()) ? "Automático\n" : "Manual\n";
+        str += "Intensidade: " + this.intensidade + " kw/h\n";
+        return str;
+    }
+
+    public void ligar() throws ErroException {
+        if (this.ligado) {
+            throw new ErroException("Esta lampada já se encontra ligada.");
+        }//liga a lampada
+        this.ligado = true;
+    }
+
+    public void desligar() throws ErroException {
+        if (!this.ligado) {
+            throw new ErroException("Esta lampada já se encontra desligada.");
+        }//desliga a lampada
+        this.ligado = false;
+    }
+
+    public void regularEquipamento(int valor) throws ErroException {//duvida
+        this.intensidade = valor;
     }
 
     @Override
-    public void desligar() {
-        //se estiver ligado
-        if (ligado) {
-            //desliga a lampada
-            this.ligado = false;
-        }
+    public boolean isModoAutomatico() {
+        return super.isModoAutomatico();
     }
 
-    private boolean isIntensidadeValido(int valor) {
-        return (valor >= Lampada.INTENSIDADE_MIN) && (valor <= Lampada.INTENSIDADE_MAX);
+    @Override
+    public void setModoAutomatico(boolean modoAutomatico) {
+        super.setModoAutomatico(modoAutomatico);
     }
 
     @Override
@@ -76,8 +96,20 @@ public class Lampada extends Atuador {
         this.intensidade = intensidade;
     }
 
-    private int gerarID() {
-        return ++Lampada.numEquipamento;
+    public boolean isLigado() {
+        return ligado;
+    }
+
+    public void setLigado(boolean ligado) {
+        this.ligado = ligado;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     @Override
@@ -85,14 +117,4 @@ public class Lampada extends Atuador {
         return id;
     }
 
-    @Override
-    public String toString() {
-        String str = "";
-        str += nome + "\n";
-        str += "Tipo: " + this.getTipo() + "\n";
-        str += "Estado: ";
-        str += (this.ligado) ? "Ligado\n" : "Desligado\n";
-        str += "Intensidade: " + this.intensidade + "\n";
-        return str;
-    }
 }

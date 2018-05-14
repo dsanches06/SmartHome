@@ -6,7 +6,6 @@
 package projeto.poo.smarthome.sensores;
 
 import projeto.poo.smarthome.cliente.Divisao;
-import projeto.poo.smarthome.equipamentos.TipoEquipamento;
 
 /**
  *
@@ -14,28 +13,41 @@ import projeto.poo.smarthome.equipamentos.TipoEquipamento;
  */
 public class SensorPortaAberta extends Sensor {
 
-    public SensorPortaAberta(TipoEquipamento tipo) {
-        super(tipo);
-    }
+    private boolean ligado;
+    private static int numEquipamento = 0;
+    private int id;
+    private String nome;
 
-    @Override
-    public void ligar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void desligar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public SensorPortaAberta() {
+        super();
+        this.id = ++SensorPortaAberta.numEquipamento;
+        this.nome = "SPA" + this.id;
+        this.ligado = false;
     }
 
     @Override
     public void setDivisao(Divisao divisao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.divisao = divisao;
+    }
+
+    public boolean isLigado() {
+        return ligado;
+    }
+
+    public void setLigado(boolean ligado) {
+        this.ligado = ligado;
     }
 
     @Override
     public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

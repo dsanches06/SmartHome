@@ -6,7 +6,6 @@
 package projeto.poo.smarthome.sensores;
 
 import projeto.poo.smarthome.cliente.Divisao;
-import projeto.poo.smarthome.equipamentos.TipoEquipamento;
 
 /**
  *
@@ -14,38 +13,20 @@ import projeto.poo.smarthome.equipamentos.TipoEquipamento;
  */
 public class SensorTemperatura extends Sensor {
 
-    //estado ligado ou desligado
     private boolean ligado;
+    private static int numEquipamento = 0;
+    private int id;
+    private String nome;
 
-    public SensorTemperatura(TipoEquipamento tipo) {
-        super(tipo);
+    public SensorTemperatura() {
+        super();
+        this.id = ++SensorTemperatura.numEquipamento;
+        this.nome = "ST" + this.id;
         this.ligado = false;
     }
 
-    public int getTemperatura() {
-        if (this.divisao != null) {
-            ligar();//ligar o sensor
-            return divisao.getTemperatura();
-        }
+    public int registarTemperatura() {
         return 0;
-    }
-
-    @Override
-    public void ligar() {
-        //se estiver desligado
-        if (!ligado) {
-            //liga o sensor
-            this.ligado = true;
-        }
-    }
-
-    @Override
-    public void desligar() {
-        //se estiver ligado
-        if (ligado) {
-            //desliga o sensor
-            this.ligado = false;
-        }
     }
 
     @Override
@@ -63,7 +44,14 @@ public class SensorTemperatura extends Sensor {
 
     @Override
     public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

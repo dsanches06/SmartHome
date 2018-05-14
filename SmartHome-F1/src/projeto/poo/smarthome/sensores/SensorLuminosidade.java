@@ -6,42 +6,27 @@
 package projeto.poo.smarthome.sensores;
 
 import projeto.poo.smarthome.cliente.Divisao;
-import projeto.poo.smarthome.equipamentos.TipoEquipamento;
 
 /**
  *
- * @author 
+ * @author
  */
-public class SensorLuminosidade extends Sensor{
+public class SensorLuminosidade extends Sensor {
 
-    //estado da energia externa
-
-    //estado ligado ou desligado
     private boolean ligado;
+    private static int numEquipamento = 0;
+    private int id;
+    private String nome;
 
-    public SensorLuminosidade(TipoEquipamento tipo) {
-        super(tipo);
+    public SensorLuminosidade() {
+        super();
+        this.id = ++SensorLuminosidade.numEquipamento;
+        this.nome = "SL" + this.id;
         this.ligado = false;
     }
 
-   
-
-    @Override
-    public void ligar() {
-        //se estiver desligado
-        if (!ligado) {
-            //liga o sensor
-            this.ligado = true;
-        }
-    }
-
-    @Override
-    public void desligar() {
-        //se estiver ligado
-        if (ligado) {
-            //desliga o sensor
-            this.ligado = false;
-        }
+    public int medirLuzAmbiente() {
+        return 0;
     }
 
     @Override
@@ -49,7 +34,6 @@ public class SensorLuminosidade extends Sensor{
         this.divisao = divisao;
     }
 
-    
     public boolean isLigado() {
         return ligado;
     }
@@ -60,7 +44,14 @@ public class SensorLuminosidade extends Sensor{
 
     @Override
     public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

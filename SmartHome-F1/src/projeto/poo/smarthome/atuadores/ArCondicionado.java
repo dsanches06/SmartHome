@@ -5,8 +5,8 @@
  */
 package projeto.poo.smarthome.atuadores;
 
+import projeto.poo.smarthome.ErroException;
 import projeto.poo.smarthome.cliente.Divisao;
-import projeto.poo.smarthome.equipamentos.TipoEquipamento;
 
 /**
  *
@@ -30,38 +30,53 @@ public class ArCondicionado extends Atuador {
     private int id;
 
     //Constructor
-    public ArCondicionado(TipoEquipamento tipo, int temperatura) {
-        super(tipo);
-        this.id = gerarID();
+    public ArCondicionado() {
+        super();
+        this.id = ++ArCondicionado.numEquipamento;
         this.nome = "AC" + this.id;
-        if (isTemperaturaValido(temperatura)) {
-            this.temperatura = temperatura;
-        } else {
-            this.temperatura = ArCondicionado.TEMPERATURA_MIN;
-        }
+        this.temperatura = ArCondicionado.TEMPERATURA_MIN;
         this.ligado = false;
     }
 
     @Override
-    public void ligar() {
-        //se estiver desligado
-        if (!ligado) {
-            //liga o AC
-            this.ligado = true;
-        }
+    public String toString() {
+        String str = "";
+        str += "Equipamento: " + nome + "\n";
+        str += "Tipo: " + this.getTipo() + "\n";
+        str += "Estado: ";
+        str += (this.ligado) ? "Ligado\n" : "Desligado\n";
+        str += "Modo: ";
+        str += (this.isModoAutomatico()) ? "Automático\n" : "Manual\n";
+        str += "Temperatura: " + this.temperatura + " ºC\n";
+        return str;
+    }
+
+    public void ligar() throws ErroException {
+        if (this.ligado) {
+            throw new ErroException("Esta AC já se encontra ligado.");
+        }//liga a lampada
+        this.ligado = true;
+    }
+
+    public void desligar() throws ErroException {
+        if (!this.ligado) {
+            throw new ErroException("Esta AC já se encontra desligado.");
+        }//desliga a lampada
+        this.ligado = false;
+    }
+
+    public void regularEquipamento(int valor) throws ErroException {//duvida
+        this.temperatura = valor;
     }
 
     @Override
-    public void desligar() {
-        //se estiver ligado
-        if (ligado) {
-            //desliga o AC
-            this.ligado = false;
-        }
+    public boolean isModoAutomatico() {
+        return super.isModoAutomatico();
     }
 
-    private boolean isTemperaturaValido(int valor) {
-        return (valor >= ArCondicionado.TEMPERATURA_MIN) && (valor <= ArCondicionado.TEMPERATURA_MAX);
+    @Override
+    public void setModoAutomatico(boolean modoAutomatico) {
+        super.setModoAutomatico(modoAutomatico);
     }
 
     @Override
@@ -69,16 +84,20 @@ public class ArCondicionado extends Atuador {
         this.divisao = divisao;
     }
 
-    public int getTemperatura() {
-        return temperatura;
+    public boolean isLigado() {
+        return ligado;
     }
 
-    public void setTemperatura(int temperatura) {
-        this.temperatura = temperatura;
+    public void setLigado(boolean ligado) {
+        this.ligado = ligado;
     }
 
-    private int gerarID() {
-        return ++ArCondicionado.numEquipamento;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     @Override
@@ -86,14 +105,4 @@ public class ArCondicionado extends Atuador {
         return id;
     }
 
-    @Override
-    public String toString() {
-        String str = "";
-        str += nome + "\n";
-        str += "Tipo: " + this.getTipo() + "\n";
-        str += "Estado: ";
-        str += (this.ligado) ? "Ligado\n" : "Desligado\n";
-        str += "Temperatura: " + this.temperatura + "ºC\n";
-        return str;
-    }
 }

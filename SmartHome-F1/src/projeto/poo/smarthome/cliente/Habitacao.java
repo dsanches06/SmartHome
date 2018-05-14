@@ -7,6 +7,8 @@ package projeto.poo.smarthome.cliente;
 
 import java.util.ArrayList;
 import java.util.List;
+import projeto.poo.smarthome.ErroException;
+import projeto.poo.smarthome.modulos.Modo;
 
 /**
  *
@@ -21,4 +23,41 @@ public class Habitacao {
     public Habitacao() {
         this.divisoes = new ArrayList<>();
     }
+
+    public void adicionarDivisao(Divisao divisao) {
+        if (divisao != null) {
+            if (!divisoes.contains(divisao)) {
+                this.divisoes.add(divisao);
+            }
+        }
+    }
+
+    public Divisao getDivisaoPorID(int divisaoId) {
+        for (Divisao divisao : divisoes) {
+            if (divisaoId == divisao.getDivisaoID()) {
+                return divisao;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        for (Divisao divisao : divisoes) {
+            if (divisao != null) {
+                str += divisao.toString();
+            }
+        }
+        return str;
+    }
+
+    public List<Divisao> getDivisoes() {
+        return divisoes;
+    }
+
+    public void setDivisoes(List<Divisao> divisoes) {
+        this.divisoes = divisoes;
+    }
+
 }

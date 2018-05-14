@@ -16,8 +16,8 @@ import projeto.poo.smarthome.equipamentos.TipoEquipamento;
 public abstract class Sensor extends Equipamento {
 
     //Constructor
-    public Sensor(TipoEquipamento tipo) {
-        super(tipo);
+    public Sensor() {
+        super(TipoEquipamento.SENSOR);
     }
 
     @Override
@@ -25,8 +25,6 @@ public abstract class Sensor extends Equipamento {
         return super.getTipo();
     }
 
-    public abstract void ligar();
 
-    public abstract void desligar();
 
 }
