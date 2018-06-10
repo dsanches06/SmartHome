@@ -56,7 +56,7 @@ public class App extends Application {
         cliente.getHabitacao().adicionarDivisao(wc1);
         cliente.getHabitacao().adicionarDivisao(sotao);
         cliente.getHabitacao().adicionarDivisao(wc2);
-        cliente.getHabitacao().adicionarDivisao(sala2);
+        //cliente.getHabitacao().adicionarDivisao(sala2);
 
         //consola
         ConsolaCentral consola = new ConsolaCentral("Securitas AB");
@@ -68,7 +68,7 @@ public class App extends Application {
         visualizadorEquipamento(root, consola, cliente);
 
         //scene
-        Scene scene = new Scene(root, 880, 500);
+        Scene scene = new Scene(root, 880, 550);
         scene.getStylesheets().add(this.getClass().getResource("styles/estilos.css").toExternalForm());
 
         primaryStage.setTitle("Smart Home");
