@@ -55,7 +55,9 @@ public class Cliente {
                 .append("\nSexo: ")
                 .append(this.genero)
                 .append("\nMorada: ")
-                .append(this.morada);
+                .append(this.morada)
+                .append("\nTotal Divisões: ")
+                .append(this.habitacao.getDivisoes().size());
         return str.toString();
     }
 
