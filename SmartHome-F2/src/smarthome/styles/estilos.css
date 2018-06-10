@@ -1,0 +1,113 @@
+.root { 
+    display: block;
+}
+
+.root {
+    -fx-background-image: url("smarthome.png");
+}
+
+.chkbox { 
+    -fx-font-size: 14;
+    -fx-border-insets: -1; 
+    -fx-border-radius: 5;
+    -fx-font-family: "Arial Black";
+    -fx-text-fill: red;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
+.label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: red;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
+#text-data {
+    -fx-font-size: 20px;
+    -fx-font-family: "Arial Black";
+    -fx-fill: red;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+    -fx-text-alignment: center;
+    -fx-background-color: red;
+}
+
+#hbox{
+    -fx-border-color: black;
+    -fx-border-width: 1; 
+}
+
+.text-criar{
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+    -fx-fill: red; 
+    -fx-text-alignment: right;
+}
+
+#titulo-text {
+    -fx-font-size: 30px;
+    -fx-font-family: "Arial Black";
+    -fx-fill: red;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+    -fx-text-alignment: center;
+}
+
+#menu-titulo {
+    -fx-font-size: 20px;
+    -fx-font-family: "Arial Black";
+    -fx-fill: red;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: red;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+.separator *.line {
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0; /* its make really one-pixel-border */
+    -fx-border-color: red;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+.text-registar{
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
+.textfield{
+    -fx-border-width: 1; 
+    -fx-border-radius: 2 ;
+    -fx-border-color : red; 
+}
+
+.titled-address .label {
+    -fx-font-size: 13px;
+    -fx-font-family: "Arial Black";
+}
+
+.bordered-titled-title {
+    -fx-background-color: white;
+    -fx-translate-y: -7;
+    -fx-text-alignment: left;
+}
+
+.bordered-titled-border {
+    -fx-content-display: top;
+    -fx-border-insets: 15 10 10 10;
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+
+.bordered-titled-content {
+    -fx-padding: 26 10 10 10;
+}
