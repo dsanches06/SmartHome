@@ -120,7 +120,7 @@ public class VisualizadorEquipamentoFX extends StackPane {
                 GridPane box = new GridPane();
                 box.setPrefSize(200, 200);
                 box.setAlignment(Pos.TOP_CENTER);
-                box.setStyle("-fx-background-color: black, -fx-control-inner-background; -fx-background-insets: 0, 2; -fx-padding: 2;");
+                box.setStyle("-fx-background-color: black, -fx-control-inner-background; -fx-background-insets: 0, 1; -fx-padding: 2;");
 
                 Label label = new Label(cliente.getHabitacao().getDivisoes().get(j).mostrarInfDashBoard());
 
