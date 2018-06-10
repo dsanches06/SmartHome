@@ -107,8 +107,16 @@ public class Divisao {
                 str += equipamento.toString();
             }
         }
-        str += "-----------------------\n";
+
         return str;
+    }
+
+    public String mostrarInfDashBoard() {
+        StringBuilder str = new StringBuilder();
+        str.append(this.nome)
+                .append("\nQt Equipamento: ")
+                .append(this.equipamentos.size());
+        return str.toString();
     }
 
     public int getDivisaoID() {
