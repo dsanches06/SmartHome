@@ -50,7 +50,7 @@ public class VisualizadorEquipamentoFX extends StackPane {
         GridPane gridTitulo = new GridPane();
         gridTitulo.setAlignment(Pos.TOP_CENTER);
 
-        Text titulo = new Text("Lista de Divisões");
+        Text titulo = new Text("Total Divisões: " + cliente.getHabitacao().getDivisoes().size());
         titulo.setId("titulo-text");
         titulo.setFont(Font.font("Tahoma", FontWeight.NORMAL, 10));
         gridTitulo.add(titulo, 0, 0, 1, 1);
@@ -84,15 +84,24 @@ public class VisualizadorEquipamentoFX extends StackPane {
 
         Text perfilText = new Text(cliente.mostrarInfDashBoard());
 
-        Button btnVoltar = new Button("Voltar");
-        btnVoltar.setPrefSize(220, 30);
-
         HBox hboxPerfil = new HBox(5);
         hboxPerfil.getChildren().addAll(fotoPerfil, perfilText);
 
-        VBox vboxCliente = new VBox(100);
+        Button btnAdicionar = new Button("Nova Divisão");
+        btnAdicionar.setPrefSize(220, 30);
+
+        Button btnRemover = new Button("Remover Divisão");
+        btnRemover.setPrefSize(220, 30);
+
+        Button btnVoltar = new Button("Voltar");
+        btnVoltar.setPrefSize(220, 30);
+
+        VBox vboxBtnDivisao = new VBox(10);
+        vboxBtnDivisao.getChildren().addAll(btnAdicionar, btnRemover, btnVoltar);
+
+        VBox vboxCliente = new VBox(50);
         vboxCliente.setAlignment(Pos.CENTER);
-        vboxCliente.getChildren().addAll(hboxPerfil, sper, btnVoltar);
+        vboxCliente.getChildren().addAll(hboxPerfil, sper, vboxBtnDivisao);
 
         //criar um painel
         Pane painelCliente = new BorderComTitulo("Dados do Cliente", vboxCliente);
@@ -115,21 +124,21 @@ public class VisualizadorEquipamentoFX extends StackPane {
 
                 Label label = new Label(cliente.getHabitacao().getDivisoes().get(j).mostrarInfDashBoard());
 
-                Button btnAdicionar = new Button("Adicionar Equipamento");
-                btnAdicionar.setPrefSize(150, 30);
+                Button btnAdicionarEquipamento = new Button("Novo Equipamento");
+                btnAdicionarEquipamento.setPrefSize(150, 30);
 
-                Button btnRemover = new Button("Remover Equipamento");
-                btnRemover.setPrefSize(150, 30);
+                Button btnRemoverEquipamento = new Button("Remover Equipamento");
+                btnRemoverEquipamento.setPrefSize(150, 30);
 
-                Button btnVer = new Button("Ver Equipamentos");
-                btnVer.setPrefSize(150, 30);
+                Button btnVerequipamento = new Button("Ver Equipamentos");
+                btnVerequipamento.setPrefSize(150, 30);
 
-                VBox vboxBtn = new VBox(10);
-                vboxBtn.getChildren().addAll(btnAdicionar, btnRemover, btnVer);
+                VBox vboxBtnEquipamento = new VBox(10);
+                vboxBtnEquipamento.getChildren().addAll(btnAdicionarEquipamento, btnRemoverEquipamento, btnVerequipamento);
 
                 VBox vbox = new VBox(20);
                 vbox.setAlignment(Pos.CENTER);
-                vbox.getChildren().addAll(label, vboxBtn);
+                vbox.getChildren().addAll(label, vboxBtnEquipamento);
                 box.getChildren().add(vbox);
                 contador++;
 
