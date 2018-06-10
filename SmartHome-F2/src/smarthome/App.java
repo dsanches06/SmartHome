@@ -56,7 +56,7 @@ public class App extends Application {
         cliente.getHabitacao().adicionarDivisao(wc1);
         cliente.getHabitacao().adicionarDivisao(sotao);
         cliente.getHabitacao().adicionarDivisao(wc2);
-        //cliente.getHabitacao().adicionarDivisao(sala2);
+        cliente.getHabitacao().adicionarDivisao(sala2);
 
         //consola
         ConsolaCentral consola = new ConsolaCentral("Securitas AB");
