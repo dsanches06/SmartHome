@@ -34,7 +34,7 @@ public class Divisao {
     //Constructor
     public Divisao(String nome) {
         this.divisaoID = ++Divisao.numDivisao;
-        this.nome = "" + this.divisaoID;
+        this.nome = nome + "" + divisaoID;
         this.equipamentos = new ArrayList<>();
     }
 

@@ -16,6 +16,8 @@ public class Cliente {
     private static int numCliente = 0;
     //nome
     private String nomeCliente;
+    //genero
+    private char genero;
     //morada
     private String morada;
     //
@@ -26,8 +28,9 @@ public class Cliente {
     private ConsolaCentral consola;
 
     //Constructor
-    public Cliente(String nomeCliente, String morada) {
+    public Cliente(String nomeCliente, String morada, char genero) {
         this.nomeCliente = nomeCliente;
+        this.genero = genero;
         this.morada = morada;
         this.numeroCliente = ++Cliente.numCliente;
         this.habitacao = new Habitacao();
@@ -36,15 +39,25 @@ public class Cliente {
 
     @Override
     public String toString() {
-        String str = "--- Cliente "+this.numeroCliente+" ---\n";
+        String str = "--- Cliente " + this.numeroCliente + " ---\n";
         str += "Nome: " + this.nomeCliente + "\n";
+        str += "Sexo: " + this.genero + "\n";
         str += "Morada: " + this.morada + "\n";
         str += "--- Habitação ---\n" + this.habitacao;
         return str;
     }
-    
-    
-    
+
+    public String mostrarInfDashBoard() {
+        StringBuilder str = new StringBuilder();
+        str.append(this.nomeCliente)
+                .append("\n\nNúmero: ")
+                .append(this.numeroCliente)
+                .append("\n\nSexo: ")
+                .append(this.genero)
+                .append("\nMorada: ")
+                .append(this.morada);
+        return str.toString();
+    }
 
     public String getNomeCliente() {
         return nomeCliente;
@@ -84,6 +97,14 @@ public class Cliente {
 
     public void setConsola(ConsolaCentral consola) {
         this.consola = consola;
+    }
+
+    public char getGenero() {
+        return genero;
+    }
+
+    public void setGenero(char genero) {
+        this.genero = genero;
     }
 
 }
