@@ -50,7 +50,7 @@ public class VisualizadorEquipamentoFX extends StackPane {
         GridPane gridTitulo = new GridPane();
         gridTitulo.setAlignment(Pos.TOP_CENTER);
 
-        Text titulo = new Text("Visualizar Equipamentos");
+        Text titulo = new Text("Lista de Divisões de "+cliente.getNomeCliente());
         titulo.setId("titulo-text");
         titulo.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         gridTitulo.add(titulo, 0, 0, 1, 1);
