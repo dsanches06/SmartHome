@@ -50,13 +50,15 @@ public class VisualizadorEquipamentoFX extends StackPane {
         GridPane gridTitulo = new GridPane();
         gridTitulo.setAlignment(Pos.TOP_CENTER);
 
-        Text titulo = new Text("Lista de Divisões de "+cliente.getNomeCliente());
+        Text titulo = new Text("Lista de Divisões");
         titulo.setId("titulo-text");
-        titulo.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        titulo.setFont(Font.font("Tahoma", FontWeight.NORMAL, 10));
         gridTitulo.add(titulo, 0, 0, 1, 1);
 
         GridPane grid1 = new GridPane();
         grid1.setAlignment(Pos.TOP_LEFT);
+        grid1.setHgap(10);
+        grid1.setVgap(10);
 
         //obter a imagem do perfil
         ImageView fotoPerfil = null;
@@ -108,15 +110,26 @@ public class VisualizadorEquipamentoFX extends StackPane {
             for (int j = 0; j < cliente.getHabitacao().getDivisoes().size(); j++) {
                 GridPane box = new GridPane();
                 box.setPrefSize(200, 200);
-                box.setAlignment(Pos.CENTER);
+                box.setAlignment(Pos.TOP_CENTER);
                 box.setStyle("-fx-background-color: black, -fx-control-inner-background; -fx-background-insets: 0, 2; -fx-padding: 2;");
 
-                VBox vbox = new VBox(10);
-                Label label = new Label(cliente.getHabitacao().getDivisoes().get(j).getNome());
-                Button btn = new Button("Button");
-                btn.setPrefSize(100, 30);
+                Label label = new Label(cliente.getHabitacao().getDivisoes().get(j).mostrarInfDashBoard());
 
-                vbox.getChildren().addAll(label, btn);
+                Button btnAdicionar = new Button("Adicionar Equipamento");
+                btnAdicionar.setPrefSize(150, 30);
+
+                Button btnRemover = new Button("Remover Equipamento");
+                btnRemover.setPrefSize(150, 30);
+
+                Button btnVer = new Button("Ver Equipamentos");
+                btnVer.setPrefSize(150, 30);
+
+                VBox vboxBtn = new VBox(10);
+                vboxBtn.getChildren().addAll(btnAdicionar, btnRemover, btnVer);
+
+                VBox vbox = new VBox(20);
+                vbox.setAlignment(Pos.CENTER);
+                vbox.getChildren().addAll(label, vboxBtn);
                 box.getChildren().add(vbox);
                 contador++;
 
