@@ -52,7 +52,7 @@ public class Cliente {
         str.append(this.nomeCliente)
                 .append("\n\nNúmero: ")
                 .append(this.numeroCliente)
-                .append("\n\nSexo: ")
+                .append("\nSexo: ")
                 .append(this.genero)
                 .append("\nMorada: ")
                 .append(this.morada);
