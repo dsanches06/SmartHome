@@ -3,17 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projeto.poo.smarthome.cliente;
+package smarthome.cliente;
 
 import java.util.*;
-import projeto.poo.smarthome.ErroException;
-import projeto.poo.smarthome.atuadores.ArCondicionado;
-import projeto.poo.smarthome.atuadores.Atuador;
-import projeto.poo.smarthome.atuadores.Lampada;
-import projeto.poo.smarthome.atuadores.Sirene;
-import projeto.poo.smarthome.equipamentos.Equipamento;
-import projeto.poo.smarthome.modulos.Accao;
-import projeto.poo.smarthome.modulos.Modo;
+import smarthome.ErroException;
+import smarthome.atuadores.ArCondicionado;
+import smarthome.atuadores.Lampada;
+import smarthome.equipamentos.Equipamento;
 
 /**
  *
@@ -34,7 +30,7 @@ public class Divisao {
     //Constructor
     public Divisao(String nome) {
         this.divisaoID = ++Divisao.numDivisao;
-        this.nome = "" + this.divisaoID;
+        this.nome = nome;
         this.equipamentos = new ArrayList<>();
     }
 

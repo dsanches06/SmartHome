@@ -6,6 +6,7 @@
     -fx-background-image: url("smarthome.png");
 }
 
+
 .chkbox { 
     -fx-font-size: 14;
     -fx-border-insets: -1; 
