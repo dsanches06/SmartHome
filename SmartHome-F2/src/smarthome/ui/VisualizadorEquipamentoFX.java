@@ -96,7 +96,7 @@ public class VisualizadorEquipamentoFX extends StackPane {
         Button btnVoltar = new Button("Voltar");
         btnVoltar.setPrefSize(220, 30);
 
-        VBox vboxBtnDivisao = new VBox(10);
+        VBox vboxBtnDivisao = new VBox(20);
         vboxBtnDivisao.getChildren().addAll(btnAdicionar, btnRemover, btnVoltar);
 
         VBox vboxCliente = new VBox(50);
@@ -133,7 +133,7 @@ public class VisualizadorEquipamentoFX extends StackPane {
                 Button btnVerequipamento = new Button("Ver Equipamentos");
                 btnVerequipamento.setPrefSize(150, 30);
 
-                VBox vboxBtnEquipamento = new VBox(10);
+                VBox vboxBtnEquipamento = new VBox(15);
                 vboxBtnEquipamento.getChildren().addAll(btnAdicionarEquipamento, btnRemoverEquipamento, btnVerequipamento);
 
                 VBox vbox = new VBox(20);
