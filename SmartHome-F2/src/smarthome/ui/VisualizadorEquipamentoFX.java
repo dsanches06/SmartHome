@@ -33,7 +33,6 @@ public class VisualizadorEquipamentoFX extends StackPane {
         grid.setAlignment(Pos.TOP_CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
-
         grid.setPadding(new Insets(25, 25, 25, 25));
         //mostra a dashboard
         mostrarEquipamento(root, grid, consola, cliente);
@@ -50,45 +49,28 @@ public class VisualizadorEquipamentoFX extends StackPane {
 
         int coluna = 3;
         int contador = 0;
-        for (int i = 0; i < 1; i++) {//linha
+        for (int i = 1; i <= 1; i++) {//linha
             for (int j = 0; j < cliente.getHabitacao().getDivisoes().size(); j++) {
                 GridPane box = new GridPane();
                 box.setPrefSize(200, 200);
                 box.setAlignment(Pos.CENTER);
                 box.setStyle("-fx-background-color: black, -fx-control-inner-background; -fx-background-insets: 0, 2; -fx-padding: 2;");
 
-                VBox vbox = new VBox(20);
+                VBox vbox = new VBox(10);
                 Label label = new Label(cliente.getHabitacao().getDivisoes().get(j).getNome());
                 Button btn = new Button("Button");
                 vbox.getChildren().addAll(label, btn);
                 box.getChildren().add(vbox);
-
-                GridPane.setConstraints(box, j, i + 2);
-                grid.getChildren().add(box);
                 contador++;
-            }
 
-            if (contador == coluna) {
-                for (int k = 1; k <= 1; k++) {//1 linha 
-                    for (int m = 3; m < cliente.getHabitacao().getDivisoes().size(); m++) {
-
-                        GridPane box = new GridPane();
-                        box.setPrefSize(200, 200);
-                        box.setAlignment(Pos.CENTER);
-                        box.setStyle("-fx-background-color: black, -fx-control-inner-background; -fx-background-insets: 0, 2; -fx-padding: 2;");
-
-                        VBox vbox = new VBox(20);
-                        Label label = new Label(cliente.getHabitacao().getDivisoes().get(m).getNome());
-                        Button btn = new Button("Button");
-                        vbox.getChildren().addAll(label, btn);
-                        box.getChildren().add(vbox);
-
-                        //GridPane.setConstraints(box, m, k + 4);
-                        //grid.getChildren().add(box);
-                    }
+                if (contador <= coluna) {
+                    GridPane.setConstraints(box, j, i + 2);
+                } else {
+                    GridPane.setConstraints(box, j - 3, i + 4);
                 }
+                grid.getChildren().add(box);
+
             }
         }
     }
-
 }
