@@ -162,9 +162,18 @@ public class PainelClienteFX extends StackPane {
             }
         }
 
+        //criar um painel
+        Pane painelDivisao = new BorderComTitulo("Painel de Divisões do Cliente", grid2);
+        painelDivisao.getStyleClass().add("titulo-modal");
+        painelDivisao.setPrefSize(600, 470);
+
         HBox hbox = new HBox(5);
-        hbox.getChildren().addAll(painelCliente, grid2);
-        grid.getChildren().addAll(gridTitulo, hbox);
+        hbox.getChildren().addAll(painelCliente, painelDivisao);
+
+        VBox vbox = new VBox(5);
+        vbox.getChildren().addAll(gridTitulo, hbox);
+
+        grid.getChildren().addAll(vbox);
     }
 
     private StackPane consolaCentralFX(BorderPane root, ConsolaCentral consola) {

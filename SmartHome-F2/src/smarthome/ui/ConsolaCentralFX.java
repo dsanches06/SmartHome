@@ -164,7 +164,7 @@ public class ConsolaCentralFX extends StackPane {
         TableColumn<Cliente, String> colunaLocalidade = new TableColumn("localidade");
 
         colunaNumero.setCellValueFactory(new PropertyValueFactory<>("numeroCliente"));
-        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nomeCliente"));
+        colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaGenero.setCellValueFactory(new PropertyValueFactory<>("genero"));
         colunaLocalidade.setCellValueFactory(new PropertyValueFactory<>("localidade"));
 

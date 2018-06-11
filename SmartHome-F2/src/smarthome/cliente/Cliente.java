@@ -15,7 +15,7 @@ public class Cliente {
 
     private static int numCliente = 0;
     //nome
-    private String nomeCliente;
+    private String nome;
     //genero
     private String genero;
     //morada
@@ -28,8 +28,8 @@ public class Cliente {
     private ConsolaCentral consola;
 
     //Constructor
-    public Cliente(String nomeCliente, String morada, String genero) {
-        this.nomeCliente = nomeCliente;
+    public Cliente(String nome, String apelido, String morada, String genero) {
+        this.nome = getNomeCompleto(nome, apelido);
         this.genero = genero;
         this.localidade = morada;
         this.numeroCliente = ++Cliente.numCliente;
@@ -40,7 +40,7 @@ public class Cliente {
     @Override
     public String toString() {
         String str = "--- Cliente " + this.numeroCliente + " ---\n";
-        str += "Nome: " + this.nomeCliente + "\n";
+        str += "Nome: " + this.nome + "\n";
         str += "Sexo: " + this.genero + "\n";
         str += "Morada: " + this.localidade + "\n";
         str += "--- Habitação ---\n" + this.habitacao;
@@ -49,7 +49,7 @@ public class Cliente {
 
     public String mostrarInfDashBoard() {
         StringBuilder str = new StringBuilder();
-        str.append(this.nomeCliente)
+        str.append(this.nome)
                 .append("\n\nNúmero: ")
                 .append(this.numeroCliente)
                 .append("\nSexo: ")
@@ -61,12 +61,16 @@ public class Cliente {
         return str.toString();
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
+    private String getNomeCompleto(String nomeCliente, String apelidoCliente) {
+        return nomeCliente + " " + apelidoCliente;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getLocalidade() {
@@ -108,5 +112,4 @@ public class Cliente {
     public void setGenero(String genero) {
         this.genero = genero;
     }
-
 }
