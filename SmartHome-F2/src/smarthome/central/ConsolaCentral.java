@@ -23,8 +23,6 @@ import smarthome.sensores.SensorLuminosidade;
  */
 public class ConsolaCentral {
 
-    //nome da consola central
-    private String nome;
     //modulo alarme
     private ModuloAlarme moduloAlarme;
     //modulo controlo de temperatura
@@ -39,8 +37,7 @@ public class ConsolaCentral {
     //adicionar 
 
     //Constructor
-    public ConsolaCentral(String nome) {
-        this.nome = nome;
+    public ConsolaCentral() {
         this.clientes = new ArrayList<>();
         this.sensores = new ArrayList<>();
         this.atuadores = new ArrayList<>();
@@ -52,7 +49,6 @@ public class ConsolaCentral {
     @Override
     public String toString() {
         String str = "--- Consola Central ---\n";
-        str += "Nome: " + this.nome + "\n";
         for (Cliente cliente : clientes) {
             if (cliente != null) {
                 str += cliente.toString();
@@ -61,17 +57,25 @@ public class ConsolaCentral {
         return str;
     }
 
-    public void adicionarNovoCliente(Cliente cliente) throws ErroException {
+    public boolean adicionarNovoCliente(Cliente cliente) {
         if (cliente != null) {
             if (!this.clientes.contains(cliente)) {
                 cliente.setConsola(this);
                 this.clientes.add(cliente);
-            } else {
-                throw new ErroException("Já existe cliente com mesmo dados.");
+                return true;
             }
-        } else {
-            throw new ErroException("Cliente não pode ser adicionado, se for nulo.");
         }
+        return false;
+    }
+
+    public boolean removerCliente(Cliente cliente) {
+        if (cliente != null) {
+            if (this.clientes.contains(cliente)) {
+                this.clientes.remove(cliente);
+                return true;
+            }
+        }
+        return false;
     }
 
     public Cliente getClientePorID(int clienteId) {
@@ -90,12 +94,26 @@ public class ConsolaCentral {
         }
     }
 
-    public String getNome() {
-        return nome;
+    public List<String> obterLocalidade() {
+        List<String> lista = new ArrayList<>();
+        lista.add("Almada");
+        lista.add("Aveiro");
+        lista.add("Barreiro");
+        lista.add("Coimbra");
+        lista.add("Faro");
+        lista.add("Lisboa");
+        lista.add("Montijo");
+        lista.add("Porto");
+        lista.add("Seixal");
+        lista.add("Setúbal");
+        return lista;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public List<String> obterGenero() {
+        List<String> lista = new ArrayList<>();
+        lista.add("F");
+        lista.add("M");
+        return lista;
     }
 
     public ModuloAlarme getModuloAlarme() {

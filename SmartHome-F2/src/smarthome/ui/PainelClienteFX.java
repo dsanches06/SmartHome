@@ -5,9 +5,12 @@
  */
 package smarthome.ui;
 
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -22,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import smarthome.Dialogo;
 import smarthome.central.ConsolaCentral;
 import smarthome.cliente.Cliente;
 
@@ -29,9 +33,9 @@ import smarthome.cliente.Cliente;
  *
  * @author
  */
-public class VisualizadorEquipamentoFX extends StackPane {
+public class PainelClienteFX extends StackPane {
 
-    public VisualizadorEquipamentoFX(BorderPane root, ConsolaCentral consola, Cliente cliente) {
+    public PainelClienteFX(BorderPane root, ConsolaCentral consola, Cliente cliente) {
         setAlignment(Pos.TOP_RIGHT);
 
         GridPane grid = new GridPane();
@@ -64,13 +68,13 @@ public class VisualizadorEquipamentoFX extends StackPane {
         ImageView fotoPerfil = null;
 
         switch (cliente.getGenero()) {
-            case 'F':
+            case "F":
                 //obter a imagem do perfil feminino
                 fotoPerfil = new ImageView(new Image("smarthome/styles/mulher.png"));
                 fotoPerfil.setFitHeight(60);
                 fotoPerfil.setFitWidth(60);
                 break;
-            case 'M':
+            case "M":
                 //obter a imagem do perfil masculino
                 fotoPerfil = new ImageView(new Image("smarthome/styles/homem.png"));
                 fotoPerfil.setFitHeight(60);
@@ -93,8 +97,12 @@ public class VisualizadorEquipamentoFX extends StackPane {
         Button btnRemover = new Button("Remover Divisão");
         btnRemover.setPrefSize(220, 30);
 
-        Button btnVoltar = new Button("Voltar");
+        Button btnVoltar = new Button("Voltar a Consola");
         btnVoltar.setPrefSize(220, 30);
+        btnVoltar.setOnAction((ActionEvent e) -> {
+            //volta a consola central
+            consolaCentralFX(root, consola);
+        });
 
         VBox vboxBtnDivisao = new VBox(20);
         vboxBtnDivisao.getChildren().addAll(btnAdicionar, btnRemover, btnVoltar);
@@ -126,6 +134,9 @@ public class VisualizadorEquipamentoFX extends StackPane {
 
                 Button btnAdicionarEquipamento = new Button("Novo Equipamento");
                 btnAdicionarEquipamento.setPrefSize(150, 30);
+                btnAdicionarEquipamento.setOnAction((ActionEvent e) -> {
+
+                });
 
                 Button btnRemoverEquipamento = new Button("Remover Equipamento");
                 btnRemoverEquipamento.setPrefSize(150, 30);
@@ -154,6 +165,9 @@ public class VisualizadorEquipamentoFX extends StackPane {
         HBox hbox = new HBox(5);
         hbox.getChildren().addAll(painelCliente, grid2);
         grid.getChildren().addAll(gridTitulo, hbox);
+    }
 
+    private StackPane consolaCentralFX(BorderPane root, ConsolaCentral consola) {
+        return new ConsolaCentralFX(root, consola);
     }
 }

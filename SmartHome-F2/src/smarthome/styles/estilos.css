@@ -1,10 +1,7 @@
 .root { 
     display: block;
+    -fx-glass-color: rgba(200, 200, 200, 0.9);
 }
-
-/*.root {
-    -fx-background-image: url("smarthome.png");
-}*/
 
 
 .chkbox { 
@@ -18,7 +15,7 @@
 
 .label {
     -fx-font-size: 13px;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 
@@ -110,4 +107,107 @@
 
 .bordered-titled-content {
     -fx-padding: 26 10 10 10;
+}
+
+#modal-title {
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial Black";
+    -fx-fill: #818181;
+    -fx-effect: innershadow( three-pass-box , rgba(0,0,0,0.7) , 6, 0.0 , 0 , 2 );
+}
+
+
+#modal-dialog {
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-alignment: center;
+    -fx-font-size: 20;
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-glass-color, 20%), -fx-glass-color);
+    -fx-border-color: derive(-fx-glass-color, -20%);
+    -fx-border-width: 5;
+    -fx-background-insets: 12;
+    -fx-border-insets: 10;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+#modal-dialog .button:pressed {
+    -fx-cursor: default;
+}
+
+#modal-dialog-form {
+    -fx-padding: 10;
+    -fx-spacing: 5;
+    -fx-alignment: center;
+    -fx-font-size: 16;
+    -fx-border-color: derive(-fx-glass-color, -20%);
+    -fx-border-width: 1;
+    -fx-border-insets: 5;
+    -fx-border-radius: 3;
+}
+
+#modal-dialog-actions {
+    -fx-padding: 10;
+    -fx-spacing: 5;
+    -fx-alignment: center;
+    -fx-font-size: 16;
+    -fx-border-color: derive(-fx-glass-color, -20%);
+    -fx-border-width: 1;
+    -fx-border-insets: 5;
+    -fx-border-radius: 3;
+}
+
+
+.textfield{
+    -fx-border-width: 1; 
+    -fx-border-radius: 2 ;
+    -fx-border-color : red; 
+}
+
+.titled-address .label {
+    -fx-font-size: 13px;
+    -fx-font-family: "Arial Black";
+}
+
+.bordered-titled-title {
+    -fx-background-color: white;
+    -fx-translate-y: -7;
+    -fx-text-alignment: center;
+}
+
+.bordered-titled-border {
+    -fx-content-display: top;
+    -fx-border-insets: 15 10 10 10;
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+
+.bordered-titled-content {
+    -fx-padding: 26 10 10 10;
+}
+
+.table-row-cell:hover{
+    -fx-background-color: lightgreen;
+}
+
+.table-row-cell:selected{
+    -fx-background-color: lightblue;
+}
+
+.table-view {
+    -fx-base: red;
+    -fx-control-inner-background: white;
+    -fx-background-color: black;
+    -fx-table-cell-border-color: #1d1d1d;
+    -fx-table-header-border-color: white;
+    -fx-padding: 2;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
 }

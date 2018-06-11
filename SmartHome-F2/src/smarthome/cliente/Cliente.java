@@ -17,9 +17,9 @@ public class Cliente {
     //nome
     private String nomeCliente;
     //genero
-    private char genero;
+    private String genero;
     //morada
-    private String morada;
+    private String localidade;
     //
     private int numeroCliente;
     //Habitaçao
@@ -28,10 +28,10 @@ public class Cliente {
     private ConsolaCentral consola;
 
     //Constructor
-    public Cliente(String nomeCliente, String morada, char genero) {
+    public Cliente(String nomeCliente, String morada, String genero) {
         this.nomeCliente = nomeCliente;
         this.genero = genero;
-        this.morada = morada;
+        this.localidade = morada;
         this.numeroCliente = ++Cliente.numCliente;
         this.habitacao = new Habitacao();
         this.consola = null;
@@ -42,7 +42,7 @@ public class Cliente {
         String str = "--- Cliente " + this.numeroCliente + " ---\n";
         str += "Nome: " + this.nomeCliente + "\n";
         str += "Sexo: " + this.genero + "\n";
-        str += "Morada: " + this.morada + "\n";
+        str += "Morada: " + this.localidade + "\n";
         str += "--- Habitação ---\n" + this.habitacao;
         return str;
     }
@@ -55,7 +55,7 @@ public class Cliente {
                 .append("\nSexo: ")
                 .append(this.genero)
                 .append("\nMorada: ")
-                .append(this.morada)
+                .append(this.localidade)
                 .append("\nTotal Divisões: ")
                 .append(this.habitacao.getDivisoes().size());
         return str.toString();
@@ -69,12 +69,12 @@ public class Cliente {
         this.nomeCliente = nomeCliente;
     }
 
-    public String getMorada() {
-        return morada;
+    public String getLocalidade() {
+        return localidade;
     }
 
-    public void setMorada(String morada) {
-        this.morada = morada;
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
     }
 
     public int getNumeroCliente() {
@@ -101,11 +101,11 @@ public class Cliente {
         this.consola = consola;
     }
 
-    public char getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(char genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 

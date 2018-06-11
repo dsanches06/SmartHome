@@ -6,41 +6,34 @@
 package smarthome;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import smarthome.central.ConsolaCentral;
-import smarthome.cliente.Cliente;
-import smarthome.cliente.Divisao;
-import smarthome.ui.VisualizadorEquipamentoFX;
+import smarthome.ui.ConsolaCentralFX;
 
 /**
  *
- * @author Danilson
+ * @author 
  */
 public class App extends Application {
 
-    private BorderPane root;
+    public static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws ErroException {
 
-        //inicializa a borderpane
-        this.root = new BorderPane();
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.TOP_CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
-        root.setCenter(grid);
+        //cria a borderpane
+        BorderPane root = new BorderPane();
+        //cria a consola central por omisssão
+        ConsolaCentral consola = new ConsolaCentral();
+       //mostra o painel consola central
+        consolaCentralFX(root, consola);
 
-        //cliente
-        Cliente cliente = new Cliente("Edson Cazanga", "Barreiro", 'M');
+//cliente
+        /*  Cliente cliente = new Cliente("Edson Cazanga", "Barreiro", 'M');
         //3 divisao
         Divisao cozinha = new Divisao("Cozinha");
         Divisao sala1 = new Divisao("Sala");
@@ -65,8 +58,7 @@ public class App extends Application {
         consola.adicionarNovoCliente(cliente);
 
         //abrir e mostrar ao equiapemtno de cliente
-        visualizadorEquipamento(root, consola, cliente);
-
+        visualizadorEquipamento(root, consola, cliente);*/
         //scene
         Scene scene = new Scene(root, 880, 550);
         scene.getStylesheets().add(this.getClass().getResource("styles/estilos.css").toExternalForm());
@@ -76,6 +68,7 @@ public class App extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
+        stage = primaryStage;
     }
 
     /**
@@ -85,8 +78,8 @@ public class App extends Application {
         launch(args);
     }
 
-    private StackPane visualizadorEquipamento(BorderPane root, ConsolaCentral consola, Cliente cliente) {
-        return new VisualizadorEquipamentoFX(root, consola, cliente);
+    private StackPane consolaCentralFX(BorderPane root, ConsolaCentral consola) {
+        return new ConsolaCentralFX(root, consola);
     }
 
 }
