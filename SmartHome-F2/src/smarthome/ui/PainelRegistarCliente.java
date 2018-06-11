@@ -161,7 +161,7 @@ public class PainelRegistarCliente extends StackPane {
 
             //apenas se estiver preenchida
             if (apelidoTextField.getText().length() > 0) {
-                apelido = nomeTextField.getText();
+                apelido = apelidoTextField.getText();
             }//e se não estiver preenchida 
             else {
                 //cria o dialogo de erro

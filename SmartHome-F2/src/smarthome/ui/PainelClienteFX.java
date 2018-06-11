@@ -164,8 +164,8 @@ public class PainelClienteFX extends StackPane {
 
         //criar um painel
         Pane painelDivisao = new BorderComTitulo("Painel de Divisões do Cliente", grid2);
-        painelDivisao.getStyleClass().add("titulo-modal");
-        painelDivisao.setPrefSize(600, 470);
+        painelDivisao.getStyleClass().add("titled-address");
+        painelDivisao.setPrefSize(700, 470);
 
         HBox hbox = new HBox(5);
         hbox.getChildren().addAll(painelCliente, painelDivisao);
