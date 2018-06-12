@@ -181,17 +181,22 @@ public class PainelClienteFX extends StackPane {
                     } else {
                         GridPane.setConstraints(vbox, j - 3, i + 5);
                     }
+                    //adiciona a gridpane
                     gridpane.getChildren().add(vbox);
-                    //adiciona todos os botoes a gridpane
-                    //gridpane.add(btn[i][j], j + 2, i + 4);
-                    // btn[i][j].setUserData(new Casa(new Posicao(btn.length - i, Posicao.converterColuna(j + 1)), Casa.criarPecas(new Posicao(btn.length - i, Posicao.converterColuna(j + 1)))));
+
+                    //adiciona a divisão como dados referente ao botão
+                    btn[i][j].setUserData(divisao);
+                    //cria o evento para click de mouse
                     btn[i][j].setOnMouseClicked((MouseEvent e) -> {
-                        StringBuilder str = new StringBuilder();
-                        //obter a posicao correta atraves do node getUserData
-                        str.append(((Node) e.getSource()).getUserData()).append("\n");
-                        //nostra os resultados
-                        // texto.appendText(str.toString());
-                        System.out.println(str.toString());
+                        //obter o objecto divisao atraves do node getUserData
+                        Object object = ((Node) e.getSource()).getUserData();
+                        //verificar se é uma instancia de divisão
+                        if (object instanceof Divisao) {
+                            //nostra os resultados
+                            System.out.println(((Divisao) object).mostrarInfDashBoard());
+                            //mostra o painel com equipamentos ou para inserir
+                        }
+
                     });
                     //muda de cor
                     botaoCor = !botaoCor;
