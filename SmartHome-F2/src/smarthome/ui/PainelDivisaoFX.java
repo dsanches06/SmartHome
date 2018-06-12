@@ -26,6 +26,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import smarthome.Dialogo;
+import smarthome.atuadores.ArCondicionado;
+import smarthome.atuadores.Lampada;
 import smarthome.central.ConsolaCentral;
 import smarthome.cliente.Cliente;
 import smarthome.cliente.Divisao;
@@ -75,29 +77,20 @@ public class PainelDivisaoFX extends StackPane {
         sper.setOrientation(Orientation.HORIZONTAL);
         sper.setStyle("-fx-background-color: #e79423;-fx-background-radius: 2;");
 
-        Text perfilText = new Text(divisao.mostrarInfDashBoard());
+        Text textDivisao = new Text(divisao.mostrarInfDashBoard());
 
-        HBox hboxPerfil = new HBox(5);
-        hboxPerfil.getChildren().addAll(perfilText);
-
-        Button btnAdicionar = new Button("Nova Divisão");
+        Button btnAdicionar = new Button("Novo Equipamento");
         btnAdicionar.setPrefSize(220, 30);
         btnAdicionar.setOnAction((ActionEvent e) -> {
-            //verifica se já foi criada 6 divisoes
-            if (cliente.getHabitacao().getDivisoes().size() < 6) {
-                //mostra o painel criar divisao
-                painelClienteFX(root, consola, cliente);
-            } else {
-                //cria o dialogo de erro
-                Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                erro.mostrarDialogo("ERRO", "Só pode ser inserido 6 divisões");
-            }
+            //mostra o painel criar e adicionar equipamento
+            painelCriarEquipamentoFX(root, consola, cliente, divisao.getDivisaoID());
+
         });
 
-        Button btnRemover = new Button("Remover Divisão");
+        Button btnRemover = new Button("Remover Equipamento");
         btnRemover.setPrefSize(220, 30);
 
-        Button btnVoltar = new Button("Voltar a Consola");
+        Button btnVoltar = new Button("Voltar ao painel cliente");
         btnVoltar.setPrefSize(220, 30);
         btnVoltar.setOnAction((ActionEvent e) -> {
             //volta ao painel cliente
@@ -107,14 +100,14 @@ public class PainelDivisaoFX extends StackPane {
         VBox vboxBtnDivisao = new VBox(20);
         vboxBtnDivisao.getChildren().addAll(btnAdicionar, btnRemover, btnVoltar);
 
-        VBox vboxCliente = new VBox(50);
-        vboxCliente.setAlignment(Pos.CENTER);
-        vboxCliente.getChildren().addAll(hboxPerfil, sper, vboxBtnDivisao);
+        VBox vboxDivisao = new VBox(50);
+        vboxDivisao.setAlignment(Pos.CENTER);
+        vboxDivisao.getChildren().addAll(textDivisao, sper, vboxBtnDivisao);
 
         //criar um painel
-        Pane painelCliente = new BorderComTitulo("Dados do Cliente", vboxCliente);
-        painelCliente.getStyleClass().add("titled-address");
-        painelCliente.setPrefSize(60, 470);
+        Pane painelDivisao = new BorderComTitulo("Dados da divisão", vboxDivisao);
+        painelDivisao.getStyleClass().add("titled-address");
+        painelDivisao.setPrefSize(200, 470);
 
         GridPane gridpane = new GridPane();
         gridpane.setPadding(new Insets(5));
@@ -122,73 +115,103 @@ public class PainelDivisaoFX extends StackPane {
 
         int coluna = 3;
         int contador = 0;
-        int total = cliente.getHabitacao().getDivisoes().size();
+        int total = divisao.getEquipamentos().size();
         Button[][] btn = new Button[total][total];
 
         //atributo para vrificar se um botao for criado com cor ou nao
         botaoCor = false;
-        System.out.println("Total: " + cliente.getHabitacao().getDivisoes().size());
+
         //loops para adicionar os buttons ao layout nas linhas do array
         for (int i = 0; i < 1; i++) {//linha
             //loops para adicionar os buttons ao layout nas colunas do array
             for (int j = 0; j < total; j++) {
                 //obter a divisao pelo index
                 Equipamento equipamento = divisao.getEquipamentoPorIndex(j);
-                //se existir
-                if (equipamento != null) {
-                    //cria um novo botão
-                    btn[i][j] = new Button(equipamento.getNome());
-                    //verifica a cor
-                    if (botaoCor == false) {
-                        //preenche com a cor lightgrey
-                        btn[i][j].getStyleClass().add("btn_color_red");
-                    } else {//se  a cor preenchida for lightgrey
-                        //preenche com a cor grey
-                        btn[i][j].getStyleClass().add("btn_color_marron");
-                    }  //representa o tamanho de altura e largura de cada botao
-                    btn[i][j].setPrefSize(200, 200);
 
-                    VBox vbox = new VBox(20);
-                    vbox.setAlignment(Pos.CENTER);
-                    vbox.getChildren().addAll(btn[i][j]);
-                    contador++;
+                //array de imagens[3] para AC e lampada(desligada/ligada)
+                Image[] imagem = new Image[3];
+                imagem[0] = new Image(getClass().getResourceAsStream("/smarthome/styles/lampadaOff.png"));//lampada desligada
+                imagem[1] = new Image(getClass().getResourceAsStream("/smarthome/styles/lampadaOn.png"));//lampada ligada
+                imagem[2] = new Image(getClass().getResourceAsStream("/smarthome/styles/arCondicionado.png"));//AC
 
-                    if (contador <= coluna) {
-                        GridPane.setConstraints(vbox, j, i + 4);
+                if (equipamento instanceof Lampada) {
+                    if (((Lampada) equipamento).isLigado() != true) {//estado desligado
+                        //cria a nova imagem da lampada desligada
+                        ImageView imgView = new ImageView(imagem[0]);
+                        imgView.setFitHeight(80);
+                        imgView.setFitWidth(40);
+                        //adiciona a imagem ao botao
+                        btn[i][j] = new Button(((Lampada) equipamento).toString(), imgView);
                     } else {
-                        GridPane.setConstraints(vbox, j - 3, i + 5);
+                        //cria a nova imagem da lampada ligada
+                        ImageView imgView = new ImageView(imagem[1]);
+                        imgView.setFitHeight(80);
+                        imgView.setFitWidth(40);
+                        //adiciona a imagem ao botao
+                        btn[i][j] = new Button(((Lampada) equipamento).toString(), imgView);
                     }
-                    //adiciona a gridpane
-                    gridpane.getChildren().add(vbox);
-
-                    //adiciona a divisão como dados referente ao botão
-                    btn[i][j].setUserData(equipamento);
-                    //cria o evento para click de mouse
-                    btn[i][j].setOnMouseClicked((MouseEvent e) -> {
-                        //obter o objecto divisao atraves do node getUserData
-                        Object object = ((Node) e.getSource()).getUserData();
-                        //verificar se é uma instancia de divisão
-                        if (object instanceof Equipamento) {
-                            //nostra os resultados
-                            System.out.println(((Equipamento) object).toString());
-                            //mostra o painel com equipamentos ou para inserir
-                        }
-                    });
-                    //muda de cor
-                    botaoCor = !botaoCor;
+                } else if (equipamento instanceof ArCondicionado) {
+                    //cria a nova imagem da lampada desligada
+                    ImageView imgView = new ImageView(imagem[2]);
+                    // imgView.setFitHeight(50);
+                    // imgView.setFitWidth(50);
+                    //adiciona a imagem ao botao
+                    btn[i][j] = new Button(((ArCondicionado) equipamento).toString(), imgView);
                 }
+
+                //verifica a cor
+                if (botaoCor == false) {
+                    //preenche com a cor lightgrey
+                    btn[i][j].getStyleClass().add("btn_color_red");
+                } else {//se  a cor preenchida for lightgrey
+                    //preenche com a cor grey
+                    btn[i][j].getStyleClass().add("btn_color_marron");
+                }  //representa o tamanho de altura e largura de cada botao
+                btn[i][j].setPrefSize(200, 200);
+
+                VBox vbox = new VBox(20);
+                vbox.setAlignment(Pos.CENTER);
+                vbox.getChildren().addAll(btn[i][j]);
+                contador++;
+
+                if (contador <= coluna) {
+                    GridPane.setConstraints(vbox, j, i + 4);
+                } else {
+                    GridPane.setConstraints(vbox, j - 3, i + 5);
+                }
+                //adiciona a gridpane
+                gridpane.getChildren().add(vbox);
+
+                //adiciona a divisão como dados referente ao botão
+                btn[i][j].setUserData(equipamento);
+                //cria o evento para click de mouse
+                btn[i][j].setOnMouseClicked((MouseEvent e) -> {
+                    //obter o objecto divisao atraves do node getUserData
+                    Object object = ((Node) e.getSource()).getUserData();
+                    //verificar se é uma instancia de divisão
+                    if (object instanceof Lampada) {
+                        //nostra os resultados
+                        System.out.println(((Lampada) object).toString());
+                        //mostra o painel com equipamentos ou para inserir
+                    } else if (object instanceof ArCondicionado) {
+                        //nostra os resultados
+                        System.out.println(((ArCondicionado) object).toString());
+                    }
+                });
+                //muda de cor
+                botaoCor = !botaoCor;
             }
             //muda de cor
             botaoCor = !botaoCor;
         }
 
         //criar um painel
-        Pane painelDivisao = new BorderComTitulo("Painel de Divisões do Cliente", gridpane);
-        painelDivisao.getStyleClass().add("titled-address");
-        painelDivisao.setPrefSize(700, 470);
+        Pane painelEquipamento = new BorderComTitulo("Painel de Equipamentos da Divisão", gridpane);
+        painelEquipamento.getStyleClass().add("titled-address");
+        painelEquipamento.setPrefSize(700, 470);
 
         HBox hbox = new HBox(5);
-        hbox.getChildren().addAll(painelCliente, painelDivisao);
+        hbox.getChildren().addAll(painelDivisao, painelEquipamento);
 
         VBox vbox = new VBox(5);
         vbox.getChildren().addAll(gridTitulo, hbox);
@@ -198,5 +221,9 @@ public class PainelDivisaoFX extends StackPane {
 
     private StackPane painelClienteFX(BorderPane root, ConsolaCentral consola, Cliente cliente) {
         return new PainelClienteFX(root, consola, cliente);
+    }
+
+    private StackPane painelCriarEquipamentoFX(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {
+        return new PainelCriarEquipamentoFX(root, consola, cliente, divisaoId);
     }
 }

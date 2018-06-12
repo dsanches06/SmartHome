@@ -99,7 +99,6 @@ public class Lampada extends Atuador {
         this.ligado = ligado;
     }
 
-    @Override
     public String getNome() {
         return nome;
     }

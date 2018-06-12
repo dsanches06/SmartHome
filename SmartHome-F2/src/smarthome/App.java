@@ -11,12 +11,16 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import smarthome.atuadores.ArCondicionado;
+import smarthome.atuadores.Lampada;
 import smarthome.central.ConsolaCentral;
+import smarthome.cliente.Cliente;
+import smarthome.cliente.Divisao;
 import smarthome.ui.ConsolaCentralFX;
 
 /**
  *
- * @author 
+ * @author
  */
 public class App extends Application {
 
@@ -29,7 +33,20 @@ public class App extends Application {
         BorderPane root = new BorderPane();
         //cria a consola central por omisssão
         ConsolaCentral consola = new ConsolaCentral();
-       //mostra o painel consola central
+
+        Cliente cliente = new Cliente("Dani", "Seixal", "M");
+        Divisao divisao = new Divisao("wc");
+
+        Lampada lampada = new Lampada();
+        ArCondicionado ac = new ArCondicionado();
+        
+        //para teste
+        divisao.adicionarEquipamento(lampada);
+        divisao.adicionarEquipamento(ac);
+        cliente.getHabitacao().adicionarDivisao(divisao);
+        consola.adicionarNovoCliente(cliente);
+
+        //mostra o painel consola central
         consolaCentralFX(root, consola);
 
 //cliente

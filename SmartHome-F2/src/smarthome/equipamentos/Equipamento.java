@@ -31,7 +31,5 @@ public abstract class Equipamento {
     }
 
     public abstract void setDivisao(Divisao divisao);
-    
-     public abstract String getNome();
 
 }

@@ -146,7 +146,7 @@ public class PainelClienteFX extends StackPane {
 
         //atributo para vrificar se um botao for criado com cor ou nao
         botaoCor = false;
-        System.out.println("Total: " + cliente.getHabitacao().getDivisoes().size());
+        
         //loops para adicionar os buttons ao layout nas linhas do array
         for (int i = 0; i < 1; i++) {//linha
             //loops para adicionar os buttons ao layout nas colunas do array

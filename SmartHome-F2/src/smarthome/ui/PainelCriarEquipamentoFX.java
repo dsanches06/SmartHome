@@ -5,14 +5,11 @@
  */
 package smarthome.ui;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -20,7 +17,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -33,24 +29,24 @@ import smarthome.cliente.Divisao;
  *
  * @author
  */
-public class PainelCriarDivisaoFX extends StackPane {
+public class PainelCriarEquipamentoFX extends StackPane {
 
     private String nome;
 
-    public PainelCriarDivisaoFX(BorderPane root, ConsolaCentral consola, Cliente cliente) {
+    public PainelCriarEquipamentoFX(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {
         setAlignment(Pos.TOP_CENTER);
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.TOP_CENTER);
         grid.setHgap(10);
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
-        formulario(root, grid, consola, cliente);
+        formulario(root, grid, consola, cliente, divisaoId);
         root.setCenter(grid);
     }
 
-    private void formulario(BorderPane root, GridPane grid, ConsolaCentral consola, Cliente cliente) {
+    private void formulario(BorderPane root, GridPane grid, ConsolaCentral consola, Cliente cliente, int divisaoId) {
         
-        Text titulo = new Text("Painel Criar Divisão");
+        Text titulo = new Text("Painel Criar Equipamento");
         titulo.setId("titulo-text");
         titulo.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(titulo, 0, 0, 4, 1);
@@ -73,7 +69,7 @@ public class PainelCriarDivisaoFX extends StackPane {
         Button btnLimpar = new Button("Limpar");
         btnLimpar.setPrefSize(200, 30);
 
-        Button btnCriar = new Button("Inserir Divisão");
+        Button btnCriar = new Button("Inserir Equipamento");
         btnCriar.setPrefSize(210, 30);
 
         Button btnRetroceder = new Button("Retroceder");

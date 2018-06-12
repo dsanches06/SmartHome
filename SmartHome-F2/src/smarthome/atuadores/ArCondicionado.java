@@ -92,7 +92,6 @@ public class ArCondicionado extends Atuador {
         this.ligado = ligado;
     }
 
-    @Override
     public String getNome() {
         return nome;
     }

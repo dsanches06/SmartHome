@@ -37,8 +37,4 @@ public abstract class Atuador extends Equipamento {
 
     @Override
     public abstract int getId();
-
-    @Override
-    public abstract String getNome();
-
 }
