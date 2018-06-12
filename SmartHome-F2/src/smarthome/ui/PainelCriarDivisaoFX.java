@@ -113,26 +113,14 @@ public class PainelCriarDivisaoFX extends StackPane {
             if ((nome != null)) {
                 //cria a divisao
                 Divisao divisao = new Divisao(nome);
-                //obter o cliente pelo id
-                Cliente cliente_aux = consola.getClientePorID(cliente.getNumeroCliente());
-                //se existir
-                if (cliente_aux != null) {
-                    //adiciona na habitação
-                    cliente_aux.getHabitacao().adicionarDivisao(divisao);
-                    //cria o dialogo
-                    Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
-                    //mostra o dialogo
-                    inf.mostrarDialogo("INFORMAÇÃO", "Divisão foi criada e adicionada na habitação do cliente " + cliente.getNome() + " com sucesso");
-                    //volta ao painel cliente
-                    painelClienteFX(root, consola, cliente);
-                } //e se não existir 
-                else {
-                    //cria o dialogo de erro
-                    Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                    erro.mostrarDialogo("ERRO", "Cliente não existe!");
-                    nome = null;
-                }
-
+                //adiciona na habitação
+                cliente.getHabitacao().adicionarDivisao(divisao);
+                //cria o dialogo
+                Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
+                //mostra o dialogo
+                inf.mostrarDialogo("INFORMAÇÃO", "Divisão foi criada e adicionada na habitação do cliente " + cliente.getNome() + " com sucesso");
+                //volta ao painel cliente
+                painelClienteFX(root, consola, cliente);
             }
         });
 
