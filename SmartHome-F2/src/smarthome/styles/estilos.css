@@ -207,33 +207,33 @@
     -fx-background-color: -fx-focus-color;
 }
 
-.btn_color_grey{
+.btn_color_marron{
     -fx-background-color: #cc0000;
     -fx-border-color: white;
     -fx-border-width: 2;
     -fx-border-radius: 3;
 }
 
-.btn_color_grey:hover {
+.btn_color_marron:hover {
     -fx-cursor: hand;
 }
 
-.btn_color_grey:focused{
+.btn_color_marron:focused{
     -fx-background-color: #818181;
 }
 
-.btn_color_lightgrey{
+.btn_color_red{
     -fx-background-color: #800000;
     -fx-border-color:white;
     -fx-border-width: 2;
     -fx-border-radius:3;
 }
 
-.btn_color_lightgrey:hover {
+.btn_color_red:hover {
     -fx-cursor: hand;
 }
 
 
-.btn_color_lightgrey:focused{
+.btn_color_red:focused{
     -fx-background-color: #818181;
 }

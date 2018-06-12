@@ -159,15 +159,15 @@ public class PainelClienteFX extends StackPane {
                 Divisao divisao = cliente.getHabitacao().getDivisaoPorIndex(j);
                 //se existir
                 if (divisao != null) {
-                    //preenche imagem nos restantes botoes para peças brancas
+                    //cria um novo botão
                     btn[i][j] = new Button(divisao.mostrarInfDashBoard());
                     //verifica a cor
                     if (botaoCor == false) {
                         //preenche com a cor lightgrey
-                        btn[i][j].getStyleClass().add("btn_color_lightgrey");
+                        btn[i][j].getStyleClass().add("btn_color_red");
                     } else {//se  a cor preenchida for lightgrey
                         //preenche com a cor grey
-                        btn[i][j].getStyleClass().add("btn_color_grey");
+                        btn[i][j].getStyleClass().add("btn_color_marron");
                     }  //representa o tamanho de altura e largura de cada botao
                     btn[i][j].setPrefSize(200, 200);
 
@@ -196,7 +196,6 @@ public class PainelClienteFX extends StackPane {
                             System.out.println(((Divisao) object).mostrarInfDashBoard());
                             //mostra o painel com equipamentos ou para inserir
                         }
-
                     });
                     //muda de cor
                     botaoCor = !botaoCor;
