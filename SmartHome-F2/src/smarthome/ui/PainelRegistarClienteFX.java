@@ -32,14 +32,13 @@ import smarthome.cliente.Cliente;
  *
  * @author
  */
-public class PainelRegistarCliente extends StackPane {
+public class PainelRegistarClienteFX extends StackPane {
 
     private String nome;
-    private String apelido;
     private String genero;
     private String localidade;
 
-    public PainelRegistarCliente(BorderPane root, ConsolaCentral consola) {
+    public PainelRegistarClienteFX(BorderPane root, ConsolaCentral consola) {
         setAlignment(Pos.TOP_CENTER);
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.TOP_CENTER);
@@ -62,23 +61,10 @@ public class PainelRegistarCliente extends StackPane {
 
         TextField nomeTextField = new TextField();
         nomeTextField.getStyleClass().add("textfield");
-        //nomeTextField.setPrefSize(530, 30);
+        nomeTextField.setPrefSize(400, 30);
 
         HBox hboxNome = new HBox(69);
         hboxNome.getChildren().addAll(labelNome, nomeTextField);
-
-        Label labelApelido = new Label("Apelido");
-        labelApelido.setFont(Font.font("Cambria", FontWeight.NORMAL, 14));
-        labelApelido.setId("label");
-
-        TextField apelidoTextField = new TextField();
-        apelidoTextField.getStyleClass().add("textfield");
-
-        HBox hboxApelido = new HBox(15);
-        hboxApelido.getChildren().addAll(labelApelido, apelidoTextField);
-
-        HBox hboxNomeCliente = new HBox(30);
-        hboxNomeCliente.getChildren().addAll(hboxNome, hboxApelido);
 
         Label labelLocalidade = new Label("Localidade");
         labelLocalidade.setFont(Font.font("Cambria", FontWeight.NORMAL, 14));
@@ -108,7 +94,7 @@ public class PainelRegistarCliente extends StackPane {
 
         VBox vboxFormulario = new VBox(20);
         vboxFormulario.getChildren().addAll(
-                hboxNomeCliente,
+                hboxNome,
                 hboxLocalidade,
                 hboxGenero);
 
@@ -139,7 +125,6 @@ public class PainelRegistarCliente extends StackPane {
         btnLimpar.setOnAction((ActionEvent e) -> {
             //limpa os dados preenchidos nas text field
             nomeTextField.clear();
-            apelidoTextField.clear();
             comboBoxLidade.getSelectionModel().clearSelection();
             comboBoxGenero.getSelectionModel().clearSelection();
         });
@@ -157,17 +142,6 @@ public class PainelRegistarCliente extends StackPane {
                 Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
                 erro.mostrarDialogo("ERRO", "Nome tem de estar preenchido");
                 nome = null;
-            }
-
-            //apenas se estiver preenchida
-            if (apelidoTextField.getText().length() > 0) {
-                apelido = apelidoTextField.getText();
-            }//e se não estiver preenchida 
-            else {
-                //cria o dialogo de erro
-                Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                erro.mostrarDialogo("ERRO", "Apelido tem de estar preenchido");
-                apelido = null;
             }
 
             //apenas se for selecionado
@@ -202,11 +176,10 @@ public class PainelRegistarCliente extends StackPane {
 
             //validação de dados
             if ((nome != null)
-                    && (apelido != null)
                     && (genero != null)
                     && (localidade != null)) {
 
-                Cliente cliente = new Cliente(nome, apelido, localidade, genero);
+                Cliente cliente = new Cliente(nome, localidade, genero);
 
                 if (consola.adicionarNovoCliente(cliente) == true) {
                     Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);

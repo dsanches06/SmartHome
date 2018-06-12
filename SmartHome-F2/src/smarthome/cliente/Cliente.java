@@ -28,8 +28,8 @@ public class Cliente {
     private ConsolaCentral consola;
 
     //Constructor
-    public Cliente(String nome, String apelido, String morada, String genero) {
-        this.nome = getNomeCompleto(nome, apelido);
+    public Cliente(String nome, String morada, String genero) {
+        this.nome = nome;
         this.genero = genero;
         this.localidade = morada;
         this.numeroCliente = ++Cliente.numCliente;
@@ -59,10 +59,6 @@ public class Cliente {
                 .append("\nTotal Divisões: ")
                 .append(this.habitacao.getDivisoes().size());
         return str.toString();
-    }
-
-    private String getNomeCompleto(String nomeCliente, String apelidoCliente) {
-        return nomeCliente + " " + apelidoCliente;
     }
 
     public String getNome() {

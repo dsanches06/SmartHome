@@ -39,6 +39,10 @@ public class Habitacao {
         return null;
     }
 
+    public Divisao getDivisaoPorIndex(int index) {
+        return this.divisoes.get(index);
+    }
+
     @Override
     public String toString() {
         String str = "";

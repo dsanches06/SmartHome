@@ -80,11 +80,6 @@
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 
-.textfield{
-    -fx-border-width: 1; 
-    -fx-border-radius: 2 ;
-    -fx-border-color : red; 
-}
 
 .titled-address .label {
     -fx-font-size: 13px;
@@ -210,4 +205,35 @@
 
 .table-view:focused .table-row-cell:filled:focused:selected {
     -fx-background-color: -fx-focus-color;
+}
+
+.btn_color_grey{
+    -fx-background-color: #cc0000;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 3;
+}
+
+.btn_color_grey:hover {
+    -fx-cursor: hand;
+}
+
+.btn_color_grey:focused{
+    -fx-background-color: #818181;
+}
+
+.btn_color_lightgrey{
+    -fx-background-color: #800000;
+    -fx-border-color:white;
+    -fx-border-width: 2;
+    -fx-border-radius:3;
+}
+
+.btn_color_lightgrey:hover {
+    -fx-cursor: hand;
+}
+
+
+.btn_color_lightgrey:focused{
+    -fx-background-color: #818181;
 }

@@ -319,7 +319,7 @@ public class ConsolaCentralFX extends StackPane {
     }
 
     private StackPane painelRegistarCliente(BorderPane root, ConsolaCentral consola) {
-        return new PainelRegistarCliente(root, consola);
+        return new PainelRegistarClienteFX(root, consola);
     }
 
     private VBox obterCliente(Cliente cliente) {

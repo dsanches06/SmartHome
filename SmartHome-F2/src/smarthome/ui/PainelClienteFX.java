@@ -5,7 +5,9 @@
  */
 package smarthome.ui;
 
+import java.util.Random;
 import javafx.event.ActionEvent;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -14,8 +16,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -28,12 +33,19 @@ import javafx.scene.text.Text;
 import smarthome.Dialogo;
 import smarthome.central.ConsolaCentral;
 import smarthome.cliente.Cliente;
+import smarthome.cliente.Divisao;
 
 /**
  *
  * @author
  */
 public class PainelClienteFX extends StackPane {
+
+    TextArea texto;
+    Label rotulo;
+    Button buttonRetroceder;
+    Button buttonLimpar;
+    boolean botaoCor;
 
     public PainelClienteFX(BorderPane root, ConsolaCentral consola, Cliente cliente) {
         setAlignment(Pos.TOP_RIGHT);
@@ -45,7 +57,7 @@ public class PainelClienteFX extends StackPane {
         grid.setPadding(new Insets(25, 25, 25, 25));
         //mostra a dashboard
         mostrarEquipamento(root, grid, consola, cliente);
-        //posiciona a gridpane no centro da borderpane
+        //posiciona a grid no centro da borderpane
         root.setCenter(grid);
     }
 
@@ -93,6 +105,17 @@ public class PainelClienteFX extends StackPane {
 
         Button btnAdicionar = new Button("Nova Divisão");
         btnAdicionar.setPrefSize(220, 30);
+        btnAdicionar.setOnAction((ActionEvent e) -> {
+            //verifica se já foi criada 6 divisoes
+            if (cliente.getHabitacao().getDivisoes().size() < 6) {
+                //mostra o painel criar divisao
+                painelCriarDivisao(root, consola, cliente);
+            } else {
+                //cria o dialogo de erro
+                Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
+                erro.mostrarDialogo("ERRO", "Só pode ser inserido 6 divisões");
+            }
+        });
 
         Button btnRemover = new Button("Remover Divisão");
         btnRemover.setPrefSize(220, 30);
@@ -116,54 +139,70 @@ public class PainelClienteFX extends StackPane {
         painelCliente.getStyleClass().add("titled-address");
         painelCliente.setPrefSize(60, 470);
 
-        GridPane grid2 = new GridPane();
-        grid2.setAlignment(Pos.TOP_CENTER);
-        grid2.setHgap(10);
-        grid2.setVgap(10);
+        GridPane gridpane = new GridPane();
+        gridpane.setPadding(new Insets(5));
+        gridpane.setAlignment(Pos.TOP_CENTER);
 
         int coluna = 3;
         int contador = 0;
-        for (int i = 1; i <= 1; i++) {//linha
-            for (int j = 0; j < cliente.getHabitacao().getDivisoes().size(); j++) {
-                GridPane box = new GridPane();
-                box.setPrefSize(200, 200);
-                box.setAlignment(Pos.TOP_CENTER);
-                box.setStyle("-fx-background-color: black, -fx-control-inner-background; -fx-background-insets: 0, 1; -fx-padding: 2;");
+        int total = cliente.getHabitacao().getDivisoes().size();
+        Button[][] btn = new Button[total][total];
 
-                Label label = new Label(cliente.getHabitacao().getDivisoes().get(j).mostrarInfDashBoard());
+        //atributo para vrificar se um botao for criado com cor ou nao
+        botaoCor = false;
+        System.out.println("Total: " + cliente.getHabitacao().getDivisoes().size());
+        //loops para adicionar os buttons ao layout nas linhas do array
+        for (int i = 0; i < 1; i++) {//linha
+            //loops para adicionar os buttons ao layout nas colunas do array
+            for (int j = 0; j < total; j++) {
+                //obter a divisao pelo index
+                Divisao divisao = cliente.getHabitacao().getDivisaoPorIndex(j);
+                //se existir
+                if (divisao != null) {
+                    //preenche imagem nos restantes botoes para peças brancas
+                    btn[i][j] = new Button(divisao.mostrarInfDashBoard());
+                    //verifica a cor
+                    if (botaoCor == false) {
+                        //preenche com a cor lightgrey
+                        btn[i][j].getStyleClass().add("btn_color_lightgrey");
+                    } else {//se  a cor preenchida for lightgrey
+                        //preenche com a cor grey
+                        btn[i][j].getStyleClass().add("btn_color_grey");
+                    }  //representa o tamanho de altura e largura de cada botao
+                    btn[i][j].setPrefSize(200, 200);
 
-                Button btnAdicionarEquipamento = new Button("Novo Equipamento");
-                btnAdicionarEquipamento.setPrefSize(150, 30);
-                btnAdicionarEquipamento.setOnAction((ActionEvent e) -> {
+                    VBox vbox = new VBox(20);
+                    vbox.setAlignment(Pos.CENTER);
+                    vbox.getChildren().addAll(btn[i][j]);
+                    contador++;
 
-                });
-
-                Button btnRemoverEquipamento = new Button("Remover Equipamento");
-                btnRemoverEquipamento.setPrefSize(150, 30);
-
-                Button btnVerequipamento = new Button("Ver Equipamentos");
-                btnVerequipamento.setPrefSize(150, 30);
-
-                VBox vboxBtnEquipamento = new VBox(15);
-                vboxBtnEquipamento.getChildren().addAll(btnAdicionarEquipamento, btnRemoverEquipamento, btnVerequipamento);
-
-                VBox vbox = new VBox(20);
-                vbox.setAlignment(Pos.CENTER);
-                vbox.getChildren().addAll(label, vboxBtnEquipamento);
-                box.getChildren().add(vbox);
-                contador++;
-
-                if (contador <= coluna) {
-                    GridPane.setConstraints(box, j, i + 4);
-                } else {
-                    GridPane.setConstraints(box, j - 3, i + 5);
+                    if (contador <= coluna) {
+                        GridPane.setConstraints(vbox, j, i + 4);
+                    } else {
+                        GridPane.setConstraints(vbox, j - 3, i + 5);
+                    }
+                    gridpane.getChildren().add(vbox);
+                    //adiciona todos os botoes a gridpane
+                    //gridpane.add(btn[i][j], j + 2, i + 4);
+                    // btn[i][j].setUserData(new Casa(new Posicao(btn.length - i, Posicao.converterColuna(j + 1)), Casa.criarPecas(new Posicao(btn.length - i, Posicao.converterColuna(j + 1)))));
+                    btn[i][j].setOnMouseClicked((MouseEvent e) -> {
+                        StringBuilder str = new StringBuilder();
+                        //obter a posicao correta atraves do node getUserData
+                        str.append(((Node) e.getSource()).getUserData()).append("\n");
+                        //nostra os resultados
+                        // texto.appendText(str.toString());
+                        System.out.println(str.toString());
+                    });
+                    //muda de cor
+                    botaoCor = !botaoCor;
                 }
-                grid2.getChildren().add(box);
             }
+            //muda de cor
+            botaoCor = !botaoCor;
         }
 
         //criar um painel
-        Pane painelDivisao = new BorderComTitulo("Painel de Divisões do Cliente", grid2);
+        Pane painelDivisao = new BorderComTitulo("Painel de Divisões do Cliente", gridpane);
         painelDivisao.getStyleClass().add("titled-address");
         painelDivisao.setPrefSize(700, 470);
 
@@ -178,5 +217,9 @@ public class PainelClienteFX extends StackPane {
 
     private StackPane consolaCentralFX(BorderPane root, ConsolaCentral consola) {
         return new ConsolaCentralFX(root, consola);
+    }
+
+    private StackPane painelCriarDivisao(BorderPane root, ConsolaCentral consola, Cliente cliente) {
+        return new PainelCriarDivisaoFX(root, consola, cliente);
     }
 }
