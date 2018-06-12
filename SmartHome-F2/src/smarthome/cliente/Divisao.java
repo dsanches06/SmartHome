@@ -51,6 +51,10 @@ public class Divisao {
         }
         return null;
     }
+    
+       public Equipamento getEquipamentoPorIndex(int index) {
+        return this.equipamentos.get(index);
+    }
 
     public void ligarEquipamento(int equipamentoId) throws ErroException {
         Equipamento equipamento = this.getEquipamentoNaDivisaoPorID(equipamentoId);

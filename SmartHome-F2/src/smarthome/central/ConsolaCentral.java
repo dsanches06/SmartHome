@@ -7,7 +7,6 @@ package smarthome.central;
 
 import java.util.ArrayList;
 import java.util.List;
-import smarthome.ErroException;
 import smarthome.atuadores.Atuador;
 import smarthome.atuadores.Lampada;
 import smarthome.cliente.Cliente;
