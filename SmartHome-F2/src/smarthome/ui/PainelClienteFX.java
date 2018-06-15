@@ -109,7 +109,7 @@ public class PainelClienteFX extends StackPane {
             } else {
                 //cria o dialogo de erro
                 Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                erro.mostrarDialogo("ERRO", "Só pode ser inserido 6 divisões");
+                erro.mostrarDialogo("ERRO", "Só pode ser inserido 6 divisões em cada habitação");
             }
         });
 

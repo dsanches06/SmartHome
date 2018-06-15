@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
@@ -24,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import smarthome.Dialogo;
 import smarthome.atuadores.ArCondicionado;
 import smarthome.atuadores.CamaraFotografica;
 import smarthome.atuadores.CamaraVideo;
@@ -88,9 +90,15 @@ public class PainelDivisaoFX extends StackPane {
         Button btnAdicionar = new Button("Novo Equipamento");
         btnAdicionar.setPrefSize(220, 30);
         btnAdicionar.setOnAction((ActionEvent e) -> {
-            //mostra o painel criar e adicionar equipamento
-            painelCriarEquipamentoFX(root, consola, cliente, divisao.getDivisaoID());
-
+            //verifica se já foi criada 6 divisoes
+            if (divisao.getEquipamentos().size() < 6) {
+                //mostra o painel criar e adicionar equipamento
+                painelCriarEquipamentoFX(root, consola, cliente, divisao.getDivisaoID());
+            } else {
+                //cria o dialogo de erro
+                Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
+                erro.mostrarDialogo("ERRO", "Só pode ser inserido 6 equipamentos em cada divisão");
+            }
         });
 
         Button btnRemover = new Button("Remover Equipamento");
@@ -155,7 +163,7 @@ public class PainelDivisaoFX extends StackPane {
                     //cria a nova imagem da lampada desligada
                     ImageView imgView = new ImageView(obterImagem(2));
                     imgView.setFitHeight(80);
-                    imgView.setFitWidth(40);
+                    imgView.setFitWidth(80);
                     //adiciona a imagem ao botao
                     btn[i][j] = new Button(((ArCondicionado) equipamento).toString(), imgView);
 
@@ -230,7 +238,7 @@ public class PainelDivisaoFX extends StackPane {
                     //cria a nova imagem da lampada desligada
                     ImageView imgView = new ImageView(obterImagem(12));
                     imgView.setFitHeight(80);
-                    imgView.setFitWidth(40);
+                    imgView.setFitWidth(60);
                     //adiciona a imagem ao botao
                     btn[i][j] = new Button(((SensorTemperatura) equipamento).toString(), imgView);
                 }
