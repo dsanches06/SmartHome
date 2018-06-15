@@ -10,17 +10,43 @@ import smarthome.cliente.*;
 
 /**
  *
- * @author 
+ * @author
  */
-public class CamaraFotografica  {
+public class CamaraFotografica extends Atuador {
+
+    private boolean ligado;
+    private static int numEquipamento = 0;
+    private int id;
+    private String nome;
 
     public CamaraFotografica() {
         super();
+        this.id = ++CamaraFotografica.numEquipamento;
+        this.nome = "CF" + this.id;
+        this.ligado = false;
     }
 
-    
+    @Override
+    public int getId() {
+        return id;
+    }
 
+    @Override
+    public void setDivisao(Divisao divisao) {
+        this.divisao = divisao;
+    }
 
+    @Override
+    public String getNome() {
+        return nome;
+    }
 
-    
+    public boolean isLigado() {
+        return ligado;
+    }
+
+    public void setLigado(boolean ligado) {
+        this.ligado = ligado;
+    }
+
 }

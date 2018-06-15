@@ -10,7 +10,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
@@ -25,13 +24,20 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import smarthome.Dialogo;
 import smarthome.atuadores.ArCondicionado;
+import smarthome.atuadores.CamaraFotografica;
+import smarthome.atuadores.CamaraVideo;
 import smarthome.atuadores.Lampada;
+import smarthome.atuadores.Sirene;
+import smarthome.atuadores.Tomada;
 import smarthome.central.ConsolaCentral;
 import smarthome.cliente.Cliente;
 import smarthome.cliente.Divisao;
 import smarthome.equipamentos.Equipamento;
+import smarthome.sensores.SensorLuminosidade;
+import smarthome.sensores.SensorMovimento;
+import smarthome.sensores.SensorPortaAberta;
+import smarthome.sensores.SensorTemperatura;
 
 /**
  *
@@ -128,23 +134,18 @@ public class PainelDivisaoFX extends StackPane {
                 //obter a divisao pelo index
                 Equipamento equipamento = divisao.getEquipamentoPorIndex(j);
 
-                //array de imagens[3] para AC e lampada(desligada/ligada)
-                Image[] imagem = new Image[3];
-                imagem[0] = new Image(getClass().getResourceAsStream("/smarthome/styles/lampadaOff.png"));//lampada desligada
-                imagem[1] = new Image(getClass().getResourceAsStream("/smarthome/styles/lampadaOn.png"));//lampada ligada
-                imagem[2] = new Image(getClass().getResourceAsStream("/smarthome/styles/arCondicionado.png"));//AC
-
+                //array de imagens[13]
                 if (equipamento instanceof Lampada) {
                     if (((Lampada) equipamento).isLigado() != true) {//estado desligado
                         //cria a nova imagem da lampada desligada
-                        ImageView imgView = new ImageView(imagem[0]);
+                        ImageView imgView = new ImageView(obterImagem(0));
                         imgView.setFitHeight(80);
                         imgView.setFitWidth(40);
                         //adiciona a imagem ao botao
                         btn[i][j] = new Button(((Lampada) equipamento).toString(), imgView);
                     } else {
                         //cria a nova imagem da lampada ligada
-                        ImageView imgView = new ImageView(imagem[1]);
+                        ImageView imgView = new ImageView(obterImagem(1));
                         imgView.setFitHeight(80);
                         imgView.setFitWidth(40);
                         //adiciona a imagem ao botao
@@ -152,11 +153,86 @@ public class PainelDivisaoFX extends StackPane {
                     }
                 } else if (equipamento instanceof ArCondicionado) {
                     //cria a nova imagem da lampada desligada
-                    ImageView imgView = new ImageView(imagem[2]);
-                    // imgView.setFitHeight(50);
-                    // imgView.setFitWidth(50);
+                    ImageView imgView = new ImageView(obterImagem(2));
+                    imgView.setFitHeight(80);
+                    imgView.setFitWidth(40);
                     //adiciona a imagem ao botao
                     btn[i][j] = new Button(((ArCondicionado) equipamento).toString(), imgView);
+
+                } else if (equipamento instanceof CamaraFotografica) {
+                    //cria a nova imagem da lampada desligada
+                    ImageView imgView = new ImageView(obterImagem(3));
+                    imgView.setFitHeight(80);
+                    imgView.setFitWidth(40);
+                    //adiciona a imagem ao botao
+                    btn[i][j] = new Button(((CamaraFotografica) equipamento).toString(), imgView);
+                } else if (equipamento instanceof CamaraVideo) {
+                    //cria a nova imagem da lampada desligada
+                    ImageView imgView = new ImageView(obterImagem(4));
+                    imgView.setFitHeight(80);
+                    imgView.setFitWidth(40);
+                    //adiciona a imagem ao botao
+                    btn[i][j] = new Button(((CamaraVideo) equipamento).toString(), imgView);
+                } else if (equipamento instanceof Sirene) {
+                    //cria a nova imagem da lampada desligada
+                    ImageView imgView = new ImageView(obterImagem(5));
+                    imgView.setFitHeight(80);
+                    imgView.setFitWidth(40);
+                    //adiciona a imagem ao botao
+                    btn[i][j] = new Button(((Sirene) equipamento).toString(), imgView);
+                } else if (equipamento instanceof Tomada) {
+                    //cria a nova imagem da lampada desligada
+                    ImageView imgView = new ImageView(obterImagem(6));
+                    imgView.setFitHeight(80);
+                    imgView.setFitWidth(40);
+                    //adiciona a imagem ao botao
+                    btn[i][j] = new Button(((Tomada) equipamento).toString(), imgView);
+                } else if (equipamento instanceof SensorLuminosidade) {
+                    //cria a nova imagem da lampada desligada
+                    ImageView imgView = new ImageView(obterImagem(7));
+                    imgView.setFitHeight(80);
+                    imgView.setFitWidth(40);
+                    //adiciona a imagem ao botao
+                    btn[i][j] = new Button(((SensorLuminosidade) equipamento).toString(), imgView);
+                } else if (equipamento instanceof SensorMovimento) {
+                    if (((SensorMovimento) equipamento).isLigado() != true) {//estado desligado
+                        //cria a nova imagem da lampada desligada
+                        ImageView imgView = new ImageView(obterImagem(8));
+                        imgView.setFitHeight(80);
+                        imgView.setFitWidth(40);
+                        //adiciona a imagem ao botao
+                        btn[i][j] = new Button(((SensorMovimento) equipamento).toString(), imgView);
+                    } else {
+                        //cria a nova imagem da lampada ligada
+                        ImageView imgView = new ImageView(obterImagem(9));
+                        imgView.setFitHeight(80);
+                        imgView.setFitWidth(40);
+                        //adiciona a imagem ao botao
+                        btn[i][j] = new Button(((SensorMovimento) equipamento).toString(), imgView);
+                    }
+                } else if (equipamento instanceof SensorPortaAberta) {
+                    if (((SensorPortaAberta) equipamento).isLigado() != true) {//estado desligado
+                        //cria a nova imagem da lampada desligada
+                        ImageView imgView = new ImageView(obterImagem(10));
+                        imgView.setFitHeight(80);
+                        imgView.setFitWidth(40);
+                        //adiciona a imagem ao botao
+                        btn[i][j] = new Button(((SensorPortaAberta) equipamento).toString(), imgView);
+                    } else {
+                        //cria a nova imagem da lampada ligada
+                        ImageView imgView = new ImageView(obterImagem(11));
+                        imgView.setFitHeight(80);
+                        imgView.setFitWidth(40);
+                        //adiciona a imagem ao botao
+                        btn[i][j] = new Button(((SensorPortaAberta) equipamento).toString(), imgView);
+                    }
+                } else if (equipamento instanceof SensorTemperatura) {
+                    //cria a nova imagem da lampada desligada
+                    ImageView imgView = new ImageView(obterImagem(12));
+                    imgView.setFitHeight(80);
+                    imgView.setFitWidth(40);
+                    //adiciona a imagem ao botao
+                    btn[i][j] = new Button(((SensorTemperatura) equipamento).toString(), imgView);
                 }
 
                 //verifica a cor
@@ -196,6 +272,30 @@ public class PainelDivisaoFX extends StackPane {
                     } else if (object instanceof ArCondicionado) {
                         //nostra os resultados
                         System.out.println(((ArCondicionado) object).toString());
+                    } else if (object instanceof CamaraFotografica) {
+                        //mostra os resultados
+                        System.out.println(((CamaraFotografica) object).toString());
+                    } else if (object instanceof CamaraVideo) {
+                        //nostra os resultados
+                        System.out.println(((CamaraVideo) object).toString());
+                    } else if (object instanceof Sirene) {
+                        //nostra os resultados
+                        System.out.println(((Sirene) object).toString());
+                    } else if (object instanceof Tomada) {
+                        //nostra os resultados
+                        System.out.println(((Tomada) object).toString());
+                    } else if (object instanceof SensorLuminosidade) {
+                        //nostra os resultados
+                        System.out.println(((SensorLuminosidade) object).toString());
+                    } else if (object instanceof SensorMovimento) {
+                        //nostra os resultados
+                        System.out.println(((SensorMovimento) object).toString());
+                    } else if (object instanceof SensorPortaAberta) {
+                        //nostra os resultados
+                        System.out.println(((SensorPortaAberta) object).toString());
+                    } else if (object instanceof SensorTemperatura) {
+                        //nostra os resultados
+                        System.out.println(((SensorTemperatura) object).toString());
                     }
                 });
                 //muda de cor
@@ -225,5 +325,23 @@ public class PainelDivisaoFX extends StackPane {
 
     private StackPane painelCriarEquipamentoFX(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {
         return new PainelCriarEquipamentoFX(root, consola, cliente, divisaoId);
+    }
+
+    private Image obterImagem(int index) {
+        Image[] imagem = new Image[13];
+        imagem[0] = new Image(getClass().getResourceAsStream("/smarthome/styles/lampadaOff.png"));//lampada desligada
+        imagem[1] = new Image(getClass().getResourceAsStream("/smarthome/styles/lampadaOn.png"));//lampada ligada
+        imagem[2] = new Image(getClass().getResourceAsStream("/smarthome/styles/arCondicionado.png"));//AC
+        imagem[3] = new Image(getClass().getResourceAsStream("/smarthome/styles/cameraFotografica.png"));//camera fotografica
+        imagem[4] = new Image(getClass().getResourceAsStream("/smarthome/styles/cameraVideo.png"));//camera de video
+        imagem[5] = new Image(getClass().getResourceAsStream("/smarthome/styles/sirene.png"));//sirene
+        imagem[6] = new Image(getClass().getResourceAsStream("/smarthome/styles/tomada.png"));//tomada
+        imagem[7] = new Image(getClass().getResourceAsStream("/smarthome/styles/sensorLuminosidade.png"));//sensor luminosidade
+        imagem[8] = new Image(getClass().getResourceAsStream("/smarthome/styles/semMovimento.png"));//sem movimento
+        imagem[9] = new Image(getClass().getResourceAsStream("/smarthome/styles/comMovimento.png"));//com movimento
+        imagem[10] = new Image(getClass().getResourceAsStream("/smarthome/styles/portaFechada.png"));//porta fechada 
+        imagem[11] = new Image(getClass().getResourceAsStream("/smarthome/styles/portaAberta.png"));//porta aberta
+        imagem[12] = new Image(getClass().getResourceAsStream("/smarthome/styles/sensorTemperatura.png"));//sensor temperatura
+        return imagem[index];
     }
 }

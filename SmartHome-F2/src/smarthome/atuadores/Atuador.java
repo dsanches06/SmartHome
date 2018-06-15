@@ -35,6 +35,4 @@ public abstract class Atuador extends Equipamento {
         this.modoAutomatico = modoAutomatico;
     }
 
-    @Override
-    public abstract int getId();
 }

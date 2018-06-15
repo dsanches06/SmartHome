@@ -6,6 +6,7 @@
 package smarthome.sensores;
 
 import smarthome.cliente.Divisao;
+import smarthome.equipamentos.Equipamento;
 
 /**
  *
@@ -23,6 +24,17 @@ public class SensorTemperatura extends Sensor {
         this.id = ++SensorTemperatura.numEquipamento;
         this.nome = "ST" + this.id;
         this.ligado = false;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Equipamento: " + nome + "\n";
+        str += "Tipo: " + this.getTipo() + "\n";
+        str += "Estado: ";
+        str += (this.ligado) ? "Ligado\n" : "Desligado\n";
+        str += "Temperatura: " + registarTemperatura() + " ºC\n";
+        return str;
     }
 
     public int registarTemperatura() {
@@ -47,6 +59,7 @@ public class SensorTemperatura extends Sensor {
         return id;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }

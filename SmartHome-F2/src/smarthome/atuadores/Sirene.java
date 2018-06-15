@@ -30,15 +30,11 @@ public class Sirene extends Atuador {
     private int id;
 
     //Constructor
-    public Sirene(int volume) {
+    public Sirene() {
         super();
         this.id = ++Sirene.numEquipamento;
-        this.nome = "Sirene" + this.id;
-        if (isVolumeValido(volume)) {
-            this.volume = volume;
-        } else {
-            this.volume = Sirene.VOLUME_MIN;
-        }
+        this.nome = "SRN" + this.id;
+        this.volume = Sirene.VOLUME_MIN;
     }
 
     public void ligar(Modo modo) {
@@ -81,6 +77,7 @@ public class Sirene extends Atuador {
         this.ligado = ligado;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }

@@ -30,16 +30,11 @@ public class ConsolaCentral {
     private ModuloControloLuminosidade moduloControloLuminosidade;
     //cliente
     private List<Cliente> clientes;
-    //equipamentos conetados
-    private List<Sensor> sensores;
-    private List<Atuador> atuadores;
     //adicionar 
 
     //Constructor
     public ConsolaCentral() {
         this.clientes = new ArrayList<>();
-        this.sensores = new ArrayList<>();
-        this.atuadores = new ArrayList<>();
         this.moduloAlarme = new ModuloAlarme(this);
         this.moduloControloTemperatura = new ModuloControloTemperatura(this);
         this.moduloControloLuminosidade = new ModuloControloLuminosidade(this);

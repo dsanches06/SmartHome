@@ -43,6 +43,7 @@ public class SensorMovimento extends Sensor {
         return id;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }

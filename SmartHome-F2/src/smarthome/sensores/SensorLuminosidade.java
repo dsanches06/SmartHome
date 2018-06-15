@@ -25,6 +25,17 @@ public class SensorLuminosidade extends Sensor {
         this.ligado = false;
     }
 
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Equipamento: " + nome + "\n";
+        str += "Tipo: " + this.getTipo() + "\n";
+        str += "Estado: ";
+        str += (this.ligado) ? "Ligado\n" : "Desligado\n";
+        str += "Intensidade: " + medirLuzAmbiente() + " kw\n";
+        return str;
+    }
+
     public int medirLuzAmbiente() {
         return 0;
     }
@@ -47,6 +58,7 @@ public class SensorLuminosidade extends Sensor {
         return id;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }

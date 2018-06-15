@@ -35,14 +35,9 @@ public class App extends Application {
         ConsolaCentral consola = new ConsolaCentral();
 
         Cliente cliente = new Cliente("Dani", "Seixal", "M");
-        Divisao divisao = new Divisao("wc");
+        Divisao divisao = new Divisao("sala");
 
-        Lampada lampada = new Lampada();
-        ArCondicionado ac = new ArCondicionado();
-        
         //para teste
-        divisao.adicionarEquipamento(lampada);
-        divisao.adicionarEquipamento(ac);
         cliente.getHabitacao().adicionarDivisao(divisao);
         consola.adicionarNovoCliente(cliente);
 

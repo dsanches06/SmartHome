@@ -24,11 +24,13 @@ public abstract class Equipamento {
         this.divisao = null;
     }
 
-    public abstract int getId();
-
     public TipoEquipamento getTipo() {
         return tipo;
     }
+
+    public abstract int getId();
+
+    public abstract String getNome();
 
     public abstract void setDivisao(Divisao divisao);
 

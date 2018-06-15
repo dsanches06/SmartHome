@@ -51,8 +51,8 @@ public class Divisao {
         }
         return null;
     }
-    
-       public Equipamento getEquipamentoPorIndex(int index) {
+
+    public Equipamento getEquipamentoPorIndex(int index) {
         return this.equipamentos.get(index);
     }
 
@@ -106,9 +106,10 @@ public class Divisao {
         String str = "";
         str += "Divisão: " + this.nome + "\n";
         str += "ID: " + this.divisaoID + "\n";
+        str += "Qt Equipamento: " + this.equipamentos.size() + "\n";
         for (Equipamento equipamento : equipamentos) {
             if (equipamento != null) {
-                str += equipamento.toString();
+                str += "\n" + equipamento.toString() + "\n";
             }
         }
 

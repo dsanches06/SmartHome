@@ -5,20 +5,47 @@
  */
 package smarthome.atuadores;
 
-import smarthome.ErroException;
 import smarthome.cliente.*;
 
 /**
  *
  * @author
  */
-public class CamaraVideo  {
+public class CamaraVideo extends Atuador {
+
+    private boolean ligado;
+    private static int numEquipamento = 0;
+    private int id;
+    private String nome;
 
     public CamaraVideo() {
         super();
+        this.id = ++CamaraVideo.numEquipamento;
+        this.nome = "CV" + this.id;
+        this.ligado = false;
     }
 
-   
+    @Override
+    public int getId() {
+        return id;
+    }
 
+    @Override
+    public void setDivisao(Divisao divisao) {
+        this.divisao = divisao;
+    }
+
+    @Override
+    public String getNome() {
+        return nome;
+    }
+
+    public boolean isLigado() {
+        return ligado;
+    }
+
+    public void setLigado(boolean ligado) {
+        this.ligado = ligado;
+    }
 
 }
