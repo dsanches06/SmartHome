@@ -14,6 +14,7 @@ import smarthome.cliente.Divisao;
 public class SensorPortaAberta extends Sensor {
 
     private boolean ligado;
+    private boolean portaAberta;
     private static int numEquipamento = 0;
     private int id;
     private String nome;
@@ -23,6 +24,19 @@ public class SensorPortaAberta extends Sensor {
         this.id = ++SensorPortaAberta.numEquipamento;
         this.nome = "SPA" + this.id;
         this.ligado = false;
+        this.portaAberta = false;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Equipamento: " + nome + "\n";
+        str += "Tipo: " + this.getTipo() + "\n";
+        str += "Estado: ";
+        str += (this.ligado) ? "Ligado\n" : "Desligado\n";
+        str += "Porta Aberta: ";
+        str += (this.portaAberta) ? "Sim\n" : "N/A\n";
+        return str;
     }
 
     @Override
@@ -51,4 +65,13 @@ public class SensorPortaAberta extends Sensor {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public boolean isPortaAberta() {
+        return portaAberta;
+    }
+
+    public void setPortaAberta(boolean portaAberta) {
+        this.portaAberta = portaAberta;
+    }
+
 }

@@ -50,7 +50,7 @@ public class PainelRegistarClienteFX extends StackPane {
     }
 
     private void formulario(BorderPane root, GridPane grid, ConsolaCentral consola) {
-        
+
         Text titulo = new Text("Painel Registar Cliente");
         titulo.setId("titulo-text");
         titulo.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));

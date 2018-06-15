@@ -14,6 +14,7 @@ import smarthome.cliente.Divisao;
 public class SensorMovimento extends Sensor {
 
     private boolean ligado;
+    private boolean movimento;
     private static int numEquipamento = 0;
     private int id;
     private String nome;
@@ -23,6 +24,19 @@ public class SensorMovimento extends Sensor {
         this.id = ++SensorMovimento.numEquipamento;
         this.nome = "SM" + this.id;
         this.ligado = false;
+        this.movimento = false;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Equipamento: " + nome + "\n";
+        str += "Tipo: " + this.getTipo() + "\n";
+        str += "Estado: ";
+        str += (this.ligado) ? "Ligado\n" : "Desligado\n";
+        str += "Movimento: ";
+        str += (this.movimento) ? "Sim\n" : "N/A\n";
+        return str;
     }
 
     @Override
@@ -51,4 +65,13 @@ public class SensorMovimento extends Sensor {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public boolean isMovimento() {
+        return movimento;
+    }
+
+    public void setMovimento(boolean movimento) {
+        this.movimento = movimento;
+    }
+
 }

@@ -24,6 +24,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import smarthome.Dialogo;
+import smarthome.atuadores.Tomada;
 import smarthome.central.ConsolaCentral;
 import smarthome.central.FactoryEquipamento;
 import smarthome.cliente.Cliente;
@@ -166,7 +167,6 @@ public class PainelCriarEquipamentoFX extends StackPane {
             rb5.setDisable(true);
             rb6.setDisable(true);
             rb7.setDisable(true);
-            rb8.setDisable(true);
             rb9.setDisable(true);
             rb10.setDisable(true);
         });
@@ -179,7 +179,6 @@ public class PainelCriarEquipamentoFX extends StackPane {
             rb5.setDisable(true);
             rb6.setDisable(true);
             rb7.setDisable(true);
-            rb8.setDisable(true);
             rb9.setDisable(true);
             rb10.setDisable(true);
         });
@@ -280,9 +279,8 @@ public class PainelCriarEquipamentoFX extends StackPane {
          */
         btnCriar.setOnAction((ActionEvent e) -> {
             if (atuador != null) {
-                if (sensor != null) {
+                if (atuador instanceof Tomada) {
                     cliente.getHabitacao().getDivisaoPorID(divisaoId).adicionarEquipamento(atuador);
-                    cliente.getHabitacao().getDivisaoPorID(divisaoId).adicionarEquipamento(sensor);
                     //cria o dialogo
                     Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
                     //mostra o dialogo
@@ -290,9 +288,20 @@ public class PainelCriarEquipamentoFX extends StackPane {
                     //volta ao painel divisao
                     painelDivisaoFX(root, consola, cliente, divisaoId);
                 } else {
-                    //cria o dialogo de erro
-                    Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                    erro.mostrarDialogo("ERRO", "Falta selecionar o tipo de sensor");
+                    if (sensor != null) {
+                        cliente.getHabitacao().getDivisaoPorID(divisaoId).adicionarEquipamento(atuador);
+                        cliente.getHabitacao().getDivisaoPorID(divisaoId).adicionarEquipamento(sensor);
+                        //cria o dialogo
+                        Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
+                        //mostra o dialogo
+                        inf.mostrarDialogo("INFORMAÇÃO", "Equipamentos foi adicionada na divisão do cliente " + cliente.getNome() + " com sucesso");
+                        //volta ao painel divisao
+                        painelDivisaoFX(root, consola, cliente, divisaoId);
+                    } else {
+                        //cria o dialogo de erro
+                        Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
+                        erro.mostrarDialogo("ERRO", "Falta selecionar o tipo de sensor");
+                    }
                 }
             } else {
                 //cria o dialogo de erro

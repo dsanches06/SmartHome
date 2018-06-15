@@ -14,25 +14,19 @@ import smarthome.central.ConsolaCentral;
 public class Cliente {
 
     private static int numCliente = 0;
-    //nome
-    private String nome;
-    //genero
-    private String genero;
-    //morada
-    private String localidade;
-    //
     private int numeroCliente;
-    //Habitaçao
+    private String nome;
+    private String localidade;
+    private String genero;
     private Habitacao habitacao;
-    //consola
     private ConsolaCentral consola;
 
     //Constructor
-    public Cliente(String nome, String morada, String genero) {
-        this.nome = nome;
-        this.genero = genero;
-        this.localidade = morada;
+    public Cliente(String nome, String localidade, String genero) {
         this.numeroCliente = ++Cliente.numCliente;
+        this.nome = nome;
+        this.localidade = localidade;
+        this.genero = genero;
         this.habitacao = new Habitacao();
         this.consola = null;
     }

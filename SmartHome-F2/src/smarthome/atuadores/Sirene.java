@@ -37,6 +37,19 @@ public class Sirene extends Atuador {
         this.volume = Sirene.VOLUME_MIN;
     }
 
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Equipamento: " + nome + "\n";
+        str += "Tipo: " + this.getTipo() + "\n";
+        str += "Estado: ";
+        str += (this.ligado) ? "Ligado\n" : "Desligado\n";
+        str += "Modo: ";
+        str += (this.isModoAutomatico()) ? "Automático\n" : "Manual\n";
+        str += "Volume: " + this.volume + " ºC\n";
+        return str;
+    }
+
     public void ligar(Modo modo) {
         //se estiver desligado
         if (!ligado) {
@@ -102,17 +115,6 @@ public class Sirene extends Atuador {
     @Override
     public void setDivisao(Divisao divisao) {
         this.divisao = divisao;
-    }
-
-    @Override
-    public String toString() {
-        String str = "";
-        str += nome + "\n";
-        str += "Tipo: " + this.getTipo() + "\n";
-        str += "Estado: ";
-        str += (this.ligado) ? "Ligado\n" : "Desligado\n";
-        str += "Volume: " + this.volume + "\n";
-        return str;
     }
 
 }

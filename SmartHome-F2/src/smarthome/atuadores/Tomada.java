@@ -5,6 +5,7 @@
  */
 package smarthome.atuadores;
 
+import smarthome.ErroException;
 import smarthome.cliente.Divisao;
 
 /**
@@ -14,6 +15,7 @@ import smarthome.cliente.Divisao;
 public class Tomada extends Atuador {
 
     private boolean ligado;
+    private boolean wifi;
     private static int numEquipamento = 0;
     private int id;
     private String nome;
@@ -23,6 +25,39 @@ public class Tomada extends Atuador {
         this.id = ++Tomada.numEquipamento;
         this.nome = "TMD" + this.id;
         this.ligado = false;
+        this.wifi = false;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Equipamento: " + nome + "\n";
+        str += "Tipo: " + this.getTipo() + "\n";
+        str += "Modo: ";
+        str += (this.isModoAutomatico()) ? "Automático\n" : "Manual\n";
+        str += "Estado: ";
+        str += (this.ligado) ? "Ligado\n" : "Desligado\n";
+        str += "Wi-Fi: ";
+        str += (this.wifi) ? "Activo\n" : "Desativo\n";
+        return str;
+    }
+
+    public void ligar() throws ErroException {
+        if (this.ligado) {
+            throw new ErroException("Esta TMD já se encontra ligado.");
+        }//liga a lampada
+        this.ligado = true;
+        //ativa wi-fi
+        this.wifi = true;
+    }
+
+    public void desligar() throws ErroException {
+        if (!this.ligado) {
+            throw new ErroException("Esta TMD já se encontra desligado.");
+        }//desliga a lampada
+        this.ligado = false;
+        //desativa wi-fi
+        this.wifi = false;
     }
 
     @Override
@@ -46,6 +81,14 @@ public class Tomada extends Atuador {
 
     public void setLigado(boolean ligado) {
         this.ligado = ligado;
+    }
+
+    public boolean isWifi() {
+        return wifi;
+    }
+
+    public void setWifi(boolean wifi) {
+        this.wifi = wifi;
     }
 
 }
