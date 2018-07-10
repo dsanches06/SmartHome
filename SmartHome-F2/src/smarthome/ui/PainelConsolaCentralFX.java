@@ -28,6 +28,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import java.util.List;
+import javafx.application.Platform;
 import smarthome.App;
 import smarthome.Dialogo;
 import smarthome.central.ConsolaCentral;
@@ -201,9 +202,9 @@ public class PainelConsolaCentralFX extends StackPane {
         btnImportar.setOnAction((ActionEvent e) -> {
             //cria uma instancia filechooser
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Importar Dados no Ficheiro EXCEL");
+            fileChooser.setTitle("Importar Dados no Ficheiro");
             //cria um filtro de extensão "*.log" e adiciona no file chooser
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("EXCEL files (*.xls)", "*.xls"));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("DAT files (*.dat)", "*.dat"));
             //mostrar dialog abrir/carregar
             File file = fileChooser.showOpenDialog(App.stage);
             //se houver ficheiro
@@ -225,9 +226,9 @@ public class PainelConsolaCentralFX extends StackPane {
         btnSalvar.setOnAction((ActionEvent e) -> {
             //cria uma instancia filechooser
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Salvar Dados no Ficheiro EXCEL");
+            fileChooser.setTitle("Salvar Dados no Ficheiro");
             //cria um filtro de extensão "*.log" e adiciona no file chooser
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("EXCEL files (*.xls)", "*.xls"));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("DAT files (*.dat)", "*.dat"));
             //mostra dialog salvar 
             File file = fileChooser.showSaveDialog(App.stage);
             //se não cria um novo
@@ -244,7 +245,7 @@ public class PainelConsolaCentralFX extends StackPane {
         });
 
         btnSair.setOnAction((ActionEvent e) -> {
-
+            Platform.exit();
         });
 
         VBox vboxPainel2 = new VBox();

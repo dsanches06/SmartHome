@@ -94,7 +94,7 @@ public class PainelRegistarClienteFX extends StackPane {
         HBox hboxGenero = new HBox(60);
         hboxGenero.getChildren().addAll(generoLabel, comboBoxGenero);
 
-        Label labelNumeroDivisao = new Label("Total de divisão");
+        Label labelNumeroDivisao = new Label("Nº de divisão");
         labelNumeroDivisao.setFont(Font.font("Cambria", FontWeight.NORMAL, 14));
         labelNumeroDivisao.setId("label");
 
@@ -102,7 +102,7 @@ public class PainelRegistarClienteFX extends StackPane {
         numeroDivisaoTextField.getStyleClass().add("textfield");
         numeroDivisaoTextField.setPrefSize(400, 30);
 
-        HBox hboxNumeroDivisao = new HBox(69);
+        HBox hboxNumeroDivisao = new HBox(20);
         hboxNumeroDivisao.getChildren().addAll(labelNumeroDivisao, numeroDivisaoTextField);
 
         VBox vboxFormulario = new VBox(20);
@@ -189,10 +189,10 @@ public class PainelRegistarClienteFX extends StackPane {
             }
             if (numeroDivisaoTextField.getText().length() > 0) {
                 numeroDivisao = Integer.parseInt(numeroDivisaoTextField.getText());
-                //validar o tamanho de divisao para 6
-                if (numeroDivisao > 6) {
+                //validar o tamanho de divisao para 12
+                if (numeroDivisao > 12) {
                     Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                    erro.mostrarDialogo("ERRO", "Só pode adicionar 6 divisão");
+                    erro.mostrarDialogo("ERRO", "Só pode adicionar 12 divisão");
                     numeroDivisao = 0;
                 }
             }//e se não estiver preenchida 
@@ -207,7 +207,7 @@ public class PainelRegistarClienteFX extends StackPane {
             if ((nome != null)
                     && (genero != null)
                     && (localidade != null)
-                    && (numeroDivisao >= 1 && numeroDivisao <= 6)) {
+                    && (numeroDivisao >= 1 && numeroDivisao <= 12)) {
 
                 Cliente cliente = new Cliente(nome, localidade, genero, numeroDivisao, consola);
 
