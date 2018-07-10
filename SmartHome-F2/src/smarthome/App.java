@@ -16,7 +16,7 @@ import smarthome.atuadores.Lampada;
 import smarthome.central.ConsolaCentral;
 import smarthome.cliente.Cliente;
 import smarthome.cliente.Divisao;
-import smarthome.ui.ConsolaCentralFX;
+import smarthome.ui.PainelConsolaCentralFX;
 
 /**
  *
@@ -87,7 +87,7 @@ public class App extends Application {
     }
 
     private StackPane consolaCentralFX(BorderPane root, ConsolaCentral consola) {
-        return new ConsolaCentralFX(root, consola);
+        return new PainelConsolaCentralFX(root, consola);
     }
 
 }

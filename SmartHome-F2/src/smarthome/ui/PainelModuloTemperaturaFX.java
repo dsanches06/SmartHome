@@ -5,19 +5,13 @@
  */
 package smarthome.ui;
 
-import java.util.Random;
 import javafx.event.ActionEvent;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,7 +24,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import smarthome.Dialogo;
 import smarthome.central.ConsolaCentral;
 import smarthome.cliente.Cliente;
 import smarthome.cliente.Divisao;
@@ -39,26 +32,12 @@ import smarthome.cliente.Divisao;
  *
  * @author
  */
-public class PainelClienteFX extends StackPane {
+public class PainelModuloTemperaturaFX extends StackPane {
 
     private boolean botaoCor;
 
-    public PainelClienteFX(BorderPane root, ConsolaCentral consola, Cliente cliente) {
-        setAlignment(Pos.TOP_RIGHT);
-
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.TOP_CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
-        //mostra a dashboard
-        mostrarEquipamento(root, grid, consola, cliente);
-        //posiciona a grid no centro da borderpane
-        root.setCenter(grid);
-    }
-
-    private void mostrarEquipamento(BorderPane root, GridPane grid, ConsolaCentral consola, Cliente cliente) {
-
+    public PainelModuloTemperaturaFX(BorderPane root, GridPane grid, ConsolaCentral consola, Cliente cliente) {
+        
         GridPane gridTitulo = new GridPane();
         gridTitulo.setAlignment(Pos.TOP_CENTER);
 
@@ -102,7 +81,7 @@ public class PainelClienteFX extends StackPane {
         Button btnAdicionar = new Button("Nova Divisão");
         btnAdicionar.setPrefSize(220, 30);
         btnAdicionar.setOnAction((ActionEvent e) -> {
-           
+
         });
 
         Button btnRemover = new Button("Remover Divisão");
@@ -138,7 +117,7 @@ public class PainelClienteFX extends StackPane {
 
         //atributo para vrificar se um botao for criado com cor ou nao
         botaoCor = false;
-        
+
         //loops para adicionar os buttons ao layout nas linhas do array
         for (int i = 0; i < 1; i++) {//linha
             //loops para adicionar os buttons ao layout nas colunas do array
@@ -209,10 +188,9 @@ public class PainelClienteFX extends StackPane {
     }
 
     private StackPane consolaCentralFX(BorderPane root, ConsolaCentral consola) {
-        return new ConsolaCentralFX(root, consola);
+        return new PainelConsolaCentralFX(root, consola);
     }
 
-    
     private StackPane painelDivisaoFX(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {
         return new PainelDivisaoFX(root, consola, cliente, divisaoId);
     }

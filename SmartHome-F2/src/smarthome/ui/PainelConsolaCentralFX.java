@@ -37,9 +37,9 @@ import smarthome.cliente.Cliente;
  *
  * @author
  */
-public class ConsolaCentralFX extends StackPane {
+public class PainelConsolaCentralFX extends StackPane {
 
-    public ConsolaCentralFX(BorderPane root, ConsolaCentral consola) {
+    public PainelConsolaCentralFX(BorderPane root, ConsolaCentral consola) {
 
         setAlignment(Pos.CENTER);
 
@@ -187,7 +187,9 @@ public class ConsolaCentralFX extends StackPane {
             //obter cliente da tabela
             Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
             if (cliente != null) {
-                painelClienteFX(root, consola, cliente);
+                Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
+                // mostra o dialogo
+                inf.mostrarDialogo("INFORMATION", "Cliente selecionado");
             } else {
                 Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
                 // mostra o dialogo
@@ -216,9 +218,7 @@ public class ConsolaCentralFX extends StackPane {
             //obter cliente da tabela
             Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
             if (cliente != null) {
-                Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
-                //mostra o dialogo
-                inf.mostrarDialogo("INFORMAÇÃO", "modulo luminosidade");
+                painelModuloFX(root, consola, cliente, "luminosidade");
             } else {
                 Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
                 // mostra o dialogo
@@ -230,10 +230,7 @@ public class ConsolaCentralFX extends StackPane {
             //obter cliente da tabela
             Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
             if (cliente != null) {
-
-                Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
-                //mostra o dialogo
-                inf.mostrarDialogo("INFORMAÇÃO", "modulo temperatura");
+                painelModuloFX(root, consola, cliente, "temperatura");
             } else {
                 Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
                 // mostra o dialogo
@@ -246,10 +243,7 @@ public class ConsolaCentralFX extends StackPane {
             //obter cliente da tabela
             Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
             if (cliente != null) {
-
-                Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
-                //mostra o dialogo
-                inf.mostrarDialogo("INFORMAÇÃO", "modulo alarme");
+                painelModuloFX(root, consola, cliente, "alarme");
             } else {
                 Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
                 // mostra o dialogo
@@ -358,7 +352,7 @@ public class ConsolaCentralFX extends StackPane {
 
     }
 
-    private StackPane painelClienteFX(BorderPane root, ConsolaCentral consola, Cliente cliente) {
-        return new PainelClienteFX(root, consola, cliente);
+    private StackPane painelModuloFX(BorderPane root, ConsolaCentral consola, Cliente cliente, String tipoModulo) {
+        return new PainelModuloFX(root, consola, cliente, tipoModulo);
     }
 }

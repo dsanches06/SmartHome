@@ -104,11 +104,11 @@ public class PainelDivisaoFX extends StackPane {
         Button btnRemover = new Button("Remover Equipamento");
         btnRemover.setPrefSize(220, 30);
 
-        Button btnVoltar = new Button("Voltar ao painel cliente");
+        Button btnVoltar = new Button("Voltar ao painel consola");
         btnVoltar.setPrefSize(220, 30);
         btnVoltar.setOnAction((ActionEvent e) -> {
-            //volta ao painel cliente
-            painelClienteFX(root, consola, cliente);
+            //volta ao painel consola
+            painelConsolaCentralFX(root, consola);
         });
 
         VBox vboxBtnDivisao = new VBox(20);
@@ -327,8 +327,8 @@ public class PainelDivisaoFX extends StackPane {
         grid.getChildren().addAll(vbox);
     }
 
-    private StackPane painelClienteFX(BorderPane root, ConsolaCentral consola, Cliente cliente) {
-        return new PainelClienteFX(root, consola, cliente);
+    private StackPane painelConsolaCentralFX(BorderPane root, ConsolaCentral consola) {
+        return new PainelConsolaCentralFX(root, consola);
     }
 
     private StackPane painelCriarEquipamentoFX(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {

@@ -235,7 +235,7 @@ public class PainelRegistarClienteFX extends StackPane {
     }
 
     private StackPane consolaCentralFX(BorderPane root, ConsolaCentral consola) {
-        return new ConsolaCentralFX(root, consola);
+        return new PainelConsolaCentralFX(root, consola);
     }
 
 }
