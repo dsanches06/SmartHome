@@ -5,6 +5,7 @@
  */
 package smarthome.sensores;
 
+import smarthome.ErroException;
 import smarthome.cliente.Divisao;
 import smarthome.equipamentos.Equipamento;
 
@@ -18,12 +19,14 @@ public class SensorTemperatura extends Sensor {
     private static int numEquipamento = 0;
     private int id;
     private String nome;
+    private int temperatura;
 
     public SensorTemperatura() {
         super();
         this.id = ++SensorTemperatura.numEquipamento;
         this.nome = "ST" + this.id;
         this.ligado = false;
+        this.temperatura = 0;
     }
 
     @Override
@@ -33,12 +36,30 @@ public class SensorTemperatura extends Sensor {
         str += "Tipo: " + this.getTipo() + "\n";
         str += "Estado: ";
         str += (this.ligado) ? "Ligado\n" : "Desligado\n";
-        str += "Temperatura: " + registarTemperatura() + " ºC\n";
+        str += "Temperatura: " + this.temperatura + " ºC\n";
         return str;
     }
 
-    public int registarTemperatura() {
-        return 0;
+    public void ligar() throws ErroException {
+        if (this.ligado) {
+            throw new ErroException("Esta sensor de temperatura já se encontra ligado.");
+        }//liga a lampada
+        this.ligado = true;
+    }
+
+    public void desligar() throws ErroException {
+        if (!this.ligado) {
+            throw new ErroException("Esta sensor de temperatura já se encontra desligado.");
+        }//desliga a lampada
+        this.ligado = false;
+    }
+
+    public int getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(int temperatura) {
+        this.temperatura = temperatura;
     }
 
     @Override

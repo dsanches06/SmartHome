@@ -22,7 +22,7 @@ public class CamaraVideo extends Atuador {
     public CamaraVideo() {
         super();
         this.id = ++CamaraVideo.numEquipamento;
-        this.nome = "CMV" + this.id;
+        this.nome = "CV" + this.id;
         this.ligado = false;
     }
     

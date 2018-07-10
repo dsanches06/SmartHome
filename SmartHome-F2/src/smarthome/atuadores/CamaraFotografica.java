@@ -22,7 +22,7 @@ public class CamaraFotografica extends Atuador {
     public CamaraFotografica() {
         super();
         this.id = ++CamaraFotografica.numEquipamento;
-        this.nome = "CMF" + this.id;
+        this.nome = "CF" + this.id;
         this.ligado = false;
     }
 

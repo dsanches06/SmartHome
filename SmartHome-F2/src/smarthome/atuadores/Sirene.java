@@ -6,7 +6,6 @@
 package smarthome.atuadores;
 
 import smarthome.cliente.Divisao;
-import smarthome.modulos.Modo;
 
 /**
  *
@@ -33,7 +32,7 @@ public class Sirene extends Atuador {
     public Sirene() {
         super();
         this.id = ++Sirene.numEquipamento;
-        this.nome = "SRN" + this.id;
+        this.nome = "SR" + this.id;
         this.volume = Sirene.VOLUME_MIN;
     }
 
@@ -50,7 +49,7 @@ public class Sirene extends Atuador {
         return str;
     }
 
-    public void ligar(Modo modo) {
+    public void ligar() {
         //se estiver desligado
         if (!ligado) {
             //liga a sirene
@@ -58,7 +57,7 @@ public class Sirene extends Atuador {
         }
     }
 
-    public void desligar(Modo modo) {
+    public void desligar() {
         //se estiver ligado
         if (ligado) {
             //desliga a sirene
@@ -66,7 +65,7 @@ public class Sirene extends Atuador {
         }
     }
 
-    public void regularEquipamento(Modo modo, int valor) {
+    public void regularEquipamento(int valor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -106,4 +106,12 @@ public class ArCondicionado extends Atuador {
         return id;
     }
 
+    public int getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(int temperatura) {
+        this.temperatura = temperatura;
+    }
+
 }

@@ -7,6 +7,7 @@ package smarthome.central;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.image.Image;
 import smarthome.atuadores.Atuador;
 import smarthome.atuadores.Lampada;
 import smarthome.cliente.Cliente;
@@ -109,6 +110,25 @@ public class ConsolaCentral {
         lista.add("F");
         lista.add("M");
         return lista;
+    }
+
+    public Image obterImagem(int index) {
+        Image[] imagem = new Image[14];
+        imagem[0] = new Image(getClass().getResourceAsStream("/smarthome/styles/lampadaOff.png"));//lampada desligada
+        imagem[1] = new Image(getClass().getResourceAsStream("/smarthome/styles/lampadaOn.png"));//lampada ligada
+        imagem[2] = new Image(getClass().getResourceAsStream("/smarthome/styles/arCondicionadoOff.png"));//AC desligado
+        imagem[3] = new Image(getClass().getResourceAsStream("/smarthome/styles/arCondicionadoOn.png"));//AC ligado
+        imagem[4] = new Image(getClass().getResourceAsStream("/smarthome/styles/cameraFotografica.png"));//camera fotografica
+        imagem[5] = new Image(getClass().getResourceAsStream("/smarthome/styles/cameraVideo.png"));//camera de video
+        imagem[6] = new Image(getClass().getResourceAsStream("/smarthome/styles/sirene.png"));//sirene
+        imagem[7] = new Image(getClass().getResourceAsStream("/smarthome/styles/tomada.png"));//tomada
+        imagem[8] = new Image(getClass().getResourceAsStream("/smarthome/styles/sensorLuminosidade.png"));//sensor luminosidade
+        imagem[9] = new Image(getClass().getResourceAsStream("/smarthome/styles/semMovimento.png"));//sem movimento
+        imagem[10] = new Image(getClass().getResourceAsStream("/smarthome/styles/comMovimento.png"));//com movimento
+        imagem[11] = new Image(getClass().getResourceAsStream("/smarthome/styles/portaFechada.png"));//porta fechada 
+        imagem[12] = new Image(getClass().getResourceAsStream("/smarthome/styles/portaAberta.png"));//porta aberta
+        imagem[13] = new Image(getClass().getResourceAsStream("/smarthome/styles/sensorTemperatura.png"));//sensor temperatura
+        return imagem[index];
     }
 
     public ModuloAlarme getModuloAlarme() {

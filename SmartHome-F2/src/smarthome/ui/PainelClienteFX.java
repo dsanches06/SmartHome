@@ -146,7 +146,7 @@ public class PainelClienteFX extends StackPane {
                         //preenche com a cor grey
                         btn[i][j].getStyleClass().add("btn_color_marron");
                     }  //representa o tamanho de altura e largura de cada botao
-                    btn[i][j].setPrefSize(200, 200);
+                    btn[i][j].setPrefSize(300, 100);
 
                     VBox vbox = new VBox(20);
                     vbox.setAlignment(Pos.CENTER);

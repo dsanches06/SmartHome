@@ -32,7 +32,7 @@ public class Lampada extends Atuador {
     public Lampada() {
         super();
         this.id = ++Lampada.numEquipamento;
-        this.nome = "Lampada" + this.id;
+        this.nome = "L" + this.id;
         this.intensidade = Lampada.INTENSIDADE_MIN;
         this.ligado = false;
     }

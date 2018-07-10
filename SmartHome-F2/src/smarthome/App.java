@@ -33,40 +33,13 @@ public class App extends Application {
         BorderPane root = new BorderPane();
         //cria a consola central por omisssão
         ConsolaCentral consola = new ConsolaCentral();
-
-        Cliente cliente = new Cliente("Dani", "Seixal", "M", 3, consola);
-        //para teste
-        consola.adicionarNovoCliente(cliente);
+        //cria a classe para carregar clientes
+        SeedData data = new SeedData(consola);
+        //insere os dados por omissao
+        data.seedData();
         //mostra o painel consola central
         consolaCentralFX(root, consola);
 
-//cliente
-        /*  Cliente cliente = new Cliente("Edson Cazanga", "Barreiro", 'M');
-        //3 divisao
-        Divisao cozinha = new Divisao("Cozinha");
-        Divisao sala1 = new Divisao("Sala");
-        Divisao wc1 = new Divisao("WC");
-        Divisao sotao = new Divisao("Sotão");
-        Divisao wc2 = new Divisao("WC");
-        Divisao sala2 = new Divisao("Sala");
-
-        //3 lampada para cada divisao
-        //adicionar divisao na habitação do cliente
-        cliente.getHabitacao().adicionarDivisao(cozinha);
-        cliente.getHabitacao().adicionarDivisao(sala1);
-        cliente.getHabitacao().adicionarDivisao(wc1);
-        cliente.getHabitacao().adicionarDivisao(sotao);
-        cliente.getHabitacao().adicionarDivisao(wc2);
-        cliente.getHabitacao().adicionarDivisao(sala2);
-
-        //consola
-        ConsolaCentral consola = new ConsolaCentral("Securitas AB");
-
-        //adicionar cliente na consola
-        consola.adicionarNovoCliente(cliente);
-
-        //abrir e mostrar ao equiapemtno de cliente
-        visualizadorEquipamento(root, consola, cliente);*/
         //scene
         Scene scene = new Scene(root, 880, 550);
         scene.getStylesheets().add(this.getClass().getResource("styles/estilos.css").toExternalForm());

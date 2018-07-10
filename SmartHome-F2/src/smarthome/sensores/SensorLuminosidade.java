@@ -5,6 +5,7 @@
  */
 package smarthome.sensores;
 
+import smarthome.ErroException;
 import smarthome.cliente.Divisao;
 
 /**
@@ -17,12 +18,14 @@ public class SensorLuminosidade extends Sensor {
     private static int numEquipamento = 0;
     private int id;
     private String nome;
+    private int intensidade;
 
     public SensorLuminosidade() {
         super();
         this.id = ++SensorLuminosidade.numEquipamento;
         this.nome = "SL" + this.id;
         this.ligado = false;
+        this.intensidade = 0;
     }
 
     @Override
@@ -32,12 +35,30 @@ public class SensorLuminosidade extends Sensor {
         str += "Tipo: " + this.getTipo() + "\n";
         str += "Estado: ";
         str += (this.ligado) ? "Ligado\n" : "Desligado\n";
-        str += "Intensidade: " + medirLuzAmbiente() + " kw\n";
+        str += "Intensidade: " + intensidade + " kw\n";
         return str;
     }
 
-    public int medirLuzAmbiente() {
-        return 0;
+    public void ligar() throws ErroException {
+        if (this.ligado) {
+            throw new ErroException("Esta sensor de luminosidade já se encontra ligado.");
+        }//liga a lampada
+        this.ligado = true;
+    }
+
+    public void desligar() throws ErroException {
+        if (!this.ligado) {
+            throw new ErroException("Esta sensor de luminosidade já se encontra desligado.");
+        }//desliga a lampada
+        this.ligado = false;
+    }
+
+    public int getIntensidade() {
+        return intensidade;
+    }
+
+    public void setIntensidade(int intensidade) {
+        this.intensidade = intensidade;
     }
 
     @Override

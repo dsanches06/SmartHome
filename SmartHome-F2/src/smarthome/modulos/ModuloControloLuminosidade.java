@@ -5,10 +5,17 @@
  */
 package smarthome.modulos;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import smarthome.ErroException;
+import smarthome.atuadores.ArCondicionado;
+import smarthome.atuadores.Lampada;
 import smarthome.central.ConsolaCentral;
 import smarthome.cliente.Cliente;
 import smarthome.cliente.Divisao;
+import smarthome.equipamentos.Equipamento;
+import smarthome.sensores.SensorLuminosidade;
+import smarthome.sensores.SensorTemperatura;
 
 /**
  *
@@ -23,45 +30,30 @@ public class ModuloControloLuminosidade extends Modulo {
         this.nome = nome;
     }
 
-    public void ligarEquipamento(int clienteId, int divisaoId, int equipamentoId) throws ErroException {
-        Cliente cliente = this.getConsola().getClientePorID(clienteId);
-        if (cliente != null) {
-            Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
-            if (divisao != null) {
-                divisao.ligarEquipamento(equipamentoId);
-            } else {
-                throw new ErroException("Não existe nenhuma divisão com este ID.");
-            }
-        } else {
-            throw new ErroException("Não existe nenhum cliente com este ID.");
-        }
-    }
+    public void controlarEquipamento(Cliente cliente, int divisaoId) throws ErroException {
+        Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
+        if (divisao != null) {
+            for (Equipamento sensorLuminosidade : divisao.getEquipamentos()) {
+                if (Equipamento.instanceOfSensorLuminosidade(sensorLuminosidade) == true) {
+                    //liga o sensor
+                    ((SensorLuminosidade) sensorLuminosidade).ligar();
+                    //faz o loop
+                    for (Equipamento lampada : divisao.getEquipamentos()) {
+                        if (Equipamento.instanceOfLampada(lampada) == true) {
+                            //se for maior que 25ºC
+                            if (((SensorLuminosidade) sensorLuminosidade).getIntensidade() <= Lampada.INTENSIDADE_MIN) {
+                                //ligar a lampada
+                                ((Lampada) lampada).ligar();
+                            } //se for maior que 21ºC
+                            else if (((SensorLuminosidade) sensorLuminosidade).getIntensidade() >= Lampada.INTENSIDADE_MAX) {
+                                //desligar a lampada
+                                ((Lampada) lampada).desligar();
+                            }
+                        }
+                    }
+                }
 
-    public void desligarEquipamento(int clienteId, int divisaoId, int equipamentoId) throws ErroException {
-        Cliente cliente = this.getConsola().getClientePorID(clienteId);
-        if (cliente != null) {
-            Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
-            if (divisao != null) {
-                divisao.desligarEquipamento(equipamentoId);
-            } else {
-                throw new ErroException("Não existe nenhuma divisão com este ID.");
             }
-        } else {
-            throw new ErroException("Não existe nenhum cliente com este ID.");
-        }
-    }
-
-    public void regularEquipamento(int clienteId, int divisaoId, int equipamentoId, int valor) throws ErroException {
-        Cliente cliente = this.getConsola().getClientePorID(clienteId);
-        if (cliente != null) {
-            Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
-            if (divisao != null) {
-                divisao.desligarEquipamento(equipamentoId);
-            } else {
-                throw new ErroException("Não existe nenhuma divisão com este ID.");
-            }
-        } else {
-            throw new ErroException("Não existe nenhum cliente com este ID.");
         }
     }
 
@@ -74,5 +66,4 @@ public class ModuloControloLuminosidade extends Modulo {
     public String getNome() {
         return nome;
     }
-
 }

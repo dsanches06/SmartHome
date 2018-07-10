@@ -11,7 +11,6 @@ import smarthome.atuadores.ArCondicionado;
 import smarthome.atuadores.Lampada;
 import smarthome.central.ConsolaCentral;
 import smarthome.equipamentos.Equipamento;
-import smarthome.modulos.Modulo;
 
 /**
  *
@@ -55,51 +54,6 @@ public class Divisao {
 
     public Equipamento getEquipamentoPorIndex(int index) {
         return this.equipamentos.get(index);
-    }
-
-    public void ligarEquipamento(int equipamentoId) throws ErroException {
-        Equipamento equipamento = this.getEquipamentoNaDivisaoPorID(equipamentoId);
-        if (equipamento != null) {
-            if (equipamento instanceof Lampada) {
-                ((Lampada) equipamento).ligar();
-            } else if (equipamento instanceof ArCondicionado) {
-                ((ArCondicionado) equipamento).ligar();
-            } else {
-                throw new ErroException("Este equipamento não é do tipo Atuador.");
-            }
-        } else {
-            throw new ErroException("Não existe nenhum equipamento com este ID.");
-        }
-    }
-
-    public void desligarEquipamento(int equipamentoId) throws ErroException {
-        Equipamento equipamento = this.getEquipamentoNaDivisaoPorID(equipamentoId);
-        if (equipamento != null) {
-            if (equipamento instanceof Lampada) {
-                ((Lampada) equipamento).desligar();
-            } else if (equipamento instanceof ArCondicionado) {
-                ((ArCondicionado) equipamento).desligar();
-            } else {
-                throw new ErroException("Este equipamento não é do tipo Atuador.");
-            }
-        } else {
-            throw new ErroException("Não existe nenhum equipamento com este ID.");
-        }
-    }
-
-    public void regularEquipamento(int equipamentoId, int valor) throws ErroException {
-        Equipamento equipamento = this.getEquipamentoNaDivisaoPorID(equipamentoId);
-        if (equipamento != null) {
-            if (equipamento instanceof Lampada) {
-                ((Lampada) equipamento).regularEquipamento(valor);
-            } else if (equipamento instanceof ArCondicionado) {
-                ((ArCondicionado) equipamento).regularEquipamento(valor);
-            } else {
-                throw new ErroException("Este equipamento não é do tipo Atuador.");
-            }
-        } else {
-            throw new ErroException("Não existe nenhum equipamento com este ID.");
-        }
     }
 
     @Override

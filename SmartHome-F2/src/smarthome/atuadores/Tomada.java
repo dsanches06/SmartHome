@@ -23,7 +23,7 @@ public class Tomada extends Atuador {
     public Tomada() {
         super();
         this.id = ++Tomada.numEquipamento;
-        this.nome = "TMD" + this.id;
+        this.nome = "TM" + this.id;
         this.ligado = false;
         this.wifi = false;
     }

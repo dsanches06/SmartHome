@@ -5,6 +5,7 @@
  */
 package smarthome.sensores;
 
+import smarthome.ErroException;
 import smarthome.cliente.Divisao;
 
 /**
@@ -22,7 +23,7 @@ public class SensorPortaAberta extends Sensor {
     public SensorPortaAberta() {
         super();
         this.id = ++SensorPortaAberta.numEquipamento;
-        this.nome = "SPA" + this.id;
+        this.nome = "SP" + this.id;
         this.ligado = false;
         this.portaAberta = false;
     }
@@ -37,6 +38,20 @@ public class SensorPortaAberta extends Sensor {
         str += "Porta Aberta: ";
         str += (this.portaAberta) ? "Sim\n" : "N/A\n";
         return str;
+    }
+
+    public void ligar() throws ErroException {
+        if (this.ligado) {
+            throw new ErroException("Esta sensor de porta aberta já se encontra ligado.");
+        }//liga a lampada
+        this.ligado = true;
+    }
+
+    public void desligar() throws ErroException {
+        if (!this.ligado) {
+            throw new ErroException("Esta sensor de porta aberto já se encontra desligado.");
+        }//desliga a lampada
+        this.ligado = false;
     }
 
     @Override
