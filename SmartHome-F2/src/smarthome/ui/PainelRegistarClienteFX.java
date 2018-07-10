@@ -94,7 +94,7 @@ public class PainelRegistarClienteFX extends StackPane {
         HBox hboxGenero = new HBox(60);
         hboxGenero.getChildren().addAll(generoLabel, comboBoxGenero);
 
-        Label labelNumeroDivisao = new Label("Nome");
+        Label labelNumeroDivisao = new Label("Total de divisão");
         labelNumeroDivisao.setFont(Font.font("Cambria", FontWeight.NORMAL, 14));
         labelNumeroDivisao.setId("label");
 
