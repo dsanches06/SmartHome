@@ -325,7 +325,7 @@ public class PainelDivisaoFX extends StackPane {
                         mostrarDialogo(((SensorLuminosidade) object));
                         try {
                             //chamar o modulo luminosidade
-                            consola.getModuloControloLuminosidade().controlarEquipamento(cliente, divisaoId, "sensorTemperatura");
+                            consola.getModuloControloLuminosidade().controlarEquipamento(cliente, divisaoId, "sensorLuminosidade");
                         } catch (ErroException ex) {
                             Logger.getLogger(PainelDivisaoFX.class.getName()).log(Level.SEVERE, null, ex);
                         }
