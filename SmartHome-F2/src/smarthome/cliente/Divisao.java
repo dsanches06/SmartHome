@@ -20,17 +20,14 @@ public class Divisao {
     private static int numDivisao = 0;
     //identificador para cada equipamento
     private int divisaoID;
-    //nome
-    private String nome;
     //diversos equipamentos
     private List<Equipamento> equipamentos;
     //temperatura
     private int temperatura;
 
     //Constructor
-    public Divisao(String nome) {
+    public Divisao() {
         this.divisaoID = ++Divisao.numDivisao;
-        this.nome = nome + "" + divisaoID;
         this.equipamentos = new ArrayList<>();
     }
 
@@ -103,8 +100,7 @@ public class Divisao {
 
     @Override
     public String toString() {
-        String str = "";
-        str += "Divisão: " + this.nome + "\n";
+        String str = "--- Divisão ---\n";
         str += "ID: " + this.divisaoID + "\n";
         str += "Qt Equipamento: " + this.equipamentos.size() + "\n";
         for (Equipamento equipamento : equipamentos) {
@@ -118,7 +114,8 @@ public class Divisao {
 
     public String mostrarInfDashBoard() {
         StringBuilder str = new StringBuilder();
-        str.append(this.nome)
+        str.append("\nDivisão: ")
+                .append(this.divisaoID)
                 .append("\nQt Equipamento: ")
                 .append(this.equipamentos.size());
         return str.toString();
@@ -130,14 +127,6 @@ public class Divisao {
 
     public void setDivisaoID(int divisaoID) {
         this.divisaoID = divisaoID;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public List<Equipamento> getEquipamentos() {

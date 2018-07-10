@@ -18,15 +18,10 @@ public class Habitacao {
     private List<Divisao> divisoes;
 
     //Constructor
-    public Habitacao() {
-        this.divisoes = new ArrayList<>();
-    }
-
-    public void adicionarDivisao(Divisao divisao) {
-        if (divisao != null) {
-            if (!divisoes.contains(divisao)) {
-                this.divisoes.add(divisao);
-            }
+    public Habitacao(int numeroDivisao) {
+        this.divisoes = new ArrayList<>(numeroDivisao);
+        for (int i = 0; i < numeroDivisao; i++) {
+            this.divisoes.add(new Divisao());
         }
     }
 

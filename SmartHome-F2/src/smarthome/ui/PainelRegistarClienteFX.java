@@ -37,6 +37,7 @@ public class PainelRegistarClienteFX extends StackPane {
     private String nome;
     private String genero;
     private String localidade;
+    private int numeroDivisao;
 
     public PainelRegistarClienteFX(BorderPane root, ConsolaCentral consola) {
         setAlignment(Pos.TOP_CENTER);
@@ -93,11 +94,23 @@ public class PainelRegistarClienteFX extends StackPane {
         HBox hboxGenero = new HBox(60);
         hboxGenero.getChildren().addAll(generoLabel, comboBoxGenero);
 
+        Label labelNumeroDivisao = new Label("Nome");
+        labelNumeroDivisao.setFont(Font.font("Cambria", FontWeight.NORMAL, 14));
+        labelNumeroDivisao.setId("label");
+
+        TextField numeroDivisaoTextField = new TextField();
+        numeroDivisaoTextField.getStyleClass().add("textfield");
+        numeroDivisaoTextField.setPrefSize(400, 30);
+
+        HBox hboxNumeroDivisao = new HBox(69);
+        hboxNumeroDivisao.getChildren().addAll(labelNumeroDivisao, numeroDivisaoTextField);
+
         VBox vboxFormulario = new VBox(20);
         vboxFormulario.getChildren().addAll(
                 hboxNome,
                 hboxLocalidade,
-                hboxGenero);
+                hboxGenero,
+                hboxNumeroDivisao);
 
         Pane painel1 = new BorderComTitulo("Formulário", vboxFormulario);
         painel1.getStyleClass().add("titled-address");
@@ -174,13 +187,29 @@ public class PainelRegistarClienteFX extends StackPane {
                 //genero fica a nulo
                 genero = null;
             }
+            if (numeroDivisaoTextField.getText().length() > 0) {
+                numeroDivisao = Integer.parseInt(numeroDivisaoTextField.getText());
+                //validar o tamanho de divisao para 6
+                if (numeroDivisao > 6) {
+                    Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
+                    erro.mostrarDialogo("ERRO", "Só pode adicionar 6 divisão");
+                    numeroDivisao = 0;
+                }
+            }//e se não estiver preenchida 
+            else {
+                //cria o dialogo de erro
+                Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
+                erro.mostrarDialogo("ERRO", "Numero de divisão tem de estar preenchido");
+                numeroDivisao = 0;
+            }
 
             //validação de dados
             if ((nome != null)
                     && (genero != null)
-                    && (localidade != null)) {
+                    && (localidade != null)
+                    && (numeroDivisao >= 1 && numeroDivisao <= 6)) {
 
-                Cliente cliente = new Cliente(nome, localidade, genero);
+                Cliente cliente = new Cliente(nome, localidade, genero, numeroDivisao);
 
                 if (consola.adicionarNovoCliente(cliente) == true) {
                     Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);

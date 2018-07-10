@@ -102,15 +102,7 @@ public class PainelClienteFX extends StackPane {
         Button btnAdicionar = new Button("Nova Divisão");
         btnAdicionar.setPrefSize(220, 30);
         btnAdicionar.setOnAction((ActionEvent e) -> {
-            //verifica se já foi criada 6 divisoes
-            if (cliente.getHabitacao().getDivisoes().size() < 6) {
-                //mostra o painel criar divisao
-                painelCriarDivisao(root, consola, cliente);
-            } else {
-                //cria o dialogo de erro
-                Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                erro.mostrarDialogo("ERRO", "Só pode ser inserido 6 divisões em cada habitação");
-            }
+           
         });
 
         Button btnRemover = new Button("Remover Divisão");
@@ -220,10 +212,7 @@ public class PainelClienteFX extends StackPane {
         return new ConsolaCentralFX(root, consola);
     }
 
-    private StackPane painelCriarDivisao(BorderPane root, ConsolaCentral consola, Cliente cliente) {
-        return new PainelCriarDivisaoFX(root, consola, cliente);
-    }
-
+    
     private StackPane painelDivisaoFX(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {
         return new PainelDivisaoFX(root, consola, cliente, divisaoId);
     }

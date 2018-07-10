@@ -18,16 +18,18 @@ public class Cliente {
     private String nome;
     private String localidade;
     private String genero;
+    private int numeroDivisao;
     private Habitacao habitacao;
     private ConsolaCentral consola;
 
     //Constructor
-    public Cliente(String nome, String localidade, String genero) {
+    public Cliente(String nome, String localidade, String genero, int numeroDivisao) {
         this.numeroCliente = ++Cliente.numCliente;
         this.nome = nome;
         this.localidade = localidade;
         this.genero = genero;
-        this.habitacao = new Habitacao();
+        this.numeroDivisao = numeroDivisao;
+        this.habitacao = new Habitacao(numeroDivisao);
         this.consola = null;
     }
 
@@ -37,6 +39,7 @@ public class Cliente {
         str += "Nome: " + this.nome + "\n";
         str += "Sexo: " + this.genero + "\n";
         str += "Morada: " + this.localidade + "\n";
+        str += "Numero Divisão: " + this.numeroDivisao + "\n";
         str += "--- Habitação ---\n" + this.habitacao;
         return str;
     }
@@ -51,7 +54,7 @@ public class Cliente {
                 .append("\nMorada: ")
                 .append(this.localidade)
                 .append("\nTotal Divisões: ")
-                .append(this.habitacao.getDivisoes().size());
+                .append(this.numeroDivisao);
         return str.toString();
     }
 
@@ -101,5 +104,13 @@ public class Cliente {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public int getNumeroDivisao() {
+        return numeroDivisao;
+    }
+
+    public void setNumeroDivisao(int numeroDivisao) {
+        this.numeroDivisao = numeroDivisao;
     }
 }

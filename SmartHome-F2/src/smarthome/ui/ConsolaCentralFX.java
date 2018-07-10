@@ -162,11 +162,13 @@ public class ConsolaCentralFX extends StackPane {
         TableColumn<Cliente, String> colunaNome = new TableColumn("Nome");
         TableColumn<Cliente, String> colunaGenero = new TableColumn("Genero");
         TableColumn<Cliente, String> colunaLocalidade = new TableColumn("localidade");
+        TableColumn<Cliente, Integer> colunaNumeroDivisao = new TableColumn("Total divisao");
 
         colunaNumero.setCellValueFactory(new PropertyValueFactory<>("numeroCliente"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaGenero.setCellValueFactory(new PropertyValueFactory<>("genero"));
         colunaLocalidade.setCellValueFactory(new PropertyValueFactory<>("localidade"));
+        colunaNumeroDivisao.setCellValueFactory(new PropertyValueFactory<>("numeroDivisao"));
 
         tabela.setItems(FXCollections.observableArrayList(consola.getClientes()));
         tabela.refresh();
@@ -174,7 +176,8 @@ public class ConsolaCentralFX extends StackPane {
         tabela.getColumns().addAll(colunaNumero,
                 colunaNome,
                 colunaGenero,
-                colunaLocalidade);
+                colunaLocalidade,
+                colunaNumeroDivisao);
 
         btnNovo.setOnAction((ActionEvent e) -> {
             painelRegistarCliente(root, consola);

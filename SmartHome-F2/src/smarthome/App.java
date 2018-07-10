@@ -34,13 +34,9 @@ public class App extends Application {
         //cria a consola central por omisssão
         ConsolaCentral consola = new ConsolaCentral();
 
-        Cliente cliente = new Cliente("Dani", "Seixal", "M");
-        Divisao divisao = new Divisao("sala");
-
+        Cliente cliente = new Cliente("Dani", "Seixal", "M", 3);
         //para teste
-        cliente.getHabitacao().adicionarDivisao(divisao);
         consola.adicionarNovoCliente(cliente);
-
         //mostra o painel consola central
         consolaCentralFX(root, consola);
 
