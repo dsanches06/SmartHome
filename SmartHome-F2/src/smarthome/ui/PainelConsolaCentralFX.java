@@ -97,7 +97,7 @@ public class PainelConsolaCentralFX extends StackPane {
                 btnSalvar,
                 btnSair);
 
-        HBox hboxBtn = new HBox(25);
+        HBox hboxBtn = new HBox(90);
         hboxBtn.getChildren().addAll(vboxBtn1, vboxBtn2);
 
         Pane painelBtn = new BorderComTitulo("Operações", hboxBtn);
@@ -205,6 +205,8 @@ public class PainelConsolaCentralFX extends StackPane {
                     Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
                     //mostra o dialogo
                     inf.mostrarDialogo("INFORMAÇÃO", "Dados lidos no Ficheiro com sucesso");
+                    //volta ao painel consola com dados atualizados
+                    consolaCentralFX(root, consola);
                 } catch (IOException ex) {
                     Logger.getLogger(PainelConsolaCentralFX.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -338,4 +340,9 @@ public class PainelConsolaCentralFX extends StackPane {
     private StackPane painelClienteFX(BorderPane root, ConsolaCentral consola, Cliente cliente) {
         return new PainelClienteFX(root, consola, cliente);
     }
+
+    private StackPane consolaCentralFX(BorderPane root, ConsolaCentral consola) {
+        return new PainelConsolaCentralFX(root, consola);
+    }
+
 }
