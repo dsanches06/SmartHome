@@ -54,6 +54,8 @@ public class Sirene extends Atuador {
         if (!ligado) {
             //liga a sirene
             this.ligado = true;
+            //muda para modo auto
+            super.setModoAutomatico(true);
         }
     }
 
@@ -62,6 +64,8 @@ public class Sirene extends Atuador {
         if (ligado) {
             //desliga a sirene
             this.ligado = false;
+            //muda para modo manual
+            super.setModoAutomatico(false);
         }
     }
 

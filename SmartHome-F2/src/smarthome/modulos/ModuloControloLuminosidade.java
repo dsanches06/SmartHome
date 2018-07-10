@@ -5,17 +5,14 @@
  */
 package smarthome.modulos;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import smarthome.ErroException;
-import smarthome.atuadores.ArCondicionado;
 import smarthome.atuadores.Lampada;
+import smarthome.atuadores.Tomada;
 import smarthome.central.ConsolaCentral;
 import smarthome.cliente.Cliente;
 import smarthome.cliente.Divisao;
 import smarthome.equipamentos.Equipamento;
 import smarthome.sensores.SensorLuminosidade;
-import smarthome.sensores.SensorTemperatura;
 
 /**
  *
@@ -30,33 +27,6 @@ public class ModuloControloLuminosidade extends Modulo {
         this.nome = nome;
     }
 
-    public void controlarEquipamento(Cliente cliente, int divisaoId) throws ErroException {
-        Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
-        if (divisao != null) {
-            for (Equipamento sensorLuminosidade : divisao.getEquipamentos()) {
-                if (Equipamento.instanceOfSensorLuminosidade(sensorLuminosidade) == true) {
-                    //liga o sensor
-                    ((SensorLuminosidade) sensorLuminosidade).ligar();
-                    //faz o loop
-                    for (Equipamento lampada : divisao.getEquipamentos()) {
-                        if (Equipamento.instanceOfLampada(lampada) == true) {
-                            //se for maior que 25ºC
-                            if (((SensorLuminosidade) sensorLuminosidade).getIntensidade() <= Lampada.INTENSIDADE_MIN) {
-                                //ligar a lampada
-                                ((Lampada) lampada).ligar();
-                            } //se for maior que 21ºC
-                            else if (((SensorLuminosidade) sensorLuminosidade).getIntensidade() >= Lampada.INTENSIDADE_MAX) {
-                                //desligar a lampada
-                                ((Lampada) lampada).desligar();
-                            }
-                        }
-                    }
-                }
-
-            }
-        }
-    }
-
     @Override
     public ConsolaCentral getConsola() {
         return super.getConsola();
@@ -66,4 +36,64 @@ public class ModuloControloLuminosidade extends Modulo {
     public String getNome() {
         return nome;
     }
+
+    //@Override
+    public void controlarEquipamento(Cliente cliente, int divisaoId, String equipamento) throws ErroException {
+        Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
+        if (divisao != null) {
+            switch (equipamento) {
+                case "sensorTemperatura":
+                    for (Equipamento sensorLuminosidade : divisao.getEquipamentos()) {
+                        if (Equipamento.instanceOfSensorLuminosidade(sensorLuminosidade) == true) {
+                            //se estiver desligado
+                            if (((SensorLuminosidade) sensorLuminosidade).isLigado() != true) {
+                                //liga o sensor
+                                ((SensorLuminosidade) sensorLuminosidade).ligar();
+                            }
+                            //faz o loop
+                            for (Equipamento lampada : divisao.getEquipamentos()) {
+                                if (Equipamento.instanceOfLampada(lampada) == true) {
+                                    //se for menor ou igual a intensidade maxima
+                                    if (((SensorLuminosidade) sensorLuminosidade).getIntensidade() <= Lampada.INTENSIDADE_MAX) {
+                                        //se estiver desligado
+                                        if (((Lampada) lampada).isLigado() != true) {
+                                            //liga 
+                                            ((Lampada) lampada).ligar();
+                                            //receber o valor do sensor
+                                            ((Lampada) lampada).setIntensidade(((SensorLuminosidade) sensorLuminosidade).getIntensidade());
+                                        }
+                                    } //se for maior que a intensidade maxima
+                                    else if (((SensorLuminosidade) sensorLuminosidade).getIntensidade() > Lampada.INTENSIDADE_MAX) {
+                                        //se estiver ligado
+                                        if (((Lampada) lampada).isLigado() == true) {
+                                            //receber o valor do sensor
+                                            ((Lampada) lampada).setIntensidade(((SensorLuminosidade) sensorLuminosidade).getIntensidade());
+                                            //desliga 
+                                            ((Lampada) lampada).desligar();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case "tomada":
+                    for (Equipamento tomada : divisao.getEquipamentos()) {
+                        if (Equipamento.instanceOfTomada(tomada) == true) {
+                            //se estiver ligado
+                            if (((Tomada) tomada).isLigado() == true) {
+                                //desliga 
+                                ((Tomada) tomada).desligar();
+                            } //se estiver desligado
+                            else if (((Tomada) tomada).isLigado() != true) {
+                                //liga 
+                                ((Tomada) tomada).ligar();
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+
 }

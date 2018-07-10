@@ -56,6 +56,8 @@ public class ArCondicionado extends Atuador {
             throw new ErroException("Esta AC já se encontra ligado.");
         }//liga a lampada
         this.ligado = true;
+        //muda para modo auto
+        super.setModoAutomatico(true);
     }
 
     public void desligar() throws ErroException {
@@ -63,6 +65,8 @@ public class ArCondicionado extends Atuador {
             throw new ErroException("Esta AC já se encontra desligado.");
         }//desliga a lampada
         this.ligado = false;
+         //muda para modo manual
+            super.setModoAutomatico(false);
     }
 
     public void regularEquipamento(int valor) throws ErroException {//duvida

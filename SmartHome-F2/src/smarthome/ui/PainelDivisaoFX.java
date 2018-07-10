@@ -199,15 +199,24 @@ public class PainelDivisaoFX extends StackPane {
                     //adiciona a imagem ao botao
                     btn[i][j] = new Button(((Sirene) equipamento).toString(), imgView);
                 } else if (equipamento instanceof Tomada) {
-                    //cria a nova imagem da lampada desligada
-                    ImageView imgView = new ImageView(consola.obterImagem(7));
-                    imgView.setFitHeight(80);
-                    imgView.setFitWidth(40);
-                    //adiciona a imagem ao botao
-                    btn[i][j] = new Button(((Tomada) equipamento).toString(), imgView);
+                    if (((Tomada) equipamento).isLigado() != true) {//estado desligado
+                        //cria a nova imagem da lampada desligada
+                        ImageView imgView = new ImageView(consola.obterImagem(7));
+                        imgView.setFitHeight(80);
+                        imgView.setFitWidth(40);
+                        //adiciona a imagem ao botao
+                        btn[i][j] = new Button(((Tomada) equipamento).toString(), imgView);
+                    } else {
+                        //cria a nova imagem da lampada ligada
+                        ImageView imgView = new ImageView(consola.obterImagem(8));
+                        imgView.setFitHeight(80);
+                        imgView.setFitWidth(40);
+                        //adiciona a imagem ao botao
+                        btn[i][j] = new Button(((Tomada) equipamento).toString(), imgView);
+                    }
                 } else if (equipamento instanceof SensorLuminosidade) {
                     //cria a nova imagem da lampada desligada
-                    ImageView imgView = new ImageView(consola.obterImagem(8));
+                    ImageView imgView = new ImageView(consola.obterImagem(9));
                     imgView.setFitHeight(80);
                     imgView.setFitWidth(40);
                     //adiciona a imagem ao botao
@@ -215,14 +224,14 @@ public class PainelDivisaoFX extends StackPane {
                 } else if (equipamento instanceof SensorMovimento) {
                     if (((SensorMovimento) equipamento).isLigado() != true) {//estado desligado
                         //cria a nova imagem da lampada desligada
-                        ImageView imgView = new ImageView(consola.obterImagem(9));
+                        ImageView imgView = new ImageView(consola.obterImagem(10));
                         imgView.setFitHeight(80);
                         imgView.setFitWidth(40);
                         //adiciona a imagem ao botao
                         btn[i][j] = new Button(((SensorMovimento) equipamento).toString(), imgView);
                     } else {
                         //cria a nova imagem da lampada ligada
-                        ImageView imgView = new ImageView(consola.obterImagem(10));
+                        ImageView imgView = new ImageView(consola.obterImagem(11));
                         imgView.setFitHeight(80);
                         imgView.setFitWidth(40);
                         //adiciona a imagem ao botao
@@ -231,14 +240,14 @@ public class PainelDivisaoFX extends StackPane {
                 } else if (equipamento instanceof SensorPortaAberta) {
                     if (((SensorPortaAberta) equipamento).isLigado() != true) {//estado desligado
                         //cria a nova imagem da lampada desligada
-                        ImageView imgView = new ImageView(consola.obterImagem(11));
+                        ImageView imgView = new ImageView(consola.obterImagem(12));
                         imgView.setFitHeight(80);
                         imgView.setFitWidth(40);
                         //adiciona a imagem ao botao
                         btn[i][j] = new Button(((SensorPortaAberta) equipamento).toString(), imgView);
                     } else {
                         //cria a nova imagem da lampada ligada
-                        ImageView imgView = new ImageView(consola.obterImagem(12));
+                        ImageView imgView = new ImageView(consola.obterImagem(13));
                         imgView.setFitHeight(80);
                         imgView.setFitWidth(40);
                         //adiciona a imagem ao botao
@@ -246,7 +255,7 @@ public class PainelDivisaoFX extends StackPane {
                     }
                 } else if (equipamento instanceof SensorTemperatura) {
                     //cria a nova imagem da lampada desligada
-                    ImageView imgView = new ImageView(consola.obterImagem(13));
+                    ImageView imgView = new ImageView(consola.obterImagem(14));
                     imgView.setFitHeight(80);
                     imgView.setFitWidth(60);
                     //adiciona a imagem ao botao
@@ -299,16 +308,24 @@ public class PainelDivisaoFX extends StackPane {
                     } else if (object instanceof Sirene) {
                         //nostra os resultados
                         System.out.println(((Sirene) object).toString());
-                    } else if (object instanceof Tomada) {
+                    }*/
+                    if (object instanceof Tomada) {
                         //nostra os resultados
                         System.out.println(((Tomada) object).toString());
-                    }*/
-                    if (object instanceof SensorLuminosidade) {
-                        //nostra os resultados
-                        System.out.println(((SensorLuminosidade) object).toString());
                         try {
                             //chamar o modulo luminosidade
-                            consola.getModuloControloLuminosidade().controlarEquipamento(cliente, divisaoId);
+                            consola.getModuloControloLuminosidade().controlarEquipamento(cliente, divisaoId, "tomada");
+                        } catch (ErroException ex) {
+                            Logger.getLogger(PainelDivisaoFX.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else if (object instanceof SensorLuminosidade) {
+                        //nostra os resultados
+                        System.out.println(((SensorLuminosidade) object).toString());
+                        //mostra o dailog com equipamentos ou para inserir
+                        mostrarDialogo(((SensorLuminosidade) object));
+                        try {
+                            //chamar o modulo luminosidade
+                            consola.getModuloControloLuminosidade().controlarEquipamento(cliente, divisaoId, "sensorTemperatura");
                         } catch (ErroException ex) {
                             Logger.getLogger(PainelDivisaoFX.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -366,7 +383,7 @@ public class PainelDivisaoFX extends StackPane {
         return new PainelDivisaoFX(root, consola, cliente, divisaoId);
     }
 
-    private Dialog mostrarDialogo(Equipamento equipamento) {
-        return new Dialog(equipamento);
+    private DialogFX mostrarDialogo(Equipamento equipamento) {
+        return new DialogFX(equipamento);
     }
 }

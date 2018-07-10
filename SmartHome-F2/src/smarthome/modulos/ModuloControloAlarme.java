@@ -5,17 +5,19 @@
  */
 package smarthome.modulos;
 
+import smarthome.ErroException;
 import smarthome.central.ConsolaCentral;
+import smarthome.cliente.Cliente;
 
 /**
  *
  * @author
  */
-public class ModuloAlarme extends Modulo {
+public class ModuloControloAlarme extends Modulo {
 
     private String nome;
 
-    public ModuloAlarme(ConsolaCentral consola, String nome) {
+    public ModuloControloAlarme(ConsolaCentral consola, String nome) {
         super(consola);
         this.nome = nome;
     }
@@ -28,6 +30,11 @@ public class ModuloAlarme extends Modulo {
     @Override
     public String getNome() {
         return nome;
+    }
+
+   // @Override
+    public void controlarEquipamento(Cliente cliente, int divisaoId) throws ErroException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -7,6 +7,7 @@ package smarthome.modulos;
 
 import smarthome.ErroException;
 import smarthome.central.ConsolaCentral;
+import smarthome.cliente.Cliente;
 
 /**
  *
@@ -20,6 +21,8 @@ public abstract class Modulo {
     public Modulo(ConsolaCentral consola) {
         this.consola = consola;
     }
+
+    //public abstract void controlarEquipamento(Cliente cliente, int divisaoId) throws ErroException;
 
     public abstract String getNome();
 

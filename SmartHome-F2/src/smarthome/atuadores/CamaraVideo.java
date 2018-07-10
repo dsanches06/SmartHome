@@ -25,8 +25,8 @@ public class CamaraVideo extends Atuador {
         this.nome = "CV" + this.id;
         this.ligado = false;
     }
-    
-     @Override
+
+    @Override
     public String toString() {
         String str = "";
         str += "Equipamento: " + nome + "\n";
@@ -37,13 +37,14 @@ public class CamaraVideo extends Atuador {
         str += (this.isModoAutomatico()) ? "Automático\n" : "Manual\n";
         return str;
     }
-    
-    
+
     public void ligar() throws ErroException {
         if (this.ligado) {
             throw new ErroException("Esta CMV já se encontra ligado.");
         }//liga a lampada
         this.ligado = true;
+        //muda para modo auto
+        super.setModoAutomatico(true);
     }
 
     public void desligar() throws ErroException {
@@ -51,9 +52,9 @@ public class CamaraVideo extends Atuador {
             throw new ErroException("Esta CMV já se encontra desligado.");
         }//desliga a lampada
         this.ligado = false;
+         //muda para modo manual
+            super.setModoAutomatico(false);
     }
-
-
 
     @Override
     public int getId() {

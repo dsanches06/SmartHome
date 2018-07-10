@@ -46,7 +46,7 @@ public class Lampada extends Atuador {
         str += (this.ligado) ? "Ligado\n" : "Desligado\n";
         str += "Modo: ";
         str += (this.isModoAutomatico()) ? "Automático\n" : "Manual\n";
-        str += "Intensidade: " + this.intensidade + " kw/h\n";
+        str += "Intensidade: " + this.intensidade + " kw/h \n";
         return str;
     }
 
@@ -55,6 +55,8 @@ public class Lampada extends Atuador {
             throw new ErroException("Esta lampada já se encontra ligada.");
         }//liga a lampada
         this.ligado = true;
+        //muda para modo auto
+        super.setModoAutomatico(true);
     }
 
     public void desligar() throws ErroException {
@@ -62,6 +64,9 @@ public class Lampada extends Atuador {
             throw new ErroException("Esta lampada já se encontra desligada.");
         }//desliga a lampada
         this.ligado = false;
+        //muda para modo manual
+        super.setModoAutomatico(false);
+
     }
 
     public void regularEquipamento(int valor) throws ErroException {//duvida

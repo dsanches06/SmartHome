@@ -28,37 +28,6 @@ public class ModuloControloTemperatura extends Modulo {
         this.nome = nome;
     }
 
-    public void controlarEquipamento(Cliente cliente, int divisaoId) throws ErroException {
-        Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
-        if (divisao != null) {
-            for (Equipamento sensorTemperatura : divisao.getEquipamentos()) {
-                if (Equipamento.instanceOfSensorTemperatura(sensorTemperatura) == true) {
-                    //liga o sensor
-                    ((SensorTemperatura) sensorTemperatura).ligar();
-                    //faz o loop
-                    for (Equipamento arCondicionado : divisao.getEquipamentos()) {
-                        if (Equipamento.instanceOfArCondicionado(arCondicionado) == true) {
-                            //se for maior que 25ºC
-                            if (((SensorTemperatura) sensorTemperatura).getTemperatura() > 25) {
-                                //ligar o ac 
-                                ((ArCondicionado) arCondicionado).ligar();
-                                //e recebe o valor da temperatura
-                                ((ArCondicionado) arCondicionado).setTemperatura(((SensorTemperatura) sensorTemperatura).getTemperatura());
-                            } //se for maior que 21ºC
-                            else if (((SensorTemperatura) sensorTemperatura).getTemperatura() < 21) {
-                                //ligar o ac 
-                                ((ArCondicionado) arCondicionado).ligar();
-                                //e recebe o valor da temperatura
-                                ((ArCondicionado) arCondicionado).setTemperatura(((SensorTemperatura) sensorTemperatura).getTemperatura());
-
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     @Override
     public ConsolaCentral getConsola() {
         return super.getConsola();
@@ -68,4 +37,45 @@ public class ModuloControloTemperatura extends Modulo {
     public String getNome() {
         return nome;
     }
+
+   // @Override
+    public void controlarEquipamento(Cliente cliente, int divisaoId) throws ErroException {
+        Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
+        if (divisao != null) {
+            for (Equipamento sensorTemperatura : divisao.getEquipamentos()) {
+                if (Equipamento.instanceOfSensorTemperatura(sensorTemperatura) == true) {
+                    //se estiver desligado
+                    if (((SensorTemperatura) sensorTemperatura).isLigado() != true) {
+                        //liga o sensor
+                        ((SensorTemperatura) sensorTemperatura).ligar();
+                    }
+                    //faz o loop
+                    for (Equipamento arCondicionado : divisao.getEquipamentos()) {
+                        if (Equipamento.instanceOfArCondicionado(arCondicionado) == true) {
+                            //se for maior que 25ºC
+                            if (((SensorTemperatura) sensorTemperatura).getTemperatura() >= 25) {
+                                //se estiver ligado
+                                if (((ArCondicionado) arCondicionado).isLigado() == true) {
+                                    //e recebe o valor da temperatura
+                                    ((ArCondicionado) arCondicionado).setTemperatura(((SensorTemperatura) sensorTemperatura).getTemperatura());
+                                    //desligar o ac 
+                                    ((ArCondicionado) arCondicionado).desligar();
+                                }
+                            } //se for menor que 21ºC
+                            else if (((SensorTemperatura) sensorTemperatura).getTemperatura() < 21) {
+                                //se estiver desligado
+                                if (((ArCondicionado) arCondicionado).isLigado() != true) {
+                                    //ligar o ac 
+                                    ((ArCondicionado) arCondicionado).ligar();
+                                    //e recebe o valor da temperatura
+                                    ((ArCondicionado) arCondicionado).setTemperatura(((SensorTemperatura) sensorTemperatura).getTemperatura());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }

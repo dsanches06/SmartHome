@@ -47,6 +47,8 @@ public class Tomada extends Atuador {
             throw new ErroException("Esta TMD já se encontra ligado.");
         }//liga a lampada
         this.ligado = true;
+        //muda para modo auto
+        super.setModoAutomatico(true);
         //ativa wi-fi
         this.wifi = true;
     }
@@ -56,6 +58,8 @@ public class Tomada extends Atuador {
             throw new ErroException("Esta TMD já se encontra desligado.");
         }//desliga a lampada
         this.ligado = false;
+        //muda para modo manual
+        super.setModoAutomatico(false);
         //desativa wi-fi
         this.wifi = false;
     }
