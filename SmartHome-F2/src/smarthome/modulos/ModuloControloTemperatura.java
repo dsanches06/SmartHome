@@ -14,17 +14,21 @@ import smarthome.central.ConsolaCentral;
  */
 public class ModuloControloTemperatura extends Modulo {
 
-    private ConsolaCentral consola;
+    private String nome;
 
-    public ModuloControloTemperatura(ConsolaCentral consola) {
-        super("Modúlo Temperatura");
-        this.consola = consola;
+    public ModuloControloTemperatura(ConsolaCentral consola, String nome) {
+        super(consola);
+        this.nome = nome;
     }
 
-    
     @Override
     public ConsolaCentral getConsola() {
-       return consola;
+        return super.getConsola();
+    }
+
+    @Override
+    public String getNome() {
+        return nome;
     }
 
 }

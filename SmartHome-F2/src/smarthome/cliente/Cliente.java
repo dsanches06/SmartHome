@@ -23,14 +23,14 @@ public class Cliente {
     private ConsolaCentral consola;
 
     //Constructor
-    public Cliente(String nome, String localidade, String genero, int numeroDivisao) {
+    public Cliente(String nome, String localidade, String genero, int numeroDivisao, ConsolaCentral consola) {
         this.numeroCliente = ++Cliente.numCliente;
         this.nome = nome;
         this.localidade = localidade;
         this.genero = genero;
         this.numeroDivisao = numeroDivisao;
-        this.habitacao = new Habitacao(numeroDivisao);
-        this.consola = null;
+        this.habitacao = new Habitacao(consola, numeroDivisao);
+        this.consola = consola;
     }
 
     @Override

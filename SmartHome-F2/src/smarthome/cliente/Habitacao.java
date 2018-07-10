@@ -7,6 +7,7 @@ package smarthome.cliente;
 
 import java.util.ArrayList;
 import java.util.List;
+import smarthome.central.ConsolaCentral;
 
 /**
  *
@@ -18,10 +19,10 @@ public class Habitacao {
     private List<Divisao> divisoes;
 
     //Constructor
-    public Habitacao(int numeroDivisao) {
+    public Habitacao(ConsolaCentral consola, int numeroDivisao) {
         this.divisoes = new ArrayList<>(numeroDivisao);
         for (int i = 0; i < numeroDivisao; i++) {
-            this.divisoes.add(new Divisao());
+            this.divisoes.add(new Divisao(consola));
         }
     }
 

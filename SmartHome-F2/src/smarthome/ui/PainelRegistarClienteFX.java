@@ -209,7 +209,7 @@ public class PainelRegistarClienteFX extends StackPane {
                     && (localidade != null)
                     && (numeroDivisao >= 1 && numeroDivisao <= 6)) {
 
-                Cliente cliente = new Cliente(nome, localidade, genero, numeroDivisao);
+                Cliente cliente = new Cliente(nome, localidade, genero, numeroDivisao, consola);
 
                 if (consola.adicionarNovoCliente(cliente) == true) {
                     Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);

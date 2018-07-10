@@ -32,11 +32,25 @@ import smarthome.cliente.Divisao;
  *
  * @author
  */
-public class PainelModuloTemperaturaFX extends StackPane {
+public class PainelClienteFX extends StackPane {
 
     private boolean botaoCor;
 
-    public PainelModuloTemperaturaFX(BorderPane root, GridPane grid, ConsolaCentral consola, Cliente cliente) {
+    public PainelClienteFX(BorderPane root, ConsolaCentral consola, Cliente cliente) {
+        setAlignment(Pos.TOP_RIGHT);
+
+        GridPane grid = new GridPane();
+        grid.setAlignment(Pos.TOP_CENTER);
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(25, 25, 25, 25));
+        //mostra a dashboard
+        mostrarDivisao(root, grid, consola, cliente);
+        //posiciona a grid no centro da borderpane
+        root.setCenter(grid);
+    }
+
+    private void mostrarDivisao(BorderPane root, GridPane grid, ConsolaCentral consola, Cliente cliente) {
 
         GridPane gridTitulo = new GridPane();
         gridTitulo.setAlignment(Pos.TOP_CENTER);
@@ -78,6 +92,12 @@ public class PainelModuloTemperaturaFX extends StackPane {
         HBox hboxPerfil = new HBox(5);
         hboxPerfil.getChildren().addAll(fotoPerfil, perfilText);
 
+        Button btnConsultar = new Button("Consultar informação");
+        btnConsultar.setPrefSize(220, 30);
+        btnConsultar.setOnAction((ActionEvent e) -> {
+
+        });
+
         Button btnVoltar = new Button("Voltar a Consola");
         btnVoltar.setPrefSize(220, 30);
         btnVoltar.setOnAction((ActionEvent e) -> {
@@ -86,7 +106,7 @@ public class PainelModuloTemperaturaFX extends StackPane {
         });
 
         VBox vboxBtnDivisao = new VBox(20);
-        vboxBtnDivisao.getChildren().addAll(btnVoltar);
+        vboxBtnDivisao.getChildren().addAll(btnConsultar, btnVoltar);
 
         VBox vboxCliente = new VBox(50);
         vboxCliente.setAlignment(Pos.CENTER);
@@ -115,11 +135,10 @@ public class PainelModuloTemperaturaFX extends StackPane {
             for (int j = 0; j < total; j++) {
                 //obter a divisao pelo index
                 Divisao divisao = cliente.getHabitacao().getDivisaoPorIndex(j);
-                //se existir
+                //se houver divisao
                 if (divisao != null) {
                     //cria um novo botão
                     btn[i][j] = new Button(divisao.mostrarInfDashBoard());
-                    //verifica a cor
                     if (botaoCor == false) {
                         //preenche com a cor lightgrey
                         btn[i][j].getStyleClass().add("btn_color_red");
@@ -152,8 +171,8 @@ public class PainelModuloTemperaturaFX extends StackPane {
                         if (object instanceof Divisao) {
                             //nostra os resultados
                             System.out.println(((Divisao) object).mostrarInfDashBoard());
-                            //mostra o painel
-                            painelModuloControloTemperatura(root, consola, cliente, ((Divisao) object).getDivisaoID());
+                            //mostra o painel para inserir equipamento pelo id da divisao
+                            painelDivisaoFX(root, consola, cliente, ((Divisao) object).getDivisaoID());
                         }
                     });
                     //muda de cor
@@ -171,10 +190,8 @@ public class PainelModuloTemperaturaFX extends StackPane {
 
         HBox hbox = new HBox(5);
         hbox.getChildren().addAll(painelCliente, painelDivisao);
-
         VBox vbox = new VBox(5);
         vbox.getChildren().addAll(gridTitulo, hbox);
-
         grid.getChildren().addAll(vbox);
     }
 
@@ -182,8 +199,8 @@ public class PainelModuloTemperaturaFX extends StackPane {
         return new PainelConsolaCentralFX(root, consola);
     }
 
-    private StackPane painelModuloControloTemperatura(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {
-        return new PainelModuloControloTemperatura(root, consola, cliente, divisaoId);
+    private StackPane painelDivisaoFX(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {
+        return new PainelDivisaoFX(root, consola, cliente, divisaoId);
     }
 
 }

@@ -5,7 +5,6 @@
  */
 package smarthome.modulos;
 
-import smarthome.ErroException;
 import smarthome.central.ConsolaCentral;
 
 /**
@@ -14,18 +13,21 @@ import smarthome.central.ConsolaCentral;
  */
 public class ModuloAlarme extends Modulo {
 
-    private ConsolaCentral consola;
+    private String nome;
 
-    public ModuloAlarme(ConsolaCentral consola) {
-        super("Modúlo Alarme");
-        this.consola = consola;
+    public ModuloAlarme(ConsolaCentral consola, String nome) {
+        super(consola);
+        this.nome = nome;
     }
 
     @Override
     public ConsolaCentral getConsola() {
-        return consola;
+        return super.getConsola();
     }
 
-    
+    @Override
+    public String getNome() {
+        return nome;
+    }
 
 }

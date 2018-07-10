@@ -34,7 +34,7 @@ public class App extends Application {
         //cria a consola central por omisssão
         ConsolaCentral consola = new ConsolaCentral();
 
-        Cliente cliente = new Cliente("Dani", "Seixal", "M", 3);
+        Cliente cliente = new Cliente("Dani", "Seixal", "M", 3, consola);
         //para teste
         consola.adicionarNovoCliente(cliente);
         //mostra o painel consola central

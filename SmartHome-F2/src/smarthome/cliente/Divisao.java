@@ -9,7 +9,9 @@ import java.util.*;
 import smarthome.ErroException;
 import smarthome.atuadores.ArCondicionado;
 import smarthome.atuadores.Lampada;
+import smarthome.central.ConsolaCentral;
 import smarthome.equipamentos.Equipamento;
+import smarthome.modulos.Modulo;
 
 /**
  *
@@ -24,11 +26,13 @@ public class Divisao {
     private List<Equipamento> equipamentos;
     //temperatura
     private int temperatura;
+    private ConsolaCentral consola;
 
     //Constructor
-    public Divisao() {
+    public Divisao(ConsolaCentral consola) {
         this.divisaoID = ++Divisao.numDivisao;
         this.equipamentos = new ArrayList<>();
+        this.consola = consola;
     }
 
     public void adicionarEquipamento(Equipamento equipamento) {
@@ -108,7 +112,6 @@ public class Divisao {
                 str += "\n" + equipamento.toString() + "\n";
             }
         }
-
         return str;
     }
 

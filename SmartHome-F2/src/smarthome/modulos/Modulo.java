@@ -14,21 +14,17 @@ import smarthome.central.ConsolaCentral;
  */
 public abstract class Modulo {
 
-    //nome
-    private String nome;
+    //consola
+    private ConsolaCentral consola;
 
-    public Modulo(String nome) {
-        this.nome = nome;
+    public Modulo(ConsolaCentral consola) {
+        this.consola = consola;
     }
 
-    @Override
-    public String toString() {
-        String str = "";
-        str += nome + "\n";
+    public abstract String getNome();
 
-        return str;
+    public ConsolaCentral getConsola() {
+        return consola;
     }
-
-    public abstract ConsolaCentral getConsola();
 
 }

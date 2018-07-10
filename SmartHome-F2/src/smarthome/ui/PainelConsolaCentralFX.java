@@ -187,9 +187,7 @@ public class PainelConsolaCentralFX extends StackPane {
             //obter cliente da tabela
             Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
             if (cliente != null) {
-                Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
-                // mostra o dialogo
-                inf.mostrarDialogo("INFORMATION", "Cliente selecionado");
+                painelClienteFX(root, consola, cliente);
             } else {
                 Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
                 // mostra o dialogo
@@ -197,103 +195,111 @@ public class PainelConsolaCentralFX extends StackPane {
             }
         });
 
-        btnRemover.setOnAction((ActionEvent e) -> {
-            //obter cliente da tabela
-            Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
-            if (cliente != null) {
-                consola.removerCliente(cliente);
-                tabela.getItems().remove(cliente);
-                grid1.getChildren().clear();
-                Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
-                //mostra o dialogo
-                inf.mostrarDialogo("INFORMAÇÃO", "Cliente removido com sucesso");
-            } else {
-                Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                // mostra o dialogo
-                erro.mostrarDialogo("ERRO", "Cliente não selecionado");
-            }
-        });
+        btnRemover.setOnAction(
+                (ActionEvent e) -> {
+                    //obter cliente da tabela
+                    Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
+                    if (cliente != null) {
+                        consola.removerCliente(cliente);
+                        tabela.getItems().remove(cliente);
+                        grid1.getChildren().clear();
+                        Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
+                        //mostra o dialogo
+                        inf.mostrarDialogo("INFORMAÇÃO", "Cliente removido com sucesso");
+                    } else {
+                        Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
+                        // mostra o dialogo
+                        erro.mostrarDialogo("ERRO", "Cliente não selecionado");
+                    }
+                });
 
-        btnLuminosidade.setOnAction((ActionEvent e) -> {
-            //obter cliente da tabela
-            Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
-            if (cliente != null) {
-                painelModuloFX(root, consola, cliente, "luminosidade");
-            } else {
-                Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                // mostra o dialogo
-                erro.mostrarDialogo("ERRO", "Cliente não selecionado");
-            }
-        });
+        btnLuminosidade.setOnAction(
+                (ActionEvent e) -> {
+                    //obter cliente da tabela
+                    Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
+                    if (cliente != null) {
+                        painelModuloFX(root, consola, cliente, "luminosidade");
+                    } else {
+                        Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
+                        // mostra o dialogo
+                        erro.mostrarDialogo("ERRO", "Cliente não selecionado");
+                    }
+                });
 
-        btnTemperatura.setOnAction((ActionEvent e) -> {
-            //obter cliente da tabela
-            Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
-            if (cliente != null) {
-                painelModuloFX(root, consola, cliente, "temperatura");
-            } else {
-                Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                // mostra o dialogo
-                erro.mostrarDialogo("ERRO", "Cliente não selecionado");
-            }
+        btnTemperatura.setOnAction(
+                (ActionEvent e) -> {
+                    //obter cliente da tabela
+                    Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
+                    if (cliente != null) {
+                        painelModuloFX(root, consola, cliente, "temperatura");
+                    } else {
+                        Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
+                        // mostra o dialogo
+                        erro.mostrarDialogo("ERRO", "Cliente não selecionado");
+                    }
 
-        });
+                });
 
-        btnAlarme.setOnAction((ActionEvent e) -> {
-            //obter cliente da tabela
-            Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
-            if (cliente != null) {
-                painelModuloFX(root, consola, cliente, "alarme");
-            } else {
-                Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                // mostra o dialogo
-                erro.mostrarDialogo("ERRO", "Cliente não selecionado");
-            }
-        });
+        btnAlarme.setOnAction(
+                (ActionEvent e) -> {
+                    //obter cliente da tabela
+                    Cliente cliente = (Cliente) tabela.getSelectionModel().getSelectedItem();
+                    if (cliente != null) {
+                        painelModuloFX(root, consola, cliente, "alarme");
+                    } else {
+                        Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
+                        // mostra o dialogo
+                        erro.mostrarDialogo("ERRO", "Cliente não selecionado");
+                    }
+                }
+        );
 
-        btnImportar.setOnAction((ActionEvent e) -> {
-            //cria uma instancia filechooser
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Importar Dados no Ficheiro EXCEL");
-            //cria um filtro de extensão "*.log" e adiciona no file chooser
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("EXCEL files (*.xls)", "*.xls"));
-            //mostrar dialog abrir/carregar
-            File file = fileChooser.showOpenDialog(App.stage);
-            //se houver ficheiro
-            if (file != null) {
-                // empresa.importarDados(file);
-                // tabela.setItems(FXCollections.observableArrayList(empresa.getClientes()));
-                // tabela.refresh();
-                // Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
-                //mostra o dialogo
-                // inf.mostrarDialogo("INFORMAÇÃO", "Dados Importados do Ficheiro com sucesso");
-            } else {
-                //Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                //mostra o dialogo
-                //erro.mostrarDialogo("ERRO", "Operação Importar Dados do Ficheiro foi cancelada");
-            }
-        });
+        btnImportar.setOnAction(
+                (ActionEvent e) -> {
+                    //cria uma instancia filechooser
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.setTitle("Importar Dados no Ficheiro EXCEL");
+                    //cria um filtro de extensão "*.log" e adiciona no file chooser
+                    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("EXCEL files (*.xls)", "*.xls"));
+                    //mostrar dialog abrir/carregar
+                    File file = fileChooser.showOpenDialog(App.stage);
+                    //se houver ficheiro
+                    if (file != null) {
+                        // empresa.importarDados(file);
+                        // tabela.setItems(FXCollections.observableArrayList(empresa.getClientes()));
+                        // tabela.refresh();
+                        // Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
+                        //mostra o dialogo
+                        // inf.mostrarDialogo("INFORMAÇÃO", "Dados Importados do Ficheiro com sucesso");
+                    } else {
+                        //Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
+                        //mostra o dialogo
+                        //erro.mostrarDialogo("ERRO", "Operação Importar Dados do Ficheiro foi cancelada");
+                    }
+                }
+        );
 
-        btnSalvar.setOnAction((ActionEvent e) -> {
-            //cria uma instancia filechooser
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Salvar Dados no Ficheiro EXCEL");
-            //cria um filtro de extensão "*.log" e adiciona no file chooser
-            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("EXCEL files (*.xls)", "*.xls"));
-            //mostra dialog salvar 
-            File file = fileChooser.showSaveDialog(App.stage);
-            //se não cria um novo
-            if (file != null) {
-                //empresa.gravaFicheiro(file);
-                // Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
-                //mostra o dialogo
-                //  inf.mostrarDialogo("INFORMAÇÃO", "Dados Guardados no Ficheiro com sucesso");
-            } else {
-                //Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
-                //mostra o dialogo
-                //erro.mostrarDialogo("ERRO", "Operação Salvar Dados no Ficheiro foi cancelada");
-            }
-        });
+        btnSalvar.setOnAction(
+                (ActionEvent e) -> {
+                    //cria uma instancia filechooser
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.setTitle("Salvar Dados no Ficheiro EXCEL");
+                    //cria um filtro de extensão "*.log" e adiciona no file chooser
+                    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("EXCEL files (*.xls)", "*.xls"));
+                    //mostra dialog salvar 
+                    File file = fileChooser.showSaveDialog(App.stage);
+                    //se não cria um novo
+                    if (file != null) {
+                        //empresa.gravaFicheiro(file);
+                        // Dialogo inf = new Dialogo(Alert.AlertType.INFORMATION);
+                        //mostra o dialogo
+                        //  inf.mostrarDialogo("INFORMAÇÃO", "Dados Guardados no Ficheiro com sucesso");
+                    } else {
+                        //Dialogo erro = new Dialogo(Alert.AlertType.ERROR);
+                        //mostra o dialogo
+                        //erro.mostrarDialogo("ERRO", "Operação Salvar Dados no Ficheiro foi cancelada");
+                    }
+                });
 
         btnSair.setOnAction((ActionEvent e) -> {
 
@@ -311,7 +317,6 @@ public class PainelConsolaCentralFX extends StackPane {
         VBox vbox2 = new VBox(10);
         vbox2.setAlignment(Pos.TOP_CENTER);
         vbox2.getChildren().addAll(hbox1, separador3, painel2);
-
         vbox3.getChildren().addAll(grid, vbox2);
     }
 
@@ -354,5 +359,9 @@ public class PainelConsolaCentralFX extends StackPane {
 
     private StackPane painelModuloFX(BorderPane root, ConsolaCentral consola, Cliente cliente, String tipoModulo) {
         return new PainelModuloFX(root, consola, cliente, tipoModulo);
+    }
+
+    private StackPane painelClienteFX(BorderPane root, ConsolaCentral consola, Cliente cliente) {
+        return new PainelClienteFX(root, consola, cliente);
     }
 }

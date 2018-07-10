@@ -90,15 +90,6 @@ public class PainelModuloLuminosidadeFX extends StackPane {
         HBox hboxPerfil = new HBox(5);
         hboxPerfil.getChildren().addAll(fotoPerfil, perfilText);
 
-        Button btnAdicionar = new Button("Nova Divisão");
-        btnAdicionar.setPrefSize(220, 30);
-        btnAdicionar.setOnAction((ActionEvent e) -> {
-
-        });
-
-        Button btnRemover = new Button("Remover Divisão");
-        btnRemover.setPrefSize(220, 30);
-
         Button btnVoltar = new Button("Voltar a Consola");
         btnVoltar.setPrefSize(220, 30);
         btnVoltar.setOnAction((ActionEvent e) -> {
@@ -107,7 +98,7 @@ public class PainelModuloLuminosidadeFX extends StackPane {
         });
 
         VBox vboxBtnDivisao = new VBox(20);
-        vboxBtnDivisao.getChildren().addAll(btnAdicionar, btnRemover, btnVoltar);
+        vboxBtnDivisao.getChildren().addAll(btnVoltar);
 
         VBox vboxCliente = new VBox(50);
         vboxCliente.setAlignment(Pos.CENTER);
@@ -136,29 +127,10 @@ public class PainelModuloLuminosidadeFX extends StackPane {
             for (int j = 0; j < total; j++) {
                 //obter a divisao pelo index
                 Divisao divisao = cliente.getHabitacao().getDivisaoPorIndex(j);
-
-                if (divisao != null) {
-                    for (Equipamento equipamento : divisao.getEquipamentos()) {
-                        if (equipamento instanceof ArCondicionado) {
-                            System.out.println("ArCondicionado: " + ((ArCondicionado) equipamento).toString());
-                        }
-                        if (equipamento instanceof SensorTemperatura) {
-                            System.out.println("SensorTemperatura: " + ((SensorTemperatura) equipamento).toString());
-                        }
-                        if (equipamento instanceof Lampada) {
-                            System.out.println("Lampada: " + ((Lampada) equipamento).toString());
-                        }
-                        if (equipamento instanceof SensorLuminosidade) {
-                            System.out.println("SensorLuminosidade: " + ((SensorLuminosidade) equipamento).toString());
-                        }
-                    }
-                }
-
-                //se existir
+                //se houver divisao
                 if (divisao != null) {
                     //cria um novo botão
                     btn[i][j] = new Button(divisao.mostrarInfDashBoard());
-                    //verifica a cor
                     if (botaoCor == false) {
                         //preenche com a cor lightgrey
                         btn[i][j].getStyleClass().add("btn_color_red");
@@ -191,8 +163,8 @@ public class PainelModuloLuminosidadeFX extends StackPane {
                         if (object instanceof Divisao) {
                             //nostra os resultados
                             System.out.println(((Divisao) object).mostrarInfDashBoard());
-                            //mostra o painel para inserir equipamento pelo id da divisao
-                            painelDivisaoFX(root, consola, cliente, ((Divisao) object).getDivisaoID());
+                            //mostra o painel 
+                            painelModuloControloLuminosidade(root, consola, cliente, ((Divisao) object).getDivisaoID());
                         }
                     });
                     //muda de cor
@@ -213,7 +185,6 @@ public class PainelModuloLuminosidadeFX extends StackPane {
 
         VBox vbox = new VBox(5);
         vbox.getChildren().addAll(gridTitulo, hbox);
-
         grid.getChildren().addAll(vbox);
     }
 
@@ -221,8 +192,8 @@ public class PainelModuloLuminosidadeFX extends StackPane {
         return new PainelConsolaCentralFX(root, consola);
     }
 
-    private StackPane painelDivisaoFX(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {
-        return new PainelDivisaoFX(root, consola, cliente, divisaoId);
+    private StackPane painelModuloControloLuminosidade(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {
+        return new PainelModuloControloLuminosidade(root, consola, cliente, divisaoId);
     }
 
 }

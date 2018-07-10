@@ -10,22 +10,21 @@ import smarthome.central.ConsolaCentral;
 import smarthome.cliente.Cliente;
 import smarthome.cliente.Divisao;
 
-
 /**
  *
  * @author
  */
 public class ModuloControloLuminosidade extends Modulo {
 
-    private ConsolaCentral consola;
+    private String nome;
 
-    public ModuloControloLuminosidade(ConsolaCentral consola) {
-        super("Modúlo Luminosidade");
-        this.consola = consola;
+    public ModuloControloLuminosidade(ConsolaCentral consola, String nome) {
+        super(consola);
+        this.nome = nome;
     }
 
     public void ligarEquipamento(int clienteId, int divisaoId, int equipamentoId) throws ErroException {
-        Cliente cliente = this.consola.getClientePorID(clienteId);
+        Cliente cliente = this.getConsola().getClientePorID(clienteId);
         if (cliente != null) {
             Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
             if (divisao != null) {
@@ -39,7 +38,7 @@ public class ModuloControloLuminosidade extends Modulo {
     }
 
     public void desligarEquipamento(int clienteId, int divisaoId, int equipamentoId) throws ErroException {
-        Cliente cliente = this.consola.getClientePorID(clienteId);
+        Cliente cliente = this.getConsola().getClientePorID(clienteId);
         if (cliente != null) {
             Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
             if (divisao != null) {
@@ -51,10 +50,9 @@ public class ModuloControloLuminosidade extends Modulo {
             throw new ErroException("Não existe nenhum cliente com este ID.");
         }
     }
-    
-    
-    public void regularEquipamento(int clienteId, int divisaoId, int equipamentoId,int valor) throws ErroException {
-        Cliente cliente = this.consola.getClientePorID(clienteId);
+
+    public void regularEquipamento(int clienteId, int divisaoId, int equipamentoId, int valor) throws ErroException {
+        Cliente cliente = this.getConsola().getClientePorID(clienteId);
         if (cliente != null) {
             Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
             if (divisao != null) {
@@ -69,12 +67,12 @@ public class ModuloControloLuminosidade extends Modulo {
 
     @Override
     public ConsolaCentral getConsola() {
-        return consola;
+        return super.getConsola();
     }
 
     @Override
-    public String toString() {
-        return super.toString();
+    public String getNome() {
+        return nome;
     }
 
 }

@@ -78,15 +78,6 @@ public class PainelModuloAlarmeFX extends StackPane {
         HBox hboxPerfil = new HBox(5);
         hboxPerfil.getChildren().addAll(fotoPerfil, perfilText);
 
-        Button btnAdicionar = new Button("Nova Divisão");
-        btnAdicionar.setPrefSize(220, 30);
-        btnAdicionar.setOnAction((ActionEvent e) -> {
-
-        });
-
-        Button btnRemover = new Button("Remover Divisão");
-        btnRemover.setPrefSize(220, 30);
-
         Button btnVoltar = new Button("Voltar a Consola");
         btnVoltar.setPrefSize(220, 30);
         btnVoltar.setOnAction((ActionEvent e) -> {
@@ -95,7 +86,7 @@ public class PainelModuloAlarmeFX extends StackPane {
         });
 
         VBox vboxBtnDivisao = new VBox(20);
-        vboxBtnDivisao.getChildren().addAll(btnAdicionar, btnRemover, btnVoltar);
+        vboxBtnDivisao.getChildren().addAll(btnVoltar);
 
         VBox vboxCliente = new VBox(50);
         vboxCliente.setAlignment(Pos.CENTER);
@@ -161,8 +152,8 @@ public class PainelModuloAlarmeFX extends StackPane {
                         if (object instanceof Divisao) {
                             //nostra os resultados
                             System.out.println(((Divisao) object).mostrarInfDashBoard());
-                            //mostra o painel para inserir equipamento pelo id da divisao
-                            painelDivisaoFX(root, consola, cliente, ((Divisao) object).getDivisaoID());
+                            //mostra o painel 
+                            painelModuloControloAlarme(root, consola, cliente, ((Divisao) object).getDivisaoID());
                         }
                     });
                     //muda de cor
@@ -191,8 +182,8 @@ public class PainelModuloAlarmeFX extends StackPane {
         return new PainelConsolaCentralFX(root, consola);
     }
 
-    private StackPane painelDivisaoFX(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {
-        return new PainelDivisaoFX(root, consola, cliente, divisaoId);
+    private StackPane painelModuloControloAlarme(BorderPane root, ConsolaCentral consola, Cliente cliente, int divisaoId) {
+        return new PainelModuloControloAlarme(root, consola, cliente, divisaoId);
     }
 
 }

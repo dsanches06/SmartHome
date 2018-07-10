@@ -10,6 +10,7 @@ import java.util.List;
 import smarthome.atuadores.Atuador;
 import smarthome.atuadores.Lampada;
 import smarthome.cliente.Cliente;
+import smarthome.modulos.Modulo;
 import smarthome.modulos.ModuloAlarme;
 import smarthome.modulos.ModuloControloLuminosidade;
 import smarthome.modulos.ModuloControloTemperatura;
@@ -35,9 +36,9 @@ public class ConsolaCentral {
     //Constructor
     public ConsolaCentral() {
         this.clientes = new ArrayList<>();
-        this.moduloAlarme = new ModuloAlarme(this);
-        this.moduloControloTemperatura = new ModuloControloTemperatura(this);
-        this.moduloControloLuminosidade = new ModuloControloLuminosidade(this);
+        this.moduloAlarme = new ModuloAlarme(this, "Modulo Alarme");
+        this.moduloControloTemperatura = new ModuloControloTemperatura(this, "Modulo Temperatura");
+        this.moduloControloLuminosidade = new ModuloControloLuminosidade(this, "Modulo Luminosidade");
     }
 
     @Override
