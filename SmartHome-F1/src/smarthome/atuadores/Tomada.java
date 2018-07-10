@@ -5,8 +5,8 @@
  */
 package smarthome.atuadores;
 
-import smarthome.ErroException;
-import smarthome.cliente.Divisao;
+import smarthome.*;
+import smarthome.cliente.*;
 
 /**
  *

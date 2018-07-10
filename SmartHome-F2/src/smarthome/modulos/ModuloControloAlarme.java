@@ -5,9 +5,9 @@
  */
 package smarthome.modulos;
 
-import smarthome.ErroException;
-import smarthome.central.ConsolaCentral;
-import smarthome.cliente.Cliente;
+import smarthome.*;
+import smarthome.central.*;
+import smarthome.cliente.*;
 
 /**
  *

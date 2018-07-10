@@ -5,18 +5,11 @@
  */
 package smarthome;
 
-import smarthome.atuadores.ArCondicionado;
-import smarthome.atuadores.CamaraFotografica;
-import smarthome.atuadores.CamaraVideo;
-import smarthome.atuadores.Lampada;
-import smarthome.atuadores.Sirene;
-import smarthome.atuadores.Tomada;
-import smarthome.central.ConsolaCentral;
-import smarthome.cliente.Cliente;
-import smarthome.cliente.Divisao;
-import smarthome.sensores.SensorLuminosidade;
-import smarthome.sensores.SensorMovimento;
-import smarthome.sensores.SensorTemperatura;
+import java.io.*;
+import smarthome.atuadores.*;
+import smarthome.central.*;
+import smarthome.cliente.*;
+import smarthome.sensores.*;
 
 /**
  *
@@ -28,7 +21,7 @@ public class SmartHomeApp {
      * @param args the command line arguments
      * @throws smarthome.ErroException
      */
-    public static void main(String[] args) throws ErroException {
+    public static void main(String[] args) throws ErroException, IOException {
         // TODO code application logic here
         //consola
         ConsolaCentral consola = new ConsolaCentral();
@@ -107,6 +100,9 @@ public class SmartHomeApp {
         sensorTemperatura2.setTemperatura(20);
         consola.getModuloControloTemperatura().controlarEquipamento(edson, 2);
 
+        //gravar ficheiro
+        consola.gravarFicheiro();
+        
         //mostrar clientes na consola
         System.out.println(consola.toString());
 

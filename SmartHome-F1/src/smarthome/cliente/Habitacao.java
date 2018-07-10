@@ -5,10 +5,9 @@
  */
 package smarthome.cliente;
 
-import java.util.ArrayList;
-import java.util.List;
-import smarthome.central.ConsolaCentral;
-import smarthome.equipamentos.Equipamento;
+import java.util.*;
+import smarthome.central.*;
+import smarthome.equipamentos.*;
 
 /**
  *

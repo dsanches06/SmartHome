@@ -5,18 +5,11 @@
  */
 package smarthome.central;
 
-import java.util.ArrayList;
-import java.util.List;
-import javafx.scene.image.Image;
-import smarthome.atuadores.Atuador;
-import smarthome.atuadores.Lampada;
-import smarthome.cliente.Cliente;
-import smarthome.modulos.Modulo;
-import smarthome.modulos.ModuloControloAlarme;
-import smarthome.modulos.ModuloControloLuminosidade;
-import smarthome.modulos.ModuloControloTemperatura;
-import smarthome.sensores.Sensor;
-import smarthome.sensores.SensorLuminosidade;
+import java.io.*;
+import java.util.*;
+import javafx.scene.image.*;
+import smarthome.cliente.*;
+import smarthome.modulos.*;
 
 /**
  *
@@ -32,7 +25,6 @@ public class ConsolaCentral {
     private ModuloControloLuminosidade moduloControloLuminosidade;
     //cliente
     private List<Cliente> clientes;
-    //adicionar 
 
     //Constructor
     public ConsolaCentral() {
@@ -83,10 +75,28 @@ public class ConsolaCentral {
         return null;
     }
 
-    public void conetarEquipamentos(Sensor sensor, Atuador atuador) {
-        if ((sensor instanceof SensorLuminosidade)
-                & (atuador instanceof Lampada)) {
+    //gravar ficheiro
+    public void gravarFicheiro(String nomeFicheiro) throws IOException {
+        try {
+            File file = new File(nomeFicheiro);
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream os = new ObjectOutputStream(fos);
+            os.writeObject(clientes);
+            os.flush();
+            os.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
+    //ler ficheiro
+    public void lerFicheiro(String nomeFicheiro) throws IOException {
+        try {
+            FileInputStream fis = new FileInputStream(nomeFicheiro);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            clientes = (List<Cliente>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
 

@@ -5,19 +5,10 @@
  */
 package smarthome;
 
-import smarthome.atuadores.ArCondicionado;
-import smarthome.atuadores.CamaraFotografica;
-import smarthome.atuadores.CamaraVideo;
-import smarthome.atuadores.Lampada;
-import smarthome.atuadores.Sirene;
-import smarthome.atuadores.Tomada;
-import smarthome.central.ConsolaCentral;
-import smarthome.cliente.Cliente;
-import smarthome.cliente.Divisao;
-import smarthome.sensores.SensorLuminosidade;
-import smarthome.sensores.SensorMovimento;
-import smarthome.sensores.SensorPortaAberta;
-import smarthome.sensores.SensorTemperatura;
+import smarthome.atuadores.*;
+import smarthome.central.*;
+import smarthome.cliente.*;
+import smarthome.sensores.*;
 
 /**
  *

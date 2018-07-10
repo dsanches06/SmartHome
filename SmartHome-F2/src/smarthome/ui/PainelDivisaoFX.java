@@ -5,44 +5,21 @@
  */
 package smarthome.ui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Separator;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import smarthome.Dialogo;
-import smarthome.ErroException;
-import smarthome.atuadores.ArCondicionado;
-import smarthome.atuadores.CamaraFotografica;
-import smarthome.atuadores.CamaraVideo;
-import smarthome.atuadores.Lampada;
-import smarthome.atuadores.Sirene;
-import smarthome.atuadores.Tomada;
-import smarthome.central.ConsolaCentral;
-import smarthome.cliente.Cliente;
-import smarthome.cliente.Divisao;
-import smarthome.equipamentos.Equipamento;
-import smarthome.sensores.SensorLuminosidade;
-import smarthome.sensores.SensorMovimento;
-import smarthome.sensores.SensorPortaAberta;
-import smarthome.sensores.SensorTemperatura;
+import java.util.logging.*;
+import javafx.event.*;
+import javafx.geometry.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
+import javafx.scene.text.*;
+import smarthome.*;
+import smarthome.atuadores.*;
+import smarthome.central.*;
+import smarthome.cliente.*;
+import smarthome.equipamentos.*;
+import smarthome.sensores.*;
 
 /**
  *

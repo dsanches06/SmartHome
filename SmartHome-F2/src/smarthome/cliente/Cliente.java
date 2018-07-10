@@ -5,7 +5,7 @@
  */
 package smarthome.cliente;
 
-import smarthome.central.ConsolaCentral;
+import smarthome.central.*;
 
 /**
  *

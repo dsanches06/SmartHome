@@ -5,18 +5,13 @@
  */
 package smarthome;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import smarthome.atuadores.ArCondicionado;
-import smarthome.atuadores.Lampada;
-import smarthome.central.ConsolaCentral;
-import smarthome.cliente.Cliente;
-import smarthome.cliente.Divisao;
-import smarthome.ui.PainelConsolaCentralFX;
+import javafx.application.*;
+import javafx.scene.*;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
+import javafx.stage.*;
+import smarthome.central.*;
+import smarthome.ui.*;
 
 /**
  *

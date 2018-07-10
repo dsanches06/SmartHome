@@ -5,28 +5,16 @@
  */
 package smarthome.ui;
 
-import javafx.event.ActionEvent;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Separator;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import smarthome.central.ConsolaCentral;
-import smarthome.cliente.Cliente;
-import smarthome.cliente.Divisao;
+import javafx.event.*;
+import javafx.geometry.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.input.*;
+import javafx.scene.layout.*;
+import javafx.scene.text.*;
+import smarthome.central.*;
+import smarthome.cliente.*;
 
 /**
  *

@@ -5,14 +5,12 @@
  */
 package smarthome.modulos;
 
-import smarthome.ErroException;
-import smarthome.atuadores.Lampada;
-import smarthome.atuadores.Tomada;
-import smarthome.central.ConsolaCentral;
-import smarthome.cliente.Cliente;
-import smarthome.cliente.Divisao;
-import smarthome.equipamentos.Equipamento;
-import smarthome.sensores.SensorLuminosidade;
+import smarthome.*;
+import smarthome.atuadores.*;
+import smarthome.central.*;
+import smarthome.cliente.*;
+import smarthome.equipamentos.*;
+import smarthome.sensores.*;
 
 /**
  *

@@ -6,11 +6,8 @@
 package smarthome.cliente;
 
 import java.util.*;
-import smarthome.ErroException;
-import smarthome.atuadores.ArCondicionado;
-import smarthome.atuadores.Lampada;
-import smarthome.central.ConsolaCentral;
-import smarthome.equipamentos.Equipamento;
+import smarthome.central.*;
+import smarthome.equipamentos.*;
 
 /**
  *

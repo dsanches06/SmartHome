@@ -5,13 +5,14 @@
  */
 package smarthome.cliente;
 
-import smarthome.central.ConsolaCentral;
+import java.io.*;
+import smarthome.central.*;
 
 /**
  *
  * @author
  */
-public class Cliente {
+public class Cliente implements Serializable {
 
     private static int numCliente = 0;
     private int numeroCliente;

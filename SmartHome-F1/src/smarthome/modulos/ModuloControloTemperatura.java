@@ -5,15 +5,12 @@
  */
 package smarthome.modulos;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import smarthome.ErroException;
-import smarthome.atuadores.ArCondicionado;
-import smarthome.central.ConsolaCentral;
-import smarthome.cliente.Cliente;
-import smarthome.cliente.Divisao;
-import smarthome.equipamentos.Equipamento;
-import smarthome.sensores.SensorTemperatura;
+import smarthome.*;
+import smarthome.atuadores.*;
+import smarthome.central.*;
+import smarthome.cliente.*;
+import smarthome.equipamentos.*;
+import smarthome.sensores.*;
 
 /**
  *

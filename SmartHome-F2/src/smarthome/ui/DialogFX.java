@@ -5,14 +5,10 @@
  */
 package smarthome.ui;
 
-import java.util.Optional;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.image.ImageView;
-import smarthome.atuadores.ArCondicionado;
-import smarthome.equipamentos.Equipamento;
-import smarthome.sensores.SensorLuminosidade;
-import smarthome.sensores.SensorTemperatura;
+import java.util.*;
+import javafx.scene.control.*;
+import smarthome.equipamentos.*;
+import smarthome.sensores.*;
 
 /**
  *

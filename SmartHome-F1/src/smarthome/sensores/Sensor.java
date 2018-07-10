@@ -5,8 +5,7 @@
  */
 package smarthome.sensores;
 
-import smarthome.equipamentos.Equipamento;
-import smarthome.equipamentos.TipoEquipamento;
+import smarthome.equipamentos.*;
 
 /**
  *

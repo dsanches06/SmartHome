@@ -5,7 +5,7 @@
  */
 package smarthome.atuadores;
 
-import smarthome.cliente.Divisao;
+import smarthome.cliente.*;
 
 /**
  *
