@@ -40,7 +40,7 @@ public class ModuloControloLuminosidade extends Modulo {
         Divisao divisao = cliente.getHabitacao().getDivisaoPorID(divisaoId);
         if (divisao != null) {
             switch (equipamento) {
-                case "sensorTemperatura":
+                case "sensorLuminosidade":
                     for (Equipamento sensorLuminosidade : divisao.getEquipamentos()) {
                         if (Equipamento.instanceOfSensorLuminosidade(sensorLuminosidade) == true) {
                             //se estiver desligado
