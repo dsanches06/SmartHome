@@ -5,8 +5,7 @@ Programação Orientada por Objetos
 Sistema de equipamentos numa Casa Domotica
 
 ### Software IDE
-NetBeans IDE 8.2
-Java SE 8
+NetBeans IDE 8.2 com Java SE 8
 
 ![](/consola_central.jpg)
 ![](/smarthome_divisao.jpg)
